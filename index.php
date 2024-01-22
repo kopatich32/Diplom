@@ -20,6 +20,12 @@
             </ul>
         </nav>
         <nav class="playlists">
+            <div class="head-list">
+                <div><img src="icons/list-music.svg" alt="list-music"></div>
+                <span>Your playlist (<span>4</span>)</span>
+                <div><img src="icons/search.svg" alt="search"></div>
+                <div><img src="icons/plus.svg" alt="add-playlist"></div>
+            </div>
             <div>1</div>
             <div>2</div>
             <div>3</div>

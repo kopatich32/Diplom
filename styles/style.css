@@ -36,7 +36,7 @@ body {
   padding: 30px; }
 
 aside {
-  width: 300px;
+  min-width: 300px;
   margin-right: 10px;
   color: white;
   font-family: Quicksand; }
@@ -59,8 +59,15 @@ aside {
           margin-right: 20px; }
   aside .playlists {
     background-color: #1A1A1A; }
+    aside .playlists .head-list {
+      display: flex;
+      flex-direction: row;
+      justify-content: normal;
+      align-items: baseline;
+      padding: 10px 20px 0 20px; }
     aside .playlists div {
-      height: 60px; }
+      height: 60px;
+      padding-top: 10px; }
 
 .cnt {
   width: 100%; }

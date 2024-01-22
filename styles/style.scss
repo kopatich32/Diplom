@@ -39,7 +39,7 @@ body {
 
 aside {
 
-  width: 300px;
+  min-width: 300px;
   margin-right: 10px;
 
   .links {
@@ -69,8 +69,14 @@ aside {
 
   .playlists {
     background-color: $front-background;
+    .head-list{
+      @include flex(row, normal, baseline);
+    padding: 10px 20px 0 20px;
+    }
+
     div{
       height: 60px;
+      padding-top:10px;
     }
   }
 }
