@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @font-face {
   src: url("../fonts/Quicksand/Quicksand.ttf");
   font-family: "Quicksand";
@@ -15,7 +16,11 @@
   font-family: "Quicksand";
   font-weight: 400; }
 * {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  font-family: Quicksand; }
+
+.playing {
+  color: #5C67DE; }
 
 html, body {
   padding: 0;
@@ -27,19 +32,27 @@ body {
   background: #0A0A0A;
   color: white; }
 
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: normal;
+  align-items: normal;
+  min-height: 100%;
+  max-height: 100vh; }
+
 .player {
   display: flex;
   flex-direction: row;
   justify-content: normal;
   align-items: normal;
   width: 100%;
-  padding: 30px; }
+  padding: 30px 30px 0 30px; }
 
 aside {
   min-width: 300px;
   margin-right: 10px;
-  color: white;
-  font-family: Quicksand; }
+  height: 100%;
+  color: white; }
   aside .links {
     background: #1A1A1A;
     height: 170px;
@@ -58,19 +71,56 @@ aside {
         aside .links ul li span {
           margin-right: 20px; }
   aside .playlists {
-    background-color: #1A1A1A; }
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    /* IE и Edge */
+    scrollbar-width: none;
+    /* Firefox */
+    height: calc(100vh - 110px - 170px - 70px);
+    background-color: #1A1A1A;
+    list-style: none;
+    border-radius: 15px;
+    padding: 10px; }
+    aside .playlists li {
+      display: flex;
+      flex-direction: row;
+      justify-content: normal;
+      align-items: center;
+      height: 60px;
+      padding: 6px 0 6px 0; }
+      aside .playlists li div:nth-child(2) {
+        display: flex;
+        flex-direction: column;
+        justify-content: normal;
+        align-items: flex-start;
+        padding-left: 6px; }
+        aside .playlists li div:nth-child(2) p {
+          padding: 0;
+          margin: 0; }
+        aside .playlists li div:nth-child(2) p:first-child {
+          font-size: 16px; }
+        aside .playlists li div:nth-child(2) p:last-child {
+          font-size: 14px; }
+      aside .playlists li div:nth-child(3) {
+        margin: 0 8px 0 auto; }
     aside .playlists .head-list {
       display: flex;
       flex-direction: row;
       justify-content: normal;
       align-items: baseline;
       padding: 10px 20px 0 20px; }
-    aside .playlists div {
-      height: 60px;
-      padding-top: 10px; }
+      aside .playlists .head-list .left-navigation {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: normal;
+        margin-left: auto; }
+  aside .playlists::-webkit-scrollbar {
+    display: none; }
 
 .cnt {
-  width: 100%; }
+  width: 100%;
+  height: 100px; }
   .cnt header {
     width: 100%;
     display: flex;
@@ -96,7 +146,7 @@ aside {
         border-radius: 15px;
         border: 0;
         font-size: 16px;
-        width: 860px;
+        width: 100%;
         padding-left: 20px; }
     .cnt header .notification {
       width: 50px;
@@ -130,5 +180,35 @@ main {
       object-fit: cover;
       height: 100%;
       width: 100%; }
+
+footer {
+  margin-top: auto;
+  height: 110px;
+  background: #1A1A1A; }
+  footer .current-cover {
+    display: flex;
+    flex-direction: row;
+    justify-content: bormal;
+    align-items: normal;
+    width: 110px;
+    height: 100%; }
+    footer .current-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; }
+    footer .current-cover .current-track {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: normal;
+      margin-left: 20px; }
+    footer .current-cover .current-track > p:first-child {
+      margin: 0;
+      font-size: 16px;
+      color: white; }
+    footer .current-cover .current-track > p:last-child {
+      margin: 0;
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.3); }
 
 /*# sourceMappingURL=style.css.map */

@@ -2,10 +2,17 @@
 
 * {
   box-sizing: border-box;
+  font-family: Quicksand;
 }
 
 $front-background: #1A1A1A;
 $back-background: #0A0A0A;
+$playing-playlist-color: #5C67DE;
+$current-track-footer-color: white;
+$current-artist-footer-color: rgba(255, 255, 255, 0.3);
+.playing{
+  color: $playing-playlist-color;
+}
 @mixin size($width, $height) {
   width: $width;
   height: $height;
@@ -30,17 +37,22 @@ body {
   color: white;
 
 }
-
+.wrapper{
+  @include flex(column, normal, normal);
+  min-height: 100%;
+  max-height: 100vh;
+}
 .player {
   @include flex(row, normal, normal);
   width: 100%;
-  padding: 30px;
+  padding: 30px 30px 0 30px;
 }
 
 aside {
 
   min-width: 300px;
   margin-right: 10px;
+  height: 100%;
 
   .links {
     background: $front-background;
@@ -65,24 +77,56 @@ aside {
   }
 
   color: white;
-  font-family: Quicksand;
 
   .playlists {
+    overflow-y: scroll;
+    -ms-overflow-style: none;  /* IE и Edge */
+    scrollbar-width: none;  /* Firefox */
+    height: calc(100vh - 110px - 170px - 70px);
     background-color: $front-background;
+    list-style: none;
+    border-radius: 15px;
+    padding: 10px;
+    li{
+      @include flex(row, normal, center);
+      height: 60px;
+      padding: 6px 0 6px 0;
+      div:nth-child(2){
+        @include flex(column, normal, flex-start);
+        padding-left:6px;
+        p{
+          padding: 0;
+          margin: 0;
+        }
+        p:first-child{
+          font-size: 16px;
+        }p:last-child{
+          font-size: 14px;
+        }
+      }
+      div:nth-child(3){
+margin: 0 8px 0 auto;
+      }
+    }
     .head-list{
       @include flex(row, normal, baseline);
     padding: 10px 20px 0 20px;
+      .left-navigation{
+        @include flex(row, space-between, normal);
+        margin-left: auto;
+      }
     }
 
-    div{
-      height: 60px;
-      padding-top:10px;
-    }
   }
+  .playlists::-webkit-scrollbar {
+    display: none;
+  }
+
 }
 
 .cnt {
   width: 100%;
+  height: 100px;
   header {
     width: 100%;
     @include flex(row, normal, normal);
@@ -106,7 +150,7 @@ aside {
         border-radius: 15px;
         border: 0;
         font-size: 16px;
-        width: 860px;
+        width: 100%;
         padding-left:20px;
       }
     }
@@ -149,6 +193,34 @@ main{
       object-fit:cover;
       height: 100%;
       width: 100%;
+    }
+  }
+}
+//Footer
+footer{
+  margin-top: auto;
+  height: 110px;
+  background: $front-background;
+  .current-cover{
+    @include flex(row,bormal, normal);
+    img{
+      @include size(100%, 100%);
+      object-fit: cover;
+    }
+    .current-track{
+      @include flex(column, center, normal);
+      margin-left: 20px;
+    }
+    @include size(110px, 100%);
+    .current-track>p:first-child{
+      margin: 0;
+      font-size: 16px;
+      color: $current-track-footer-color;
+    }
+    .current-track>p:last-child{
+      margin: 0;
+      font-size: 16px;
+      color: $current-artist-footer-color;
     }
   }
 }

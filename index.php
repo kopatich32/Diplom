@@ -9,6 +9,7 @@
     <title>Document</title>
 </head>
 <body>
+<div class="wrapper">
 <div class="player">
 
     <aside class="aside-left">
@@ -19,22 +20,45 @@
                 <li><span><img src="icons/following.svg" alt="following"></span>Following</li>
             </ul>
         </nav>
-        <nav class="playlists">
-            <div class="head-list">
+
+        <ul class="playlists">
+            <li class="head-list">
                 <div><img src="icons/list-music.svg" alt="list-music"></div>
                 <span>Your playlist (<span>4</span>)</span>
-                <div><img src="icons/search.svg" alt="search"></div>
-                <div><img src="icons/plus.svg" alt="add-playlist"></div>
-            </div>
-            <div>1</div>
-            <div>2</div>
-            <div>3</div>
-            <div>4</div>
-            <div>5</div>
-            <div>6</div>
-            <div>7</div>
-            <div>8</div>
-        </nav>
+                <div class="left-navigation">
+                    <div><img src="icons/search.svg" alt="search"></div>
+                    <div><img src="icons/plus.svg" alt="add-playlist"></div>
+                </div>
+            </li>
+            <li class="playing">
+                <div class="wrapper"><img src="icons/Rectangle2.png" alt="test"></div>
+                <div>
+                    <p>How to Start Podcast</p>
+                    <p>31 tracks</p>
+                </div>
+                <div><img src="icons/pause.svg" alt="pause"></div>
+            </li>
+            <li>
+                <div class="wrapper"><img src="icons/Rectangle1.png" alt="test"></div>
+                <div>
+                    <p>Late Night Horror</p>
+                    <p>1 track</p>
+                </div>
+<!--                <div><img src="icons/pause.svg" alt="pause"></div>-->
+            </li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>5</li>
+            <li>5</li>
+            <li>5</li>
+            <li>5</li>
+            <li>5</li>
+            <li>5</li>
+            <li>5</li>
+
+        </ul>
+
     </aside>
     <div class="cnt">
         <header>
@@ -50,7 +74,16 @@
         </main>
     </div>
 </div>
-<footer></footer>
+    <footer>
+<div class="current-cover">
+    <img src="covers/Deafheaven_-_Sunbather_2013.png" alt="Deafheaven">
+    <div class="current-track">
+        <p>Sunbather</p>
+        <p>Deafheaven</p>
+    </div>
+</div>
 
+    </footer>
+</div>
 </body>
 </html>
