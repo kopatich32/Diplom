@@ -1,0 +1,125 @@
+@font-face {
+  src: url("../fonts/Quicksand/Quicksand.ttf");
+  font-family: "Quicksand";
+  font-weight: 300; }
+@font-face {
+  src: url("../fonts/Quicksand/Quicksand-Bold.ttf");
+  font-family: "Quicksand";
+  font-weight: 900; }
+@font-face {
+  src: url("../fonts/Quicksand/Quicksand-Light.ttf");
+  font-family: "Quicksand";
+  font-weight: 200; }
+@font-face {
+  src: url("../fonts/Quicksand/Quicksand-Medium.ttf");
+  font-family: "Quicksand";
+  font-weight: 400; }
+* {
+  box-sizing: border-box; }
+
+html, body {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%; }
+
+body {
+  background: #0A0A0A;
+  color: white; }
+
+.player {
+  display: flex;
+  flex-direction: row;
+  justify-content: normal;
+  align-items: normal;
+  width: 100%;
+  padding: 30px; }
+
+aside {
+  width: 300px;
+  margin-right: 10px;
+  color: white;
+  font-family: Quicksand; }
+  aside .links {
+    background: #1A1A1A;
+    height: 170px;
+    padding: 10px;
+    border-radius: 15px;
+    margin-bottom: 20px; }
+    aside .links ul {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: normal;
+      padding-left: 10px;
+      list-style: none; }
+      aside .links ul li {
+        height: 50px; }
+        aside .links ul li span {
+          margin-right: 20px; }
+  aside .playlists {
+    background-color: #1A1A1A; }
+
+.cnt {
+  width: 100%; }
+  .cnt header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: normal;
+    align-items: normal;
+    margin-bottom: 20px; }
+    .cnt header label {
+      background-color: #1A1A1A;
+      display: flex;
+      flex-direction: row;
+      justify-content: normal;
+      align-items: normal;
+      height: 50px;
+      border-radius: 15px;
+      margin: 0 20px 0 20px;
+      padding: 8px;
+      width: 100%; }
+      .cnt header label img {
+        margin-right: 10px; }
+      .cnt header label input {
+        background-color: #1A1A1A;
+        border-radius: 15px;
+        border: 0;
+        font-size: 16px;
+        width: 860px;
+        padding-left: 20px; }
+    .cnt header .notification {
+      width: 50px;
+      height: 50px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      background: #1A1A1A;
+      border-radius: 15px; }
+    .cnt header .profile {
+      width: 50px;
+      height: 50px;
+      border-radius: 15px;
+      background: #1A1A1A;
+      overflow: hidden; }
+      .cnt header .profile img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%; }
+    .cnt header div {
+      margin-right: 10px; }
+
+main {
+  width: 100%; }
+  main .podcast-img {
+    height: 280px;
+    border-radius: 15px;
+    overflow: hidden; }
+    main .podcast-img img {
+      object-fit: cover;
+      height: 100%;
+      width: 100%; }
+
+/*# sourceMappingURL=style.css.map */

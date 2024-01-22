@@ -1,0 +1,145 @@
+@import "fonts";
+
+* {
+  box-sizing: border-box;
+}
+
+$front-background: #1A1A1A;
+$back-background: #0A0A0A;
+@mixin size($width, $height) {
+  width: $width;
+  height: $height;
+}
+
+@mixin flex($direction,$justify-content, $align-items) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify-content;
+  align-items: $align-items;
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background: $back-background;
+  color: white;
+
+}
+
+.player {
+  @include flex(row, normal, normal);
+  width: 100%;
+  padding: 30px;
+}
+
+aside {
+
+  width: 300px;
+  margin-right: 10px;
+
+  .links {
+    background: $front-background;
+    height: 170px;
+    padding: 10px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+
+    ul {
+      @include flex(column, center, normal);
+      padding-left: 10px;
+      list-style: none;
+
+      li {
+        height: 50px;
+
+        span {
+          margin-right:20px;
+        }
+      }
+    }
+  }
+
+  color: white;
+  font-family: Quicksand;
+
+  .playlists {
+    background-color: $front-background;
+  }
+}
+
+.cnt {
+  width: 100%;
+  header {
+    width: 100%;
+    @include flex(row, normal, normal);
+    margin-bottom: 20px;
+
+    label {
+      background-color: $front-background;
+      @include flex(row, normal, normal);
+      height: 50px;
+      border-radius: 15px;
+      margin: 0 20px 0 20px;
+      padding: 8px;
+      width: 100%;
+
+      img {
+        margin-right: 10px;
+      }
+
+      input {
+        background-color: $front-background;
+        border-radius: 15px;
+        border: 0;
+        font-size: 16px;
+        width: 860px;
+        padding-left:20px;
+      }
+    }
+
+    .notification {
+      @include size(50px, 50px);
+      @include flex(row, center, center);
+      background: $front-background;
+      border-radius: 15px;
+    }
+
+    .profile {
+      @include size(50px, 50px);
+      border-radius: 15px;
+      background: $front-background;
+      overflow: hidden;
+
+      img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    div {
+      margin-right: 10px;
+    }
+  }
+}
+
+
+
+main{
+  width: 100%;
+  .podcast-img{
+    height: 280px;
+    border-radius: 15px;
+    overflow: hidden;
+    img{
+      object-fit:cover;
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
