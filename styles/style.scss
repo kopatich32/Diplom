@@ -29,7 +29,7 @@ html, body {
   padding: 0;
   margin: 0;
   width: 100%;
-  height: 100%;
+  height: 99%;
 }
 
 body {
@@ -198,29 +198,39 @@ main{
 }
 //Footer
 footer{
+  @include flex(row,normal, normal);
   margin-top: auto;
   height: 110px;
   background: $front-background;
-  .current-cover{
-    @include flex(row,bormal, normal);
-    img{
+  .current-cover {
+    height: 100%;
+    width: 110px;
+    img {
       @include size(100%, 100%);
       object-fit: cover;
     }
-    .current-track{
+  }
+    .current-track {
       @include flex(column, center, normal);
       margin-left: 20px;
+
+      @include size(110px, 100%);
+
+       p:first-child {
+        margin: 0;
+        font-size: 16px;
+        color: $current-track-footer-color;
+      }
+
+      p:last-child {
+        margin: 0;
+        font-size: 16px;
+        color: $current-artist-footer-color;
+      }
     }
-    @include size(110px, 100%);
-    .current-track>p:first-child{
-      margin: 0;
-      font-size: 16px;
-      color: $current-track-footer-color;
-    }
-    .current-track>p:last-child{
-      margin: 0;
-      font-size: 16px;
-      color: $current-artist-footer-color;
-    }
+
+  .track-control{
+    @include flex(row, normal, normal);
+
   }
 }

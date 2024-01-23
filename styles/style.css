@@ -26,7 +26,7 @@ html, body {
   padding: 0;
   margin: 0;
   width: 100%;
-  height: 100%; }
+  height: 99%; }
 
 body {
   background: #0A0A0A;
@@ -182,33 +182,40 @@ main {
       width: 100%; }
 
 footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: normal;
+  align-items: normal;
   margin-top: auto;
   height: 110px;
   background: #1A1A1A; }
   footer .current-cover {
-    display: flex;
-    flex-direction: row;
-    justify-content: bormal;
-    align-items: normal;
-    width: 110px;
-    height: 100%; }
+    height: 100%;
+    width: 110px; }
     footer .current-cover img {
       width: 100%;
       height: 100%;
       object-fit: cover; }
-    footer .current-cover .current-track {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: normal;
-      margin-left: 20px; }
-    footer .current-cover .current-track > p:first-child {
+  footer .current-track {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: normal;
+    margin-left: 20px;
+    width: 110px;
+    height: 100%; }
+    footer .current-track p:first-child {
       margin: 0;
       font-size: 16px;
       color: white; }
-    footer .current-cover .current-track > p:last-child {
+    footer .current-track p:last-child {
       margin: 0;
       font-size: 16px;
       color: rgba(255, 255, 255, 0.3); }
+  footer .track-control {
+    display: flex;
+    flex-direction: row;
+    justify-content: normal;
+    align-items: normal; }
 
 /*# sourceMappingURL=style.css.map */

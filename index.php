@@ -75,13 +75,20 @@
     </div>
 </div>
     <footer>
-<div class="current-cover">
-    <img src="covers/Deafheaven_-_Sunbather_2013.png" alt="Deafheaven">
+<div class="current-cover"><img src="covers/Deafheaven_-_Sunbather_2013.png" alt="Deafheaven"></div>
     <div class="current-track">
         <p>Sunbather</p>
         <p>Deafheaven</p>
     </div>
-</div>
+    <div class="track-control">
+        <div><img src="icons/shuffle.svg" alt="shuffle"></div>
+        <div><img src="icons/step-forward2.svg" alt="shuffle"></div>
+        <div><img src="icons/angle-left2.svg" alt="previous track"></div>
+        <div><img src="icons/step-forward1.svg" alt="next track"></div>
+        <div><img src="icons/repeat.svg" alt="repeat"></div>
+
+    </div>
+
 
     </footer>
 </div>
