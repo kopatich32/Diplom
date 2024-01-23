@@ -184,11 +184,17 @@ main {
 footer {
   display: flex;
   flex-direction: row;
-  justify-content: normal;
+  justify-content: space-between;
   align-items: normal;
   margin-top: auto;
   height: 110px;
   background: #1A1A1A; }
+  footer .track {
+    display: flex;
+    flex-direction: row;
+    justify-content: normal;
+    align-items: normal;
+    width: 500px; }
   footer .current-cover {
     height: 100%;
     width: 110px; }
@@ -215,7 +221,53 @@ footer {
   footer .track-control {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-basis: 314px; }
+  footer .duration {
+    display: flex;
+    flex-direction: row;
     justify-content: normal;
-    align-items: normal; }
+    align-items: center; }
+    footer .duration .gone-time {
+      color: white;
+      font-size: 16px;
+      margin-right: 10px; }
+    footer .duration .duration-track {
+      width: 510px;
+      height: 5px;
+      position: relative;
+      background: white; }
+      footer .duration .duration-track .left-track {
+        width: 5px;
+        height: 60%;
+        position: absolute;
+        right: 0;
+        background: grey;
+        z-index: 1; }
+    footer .duration .left-time {
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.3);
+      margin-left: 10px; }
+  footer .volume {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 50px;
+    flex-basis: 135px; }
+    footer .volume .volume-track {
+      width: 100px;
+      height: 5px;
+      position: relative;
+      background: white;
+      margin-left: 10px; }
+      footer .volume .volume-track .left-volume {
+        width: 30%;
+        height: 5px;
+        position: absolute;
+        right: 0;
+        background: grey;
+        z-index: 1; }
 
 /*# sourceMappingURL=style.css.map */

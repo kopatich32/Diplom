@@ -10,6 +10,7 @@ $back-background: #0A0A0A;
 $playing-playlist-color: #5C67DE;
 $current-track-footer-color: white;
 $current-artist-footer-color: rgba(255, 255, 255, 0.3);
+$grey-text-color: rgba(255, 255, 255, 0.3);
 .playing{
   color: $playing-playlist-color;
 }
@@ -198,10 +199,14 @@ main{
 }
 //Footer
 footer{
-  @include flex(row,normal, normal);
+  @include flex(row,space-between, normal);
   margin-top: auto;
   height: 110px;
   background: $front-background;
+  .track{
+    @include flex(row,normal, normal);
+    width: 500px;
+  }
   .current-cover {
     height: 100%;
     width: 110px;
@@ -230,7 +235,51 @@ footer{
     }
 
   .track-control{
-    @include flex(row, normal, normal);
+    @include flex(row, space-between, center);
+    flex-basis: 314px;
+  }
+  .duration{
+    @include flex(row, normal, center);
+    .gone-time{
+      color: $current-track-footer-color;
+      font-size: 16px;
+      margin-right: 10px;
+    }
+    .duration-track{
+      @include size(510px, 5px);
+      position: relative;
+      background: white;
+      .left-track{
+        @include size(5px, 60%);
+        position: absolute;
+        right: 0;
+        background: grey;
+        z-index: 1;
+    }
+    }
+    .left-time{
+      font-size: 16px;
+      color: $grey-text-color;
+      margin-left: 10px;
+    }
+  }
+  .volume{
+    @include flex(row, space-between, center);
+    margin-right: 50px;
+    flex-basis: 135px;
+    .volume-track{
+      @include size(100px, 5px);
+      position: relative;
+      background: white;
+      margin-left: 10px;
+      .left-volume{
+        @include size(30%,5px);
+        position: absolute;
+        right: 0;
+        background: grey;
+        z-index: 1;
 
+      }
+    }
   }
 }

@@ -9,6 +9,7 @@
     <title>Document</title>
 </head>
 <body>
+
 <div class="wrapper">
 <div class="player">
 
@@ -75,22 +76,62 @@
     </div>
 </div>
     <footer>
-<div class="current-cover"><img src="covers/Deafheaven_-_Sunbather_2013.png" alt="Deafheaven"></div>
+        <div class="track">
+<div class="current-cover">
+    <img src="covers/Deafheaven_-_Sunbather_2013.png" alt="Deafheaven">
+</div>
     <div class="current-track">
         <p>Sunbather</p>
         <p>Deafheaven</p>
     </div>
+        </div>
     <div class="track-control">
         <div><img src="icons/shuffle.svg" alt="shuffle"></div>
         <div><img src="icons/step-forward2.svg" alt="shuffle"></div>
-        <div><img src="icons/angle-left2.svg" alt="previous track"></div>
+        <div class="main-pause"><img src="icons/play.svg" alt="pause"></div>
         <div><img src="icons/step-forward1.svg" alt="next track"></div>
         <div><img src="icons/repeat.svg" alt="repeat"></div>
-
     </div>
+        <div class="duration">
+            <p class="gone-time">03:41</p>
+            <div class="duration-track">
+                <div class="left-track"></div>
+            </div>
+            <p class="left-time">12:11</p>
+        </div>
+        <div class="volume">
+            <div><img src="icons/volume.svg" alt="volume"></div>
+            <div class="volume-track">
+                <div class="left-volume"></div>
 
-
+            </div>
+        </div>
     </footer>
 </div>
+<audio style="display:none;"  id="track" controls>
+    <source  src="tracks/Deafheaven_-_The_Gnashing.mp3" type="audio/mpeg">
+</audio>
+<script>
+    let playBtn = document.querySelector('.main-pause');
+    let track = document.querySelector('#track');
+    playBtn.addEventListener('click', ()=>{
+        let srcSvg = playBtn.querySelector('img');
+        let attr = srcSvg.getAttribute('src');
+        if(attr == 'icons/play.svg'){
+            srcSvg.setAttribute('src','icons/main-pause.svg');
+            track.play();
+        }else{
+
+            track.pause()
+            srcSvg.setAttribute('src','icons/play.svg');
+        }
+
+    })
+</script>
+
+<?php /*https://proweb63.ru/help/js/html5-audio-js
+https://stackoverflow.com/questions/4126708/is-it-possible-to-style-html5-audio-tag/4126871#4126871
+*/?>
+
 </body>
 </html>
