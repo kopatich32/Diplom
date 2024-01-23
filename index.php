@@ -108,7 +108,9 @@
         </div>
     </footer>
 </div>
-<audio style="display:none;"  id="track" controls src="Deafheaven_-_The_Gnashing.mp3"></audio>
+<audio style="display:none;"  id="track" controls>
+    <source  src="tracks/Deafheaven_-_The_Gnashing.mp3" type="audio/mpeg">
+</audio>
 <script>
     let playBtn = document.querySelector('.main-pause');
     let track = document.querySelector('#track');
@@ -125,14 +127,11 @@
         }
 
     })
-
 </script>
 
 <?php /*https://proweb63.ru/help/js/html5-audio-js
 https://stackoverflow.com/questions/4126708/is-it-possible-to-style-html5-audio-tag/4126871#4126871
 */?>
-
-
 
 </body>
 </html>
