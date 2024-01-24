@@ -1,0 +1,11 @@
+{
+    "name": "kopatich/diplom",
+    "require": {
+        "wapmorgan/mp3info": "^0.1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Kopatich\\Diplom\\": "src/"
+        }
+    }
+}
