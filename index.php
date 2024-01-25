@@ -1,3 +1,4 @@
+<?php require_once ('tracks_data.php')?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -93,11 +94,11 @@
         <div><img src="icons/repeat.svg" alt="repeat"></div>
     </div>
         <div class="duration">
-            <p class="gone-time">03:41</p>
+            <p class="gone-time"><span class="minutes">00</span>:<span class="seconds">00</span></p>
             <div class="duration-track">
                 <div class="left-track"></div>
             </div>
-            <p class="left-time">12:11</p>
+            <p class="left-time"><?=$resDuration?></p>
         </div>
         <div class="volume">
             <div><img src="icons/volume.svg" alt="volume"></div>
@@ -108,11 +109,12 @@
         </div>
     </footer>
 </div>
-<audio style="display:none;"  id="track" controls>
+<audio <?/*style="display:none;"*/?>  id="track" controls>
     <source  src="tracks/Deafheaven_-_The_Gnashing.mp3" type="audio/mpeg">
 </audio>
 <script>
     let playBtn = document.querySelector('.main-pause');
+    let source = document.querySelector('source');
     let track = document.querySelector('#track');
     playBtn.addEventListener('click', ()=>{
         let srcSvg = playBtn.querySelector('img');
@@ -121,19 +123,34 @@
             srcSvg.setAttribute('src','icons/main-pause.svg');
             track.play();
         }else{
-
             track.pause()
             srcSvg.setAttribute('src','icons/play.svg');
         }
+    })
+    // track.addEventListener('loadedmetadata',()=>{
+    //     console.log(track.duration/60);
+    // })
+    let goneSec = document.querySelector('.seconds');
+    let goneMin = document.querySelector('.minutes');
+    let startMin = 0;
+    track.addEventListener('timeupdate',(event)=> {
+        let currTime = event.target.currentTime;
+        let duration = event.target.duration
+        let resTime = Math.floor(event.target.currentTime);
+        let res = resTime % 10;
+        if ((resTime % 10) >= 10) {
+            goneSec.innerHTML = resTime;
+        }else{
+            goneSec.innerHTML = '0'+res;
+        }
+        // if(resTime>59){
+        //     goneMin.innerHTML = '01';
+        // }
+        console.log(currTime)
+
+
 
     })
-
-    var fs = require('fs');
-    var mm = require('musicmetadata');
-
-    // create a new parser from a node ReadStream
-    let parser = mm(fs.createReadStream(track));
-    console.log(parser)
 </script>
 
 <?php /*https://proweb63.ru/help/js/html5-audio-js
@@ -141,14 +158,7 @@ https://stackoverflow.com/questions/4126708/is-it-possible-to-style-html5-audio-
 https://packagist.org/packages/wapmorgan/mp3info
  */?>
 
-<?php
-require( 'vendor/wapmorgan/mp3info/src/Mp3Info.php' );
-use wapmorgan\Mp3Info\Mp3Info;
-$audio = new Mp3Info('tracks/Deafheaven_-_The_Gnashing.mp3');
-echo '<pre>';
-print_r ($audio);
-echo '</pre>';
-?>
+
 </body>
 </body>
 </html>

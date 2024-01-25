@@ -5,15 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6359912f-0a1c-476d-99c3-dc560fd4832e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/tracks_data.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/Diplom.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Diplom.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icons/play.svg" beforeDir="false" afterPath="$PROJECT_DIR$/icons/play.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/.sass-cache/bc74aba033a7bca701aab53d418cd3003711f91f/style.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/styles/.sass-cache/bc74aba033a7bca701aab53d418cd3003711f91f/style.scssc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/styles/style.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +33,9 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/vendor/wapmorgan/mp3info/src/Mp3Info.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -102,6 +102,7 @@
       <workItem from="1706083069400" duration="3883000" />
       <workItem from="1706100563122" duration="3441000" />
       <workItem from="1706104014241" duration="970000" />
+      <workItem from="1706199948332" duration="6851000" />
     </task>
     <task id="LOCAL-00001" summary="test branch">
       <option name="closed" value="true" />
