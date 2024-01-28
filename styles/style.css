@@ -49,7 +49,7 @@ body {
   justify-content: normal;
   align-items: normal;
   width: 100%;
-  padding: 30px 30px 0 30px; }
+  padding: 10px 10px 0 10px; }
 
 aside {
   min-width: 300px;
@@ -73,13 +73,28 @@ aside {
         height: 50px; }
         aside .links ul li span {
           margin-right: 20px; }
+  aside .head-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: normal;
+    align-items: baseline;
+    padding: 10px 20px 0 20px; }
+    aside .head-list .left-navigation {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: normal;
+      margin-left: auto; }
+  aside .wrapper-aside {
+    background-color: #1A1A1A;
+    border-radius: 15px; }
   aside .playlists {
     overflow-y: scroll;
     -ms-overflow-style: none;
     /* IE и Edge */
     scrollbar-width: none;
     /* Firefox */
-    height: calc(100vh - 110px - 170px - 70px);
+    height: calc(100vh - 110px - 170px - 100px);
     background-color: #1A1A1A;
     list-style: none;
     border-radius: 15px;
@@ -106,18 +121,6 @@ aside {
           font-size: 14px; }
       aside .playlists li div:nth-child(3) {
         margin: 0 8px 0 auto; }
-    aside .playlists .head-list {
-      display: flex;
-      flex-direction: row;
-      justify-content: normal;
-      align-items: baseline;
-      padding: 10px 20px 0 20px; }
-      aside .playlists .head-list .left-navigation {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: normal;
-        margin-left: auto; }
   aside .playlists::-webkit-scrollbar {
     display: none; }
 
@@ -177,7 +180,7 @@ main {
   width: 100%;
   padding-left: 20px; }
   main .podcast-img {
-    height: 280px;
+    height: 220px;
     border-radius: 15px;
     overflow: hidden; }
     main .podcast-img img {
@@ -189,7 +192,8 @@ main {
     flex-direction: row;
     justify-content: normal;
     align-items: normal;
-    width: 800px; }
+    width: 1200px;
+    height: 90px; }
     main .control-row div {
       margin: 10px; }
     main .control-row .filter {
@@ -212,8 +216,7 @@ main {
         flex-direction: row;
         justify-content: center;
         align-items: normal;
-        justify-self: flex-end;
-        padding: 14px 2px 14px 14px;
+        padding: 10px 2px 10px 10px;
         background-color: #1A1A1A;
         border-radius: 15px;
         width: 120px; }
@@ -239,20 +242,25 @@ main {
           cursor: pointer; }
   main .track-area {
     overflow: scroll;
-    height: calc(100vh - 110px - 30px); }
+    scrollbar-width: none;
+    height: calc(100vh - 558px); }
+  main .track-area::-webkit-scrollbar {
+    display: none; }
   main .track-stat {
+    background-color: #0A0A0A;
+    margin-bottom: 10px;
     display: grid;
-    grid-template-columns: 10px 230px 1fr 1fr 1fr;
+    grid-template-columns: 10px 350px 1fr 1fr 1fr;
     align-content: center;
     justify-items: center;
     width: 1200px;
-    margin-bottom: 20px; }
+    height: 4px; }
   main .current-track-main {
     display: grid;
-    grid-template-columns: 10px 230px 1fr 1fr 1fr;
+    grid-template-columns: 10px 350px 1fr 1fr 1fr;
     align-content: center;
     justify-items: center;
-    height: 80px;
+    height: 60px;
     border-top: 1px solid rgba(255, 255, 255, 0.3);
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
     width: 1200px;
@@ -279,6 +287,8 @@ main {
         color: white; }
       main .current-track-main .track-main .artist-main {
         color: rgba(255, 255, 255, 0.3); }
+      main .current-track-main .track-main .current-track-cover {
+        width: 100%; }
 
 footer {
   display: flex;

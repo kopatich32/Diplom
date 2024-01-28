@@ -9,9 +9,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="styles/style.css">
     <title>Мой плейлист</title>
+
 </head>
 <body>
-
 <div class="wrapper">
     <div class="player">
 
@@ -23,16 +23,17 @@
                     <li><span><img src="icons/following.svg" alt="following"></span>Following</li>
                 </ul>
             </nav>
-
+            <div class="wrapper-aside">
+            <div class="head-list">
+                <div><img src="icons/list-music.svg" alt="list-music"></div>
+                <span>Your playlist (<span>4</span>)</span>
+                <div class="left-navigation">
+                    <div><img src="icons/search.svg" alt="search"></div>
+                    <div><img src="icons/plus.svg" alt="add-playlist"></div>
+                </div>
+            </div>
             <ul class="playlists">
-                <li class="head-list">
-                    <div><img src="icons/list-music.svg" alt="list-music"></div>
-                    <span>Your playlist (<span>4</span>)</span>
-                    <div class="left-navigation">
-                        <div><img src="icons/search.svg" alt="search"></div>
-                        <div><img src="icons/plus.svg" alt="add-playlist"></div>
-                    </div>
-                </li>
+
                 <li class="playing">
                     <div class="wrapper"><img src="icons/Rectangle2.png" alt="test"></div>
                     <div>
@@ -61,7 +62,7 @@
                 <li>5</li>
 
             </ul>
-
+            </div>
         </aside>
         <div class="cnt">
             <header>
@@ -78,7 +79,7 @@
                     <div class="share"><img src="icons/share.svg" alt="share"></div>
                     <div class="download"><img src="icons/download.svg" alt="share"></div>
                     <div class="filter">
-                        <p>orded by <span><img src="icons/filter_arrow.svg" alt="arrow"></span></p>
+                        <p>orded by<span><img src="icons/filter_arrow.svg" alt="arrow"></span></p>
                         <ul class="filter-list">
                             <li>Artist</li>
                             <li>Track</li>
@@ -86,14 +87,14 @@
                         </ul>
                     </div>
                 </div>
-                <div class="track-area">
                 <div class="track-stat">
                     <div>#</div>
                     <div>Title</div>
-                    <div class="listening"><img src="icons/listening.svg" alt="listening"></div>
                     <div class="track-duration"><img src="icons/clock-three.svg" alt="duration"></div>
+                    <div class="listening"><img src="icons/listening.svg" alt="listening"></div>
                     <div></div>
                 </div>
+                <div class="track-area">
 <!--                Tracks-->
                 <div class="current-track-main number_">
                     <div class="track-number play_now">1</div>
@@ -106,8 +107,8 @@
                             <div class="artist-main">Deafheaven</div>
                         </div>
                     </div>
-                    <div class="listening-main play_now">412</div>
                     <div class="duration-main play_now">5:34</div>
+                    <div class="listening-main play_now">412</div>
                     <div class="is_play"><img src="icons/pause.svg" alt="play now"></div>
                 </div>
                 <div class="current-track-main number_">
@@ -121,12 +122,12 @@
                             <div class="artist-main">Madmans Esprit</div>
                         </div>
                     </div>
-                    <div class="listening-main">127</div>
                     <div class="duration-main">4:14</div>
+                    <div class="listening-main">127</div>
                     <div class="is_play"><img src="icons/is_play.svg" alt="play now"></div>
                 </div>
                 <div class="current-track-main number_">
-                    <div class="track-number">2</div>
+                    <div class="track-number">3</div>
                     <div class="track-main">
                         <div class="main-cover">
                             <img src="covers/Madmans_Esprit.jpg" alt="cover">
@@ -136,12 +137,12 @@
                             <div class="artist-main">Madmans Esprit</div>
                         </div>
                     </div>
-                    <div class="listening-main">127</div>
                     <div class="duration-main">4:14</div>
+                    <div class="listening-main">127</div>
                     <div class="is_play"><img src="icons/is_play.svg" alt="play now"></div>
                 </div>
                 <div class="current-track-main number_">
-                    <div class="track-number">2</div>
+                    <div class="track-number">4</div>
                     <div class="track-main">
                         <div class="main-cover">
                             <img src="covers/Madmans_Esprit.jpg" alt="cover">
@@ -151,12 +152,12 @@
                             <div class="artist-main">Madmans Esprit</div>
                         </div>
                     </div>
-                    <div class="listening-main">127</div>
                     <div class="duration-main">4:14</div>
+                    <div class="listening-main">127</div>
                     <div class="is_play"><img src="icons/is_play.svg" alt="play now"></div>
                 </div>
                 <div class="current-track-main number_">
-                    <div class="track-number">2</div>
+                    <div class="track-number">5</div>
                     <div class="track-main">
                         <div class="main-cover">
                             <img src="covers/Madmans_Esprit.jpg" alt="cover">
@@ -166,12 +167,12 @@
                             <div class="artist-main">Madmans Esprit</div>
                         </div>
                     </div>
-                    <div class="listening-main">127</div>
                     <div class="duration-main">4:14</div>
+                    <div class="listening-main">127</div>
                     <div class="is_play"><img src="icons/is_play.svg" alt="play now"></div>
                 </div>
                 <div class="current-track-main number_">
-                    <div class="track-number">2</div>
+                    <div class="track-number">6</div>
                     <div class="track-main">
                         <div class="main-cover">
                             <img src="covers/Madmans_Esprit.jpg" alt="cover">
@@ -181,8 +182,8 @@
                             <div class="artist-main">Madmans Esprit</div>
                         </div>
                     </div>
-                    <div class="listening-main">127</div>
                     <div class="duration-main">4:14</div>
+                    <div class="listening-main">127</div>
                     <div class="is_play"><img src="icons/is_play.svg" alt="play now"></div>
                 </div>
                     <div class="current-track-main number_">
@@ -196,37 +197,9 @@
                             <div class="artist-main">Madmans Esprit</div>
                         </div>
                     </div>
-                    <div class="listening-main">127</div>
                     <div class="duration-main">4:14</div>
-                    <div class="is_play"><img src="icons/is_play.svg" alt="play now"></div>
-                </div><div class="current-track-main number_">
-                    <div class="track-number">2</div>
-                    <div class="track-main">
-                        <div class="main-cover">
-                            <img src="covers/Madmans_Esprit.jpg" alt="cover">
-                        </div>
-                        <div class="current-track-cover">
-                            <div class="track-name-main">내버려둬 Leave Me Alone</div>
-                            <div class="artist-main">Madmans Esprit</div>
-                        </div>
-                    </div>
-                    <div class="listening-main">127</div>
-                    <div class="duration-main">4:14</div>
-                    <div class="is_play"><img src="icons/is_play.svg" alt="play now"></div>
-                </div><div class="current-track-main number_">
-                    <div class="track-number">2</div>
-                    <div class="track-main">
-                        <div class="main-cover">
-                            <img src="covers/Madmans_Esprit.jpg" alt="cover">
-                        </div>
-                        <div class="current-track-cover">
-                            <div class="track-name-main">내버려둬 Leave Me Alone</div>
-                            <div class="artist-main">Madmans Esprit</div>
-                        </div>
-                    </div>
-                    <div class="listening-main">127</div>
-                    <div class="duration-main">4:14</div>
-                    <div class="is_play"><img src="icons/is_play.svg" alt="play now"></div>
+                        <div class="listening-main">127</div>
+                        <div class="is_play"><img src="icons/is_play.svg" alt="play now"></div>
                 </div><div class="current-track-main number_">
                     <div class="track-number">2</div>
                     <div class="track-main">
