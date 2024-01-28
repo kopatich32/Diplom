@@ -11,7 +11,12 @@ $playing-playlist-color: #5C67DE;
 $current-track-footer-color: white;
 $current-artist-footer-color: rgba(255, 255, 255, 0.3);
 $grey-text-color: rgba(255, 255, 255, 0.3);
+$track-border: rgba(255, 255, 255, 0.3);
 $line-height: 8px;
+.play_now {
+  color: $playing-playlist-color;
+}
+
 .playing {
   color: $playing-playlist-color;
 }
@@ -217,7 +222,6 @@ main {
   .control-row {
     @include flex(row, normal, normal);
     width: 800px;
-    border: 2px solid red;
 
     div {
       margin: 10px;
@@ -231,11 +235,12 @@ main {
       z-index: 6;
 
       &:hover {
-         img{
+        img {
           transform: rotate(180deg);
-           transition: .5s;
+          transition: .5s;
 
         }
+
         .filter-list {
           display: block;
           transition: 1s;
@@ -252,9 +257,11 @@ main {
         background-color: $front-background;
         border-radius: 15px;
         width: 120px;
-img{
-  transition: .5s;
-}
+
+        img {
+          transition: .5s;
+        }
+
         span {
           margin-left: auto;
           margin-right: 4px;
@@ -278,6 +285,67 @@ img{
         li {
           cursor: pointer;
         }
+      }
+    }
+  }
+
+  .track-area {
+    overflow: scroll;
+    height: calc(100vh - 110px - 30px);
+    //scrollbar-width: none;
+  }
+
+  //.track-area::-webkit-scrollbar {
+  //  display: none;
+  //}
+
+  .track-stat {
+    display: grid;
+    grid-template-columns: 10px 230px 1fr 1fr 1fr;
+    align-content: center;
+    justify-items: center;
+    width: 1200px;
+    margin-bottom: 20px;
+  }
+
+  .current-track-main {
+    display: grid;
+    grid-template-columns: 10px 230px 1fr 1fr 1fr;
+    align-content: center;
+    justify-items: center;
+    height: 80px;
+    border-top: 1px solid $track-border;
+    border-bottom: 1px solid $track-border;
+    width: 1200px;
+    cursor: pointer;
+
+    .track-number {
+      color: $grey-text-color;
+    }
+
+    .track-main {
+      @include flex(row, normal, normal);
+      width: 100%;
+      margin-left: 20px;
+
+      .main-cover {
+        @include size(45px, 45px);
+        margin-right: 16px;
+        border-radius: 15px;
+
+        img {
+          object-fit: cover;
+          @include size(100%, 100%);
+
+        }
+      }
+
+      .track-name-main {
+        color: $current-track-footer-color;
+      }
+
+      .artist-main {
+        color: $current-artist-footer-color;
       }
     }
   }

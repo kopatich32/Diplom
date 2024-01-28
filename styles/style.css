@@ -19,6 +19,9 @@
   box-sizing: border-box;
   font-family: Quicksand; }
 
+.play_now {
+  color: #5C67DE; }
+
 .playing {
   color: #5C67DE; }
 
@@ -186,8 +189,7 @@ main {
     flex-direction: row;
     justify-content: normal;
     align-items: normal;
-    width: 800px;
-    border: 2px solid red; }
+    width: 800px; }
     main .control-row div {
       margin: 10px; }
     main .control-row .filter {
@@ -235,6 +237,48 @@ main {
         line-height: 24px; }
         main .control-row .filter ul li {
           cursor: pointer; }
+  main .track-area {
+    overflow: scroll;
+    height: calc(100vh - 110px - 30px); }
+  main .track-stat {
+    display: grid;
+    grid-template-columns: 10px 230px 1fr 1fr 1fr;
+    align-content: center;
+    justify-items: center;
+    width: 1200px;
+    margin-bottom: 20px; }
+  main .current-track-main {
+    display: grid;
+    grid-template-columns: 10px 230px 1fr 1fr 1fr;
+    align-content: center;
+    justify-items: center;
+    height: 80px;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    width: 1200px;
+    cursor: pointer; }
+    main .current-track-main .track-number {
+      color: rgba(255, 255, 255, 0.3); }
+    main .current-track-main .track-main {
+      display: flex;
+      flex-direction: row;
+      justify-content: normal;
+      align-items: normal;
+      width: 100%;
+      margin-left: 20px; }
+      main .current-track-main .track-main .main-cover {
+        width: 45px;
+        height: 45px;
+        margin-right: 16px;
+        border-radius: 15px; }
+        main .current-track-main .track-main .main-cover img {
+          object-fit: cover;
+          width: 100%;
+          height: 100%; }
+      main .current-track-main .track-main .track-name-main {
+        color: white; }
+      main .current-track-main .track-main .artist-main {
+        color: rgba(255, 255, 255, 0.3); }
 
 footer {
   display: flex;
