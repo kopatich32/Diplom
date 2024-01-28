@@ -21,7 +21,7 @@ playBtn.addEventListener('click', ()=>{
 
 // Play/pause on keyboard buttons
 document.addEventListener('keydown',(event)=>{
-    if(event.code === 'Space' && srcSvg.getAttribute('src') === 'icons/play.svg'){
+    if((event.code === 'Space' || event.key === 'MediaPlayPause') && srcSvg.getAttribute('src') === 'icons/play.svg' ){
         track.play()
         srcSvg.setAttribute('src','icons/main-pause.svg');
     }else{
