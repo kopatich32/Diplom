@@ -11,6 +11,7 @@ $playing-playlist-color: #5C67DE;
 $current-track-footer-color: white;
 $current-artist-footer-color: rgba(255, 255, 255, 0.3);
 $grey-text-color: rgba(255, 255, 255, 0.3);
+$line-height: 8px;
 .playing{
   color: $playing-playlist-color;
 }
@@ -241,6 +242,7 @@ footer{
   }
   .track-control > div{
     margin-right: 10px;
+    cursor: pointer;
   }
   .duration{
     @include flex(row, normal, center);
@@ -251,14 +253,19 @@ footer{
       width: 70px;
     }
     .duration-track{
-      @include size(510px, 5px);
+      @include size(510px, $line-height);
       position: relative;
-      background: white;
+      background: grey;
+      cursor: pointer;
+      .gone-track{
+        position: absolute;
+        height: $line-height;
+        width: 50%;
+        background: white;
+      }
       .left-track{
-        @include size(5px, 60%);
         position: absolute;
         right: 0;
-        background: grey;
         z-index: 1;
     }
     }
@@ -277,18 +284,18 @@ footer{
       width: 50px;
     }
     .volume-wrapper{
-      @include size(100px, 5px);
+      @include size(100px, $line-height);
       position: relative;
       margin-left: 10px;
       cursor: pointer;
       .volume-track{
-        height: 5px;
         position: absolute;
+        height: $line-height;
         background: white;
         z-index: 4;
       }
       .left-volume{
-        @include size(100%,5px);
+        @include size(100%,$line-height);
         position: absolute;
         right: 0;
         background: grey;

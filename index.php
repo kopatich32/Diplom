@@ -1,4 +1,4 @@
-<?php require_once ('tracks_data.php')?>
+<?php //require_once ('tracks_data.php')?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -79,10 +79,10 @@
     <footer>
         <div class="track">
 <div class="current-cover">
-    <img src="covers/Deafheaven_-_Sunbather_2013.png" alt="Deafheaven">
+    <img src="covers/Infinite_Granite_2021.png" alt="Deafheaven">
 </div>
     <div class="current-track">
-        <p>Sunbather</p>
+        <p>The Gnashing</p>
         <p>Deafheaven</p>
     </div>
         </div>
@@ -96,6 +96,7 @@
         <div class="duration">
             <p class="gone-time"><span class="minutes">00</span>:<span class="seconds">00</span></p>
             <div class="duration-track">
+                <div class="gone-track"></div>
                 <div class="left-track"></div>
             </div>
             <p class="left-time"></p>
@@ -117,89 +118,14 @@
             <div class="volume-wrapper">
                 <div class="volume-track"></div>
                 <div class="left-volume"></div>
-
             </div>
         </div>
     </footer>
 </div>
-<audio <?/*style="display:none;"*/?>  id="track" controls>
+<audio style="display:none;" id="track" controls>
     <source  src="tracks/Deafheaven_-_The_Gnashing.mp3" type="audio/mpeg">
 </audio>
-<script>
-    let playBtn = document.querySelector('.main-pause');
-    let source = document.querySelector('source');
-    let track = document.querySelector('#track');
-    let mute = document.querySelector('.mute');
-    let volumeWrapper  = document.querySelector('.volume-wrapper');
-    let volumeTrack  = document.querySelector('.volume-track');
-    let volumeLeft  = document.querySelector('.left-volume');
-    // track.volume = .3;
-    playBtn.addEventListener('click', ()=>{
-        let srcSvg = playBtn.querySelector('img');
-        let attr = srcSvg.getAttribute('src');
-        if(attr == 'icons/play.svg'){
-            srcSvg.setAttribute('src','icons/main-pause.svg');
-            track.play();
-        }else{
-            track.pause()
-            srcSvg.setAttribute('src','icons/play.svg');
-        }
-    })
-mute.addEventListener('click',()=>{
-    track.muted = track.muted === false;
-
-})
-    track.volume = track.volume/ 2
-
-    let goneSec = document.querySelector('.seconds');
-    let goneMin = document.querySelector('.minutes');
-    let leftTime = document.querySelector('.left-time');
-    goneSec.innerHTML = localStorage.getItem('lastPositionOfTrack')
-    track.addEventListener('loadedmetadata',()=>{
-        let duration =(track.duration / 60).toFixed(2).split('.');
-        let endTime = duration[0] + ':'+ (+duration[1] - 23) ;
-        track.currentTime = localStorage.getItem('lastPositionOfTrack');
-        goneSec.innerHTML = localStorage.getItem('lastPositionOfTrack');
-        leftTime.innerHTML = endTime;
-        volumeTrack.style.width = (currentVolume * 100) + '%';
-
-    })
-
-    track.addEventListener('timeupdate',(event)=> {
-        let currTime = Math.floor(event.target.currentTime);
-            let currFullSec = event.target.currentTime;
-            let res = currTime % 10;
-            //seconds
-            if ((currTime < 10)) {
-                goneSec.innerHTML = '0'+res;
-            }else{
-                goneSec.innerHTML = currTime;
-            }
-            if(currTime >= 60){
-                goneSec.innerHTML = currTime - (60 * Math.trunc(currTime / 60));
-                if(+goneSec.innerHTML < 10){
-                    goneSec.innerHTML = '0'+res
-                }
-            }
-            // minutes
-            if(currFullSec >= 0){
-                goneMin.innerHTML = '0'+ Math.trunc(currTime / 60);
-            }else if(Math.floor(currFullSec / 60) >= 10){
-                goneMin.innerHTML =  (Math.round(currTime / 60)).toString();
-        }
-        localStorage.setItem('lastPositionOfTrack', currTime)
-
-    })
-    // Change volume
-    track.addEventListener('volumechange',(event)=>{
-
-        volumeTrack.style.width = (track.volume *100) + '%';
-        console.log((track.volume *100) + '%')
-        // console.log(volumeWrapper.offsetWidth)
-    })
-
-
-</script>
+<script src="duration.js"></script>
 
 <?php /*https://proweb63.ru/help/js/html5-audio-js
 https://stackoverflow.com/questions/4126708/is-it-possible-to-style-html5-audio-tag/4126871#4126871

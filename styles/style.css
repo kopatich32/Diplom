@@ -226,7 +226,8 @@ footer {
     flex-basis: 314px;
     margin-right: 20px; }
   footer .track-control > div {
-    margin-right: 10px; }
+    margin-right: 10px;
+    cursor: pointer; }
   footer .duration {
     display: flex;
     flex-direction: row;
@@ -239,15 +240,18 @@ footer {
       width: 70px; }
     footer .duration .duration-track {
       width: 510px;
-      height: 5px;
+      height: 8px;
       position: relative;
-      background: white; }
+      background: grey;
+      cursor: pointer; }
+      footer .duration .duration-track .gone-track {
+        position: absolute;
+        height: 8px;
+        width: 50%;
+        background: white; }
       footer .duration .duration-track .left-track {
-        width: 5px;
-        height: 60%;
         position: absolute;
         right: 0;
-        background: grey;
         z-index: 1; }
     footer .duration .left-time {
       font-size: 16px;
@@ -265,18 +269,18 @@ footer {
       width: 50px; }
     footer .volume .volume-wrapper {
       width: 100px;
-      height: 5px;
+      height: 8px;
       position: relative;
       margin-left: 10px;
       cursor: pointer; }
       footer .volume .volume-wrapper .volume-track {
-        height: 5px;
         position: absolute;
+        height: 8px;
         background: white;
         z-index: 4; }
       footer .volume .volume-wrapper .left-volume {
         width: 100%;
-        height: 5px;
+        height: 8px;
         position: absolute;
         right: 0;
         background: grey;
