@@ -237,6 +237,10 @@ footer{
   .track-control{
     @include flex(row, space-between, center);
     flex-basis: 314px;
+    margin-right: 20px;
+  }
+  .track-control > div{
+    margin-right: 10px;
   }
   .duration{
     @include flex(row, normal, center);
@@ -244,6 +248,7 @@ footer{
       color: $current-track-footer-color;
       font-size: 16px;
       margin-right: 10px;
+      width: 70px;
     }
     .duration-track{
       @include size(510px, 5px);
@@ -260,20 +265,30 @@ footer{
     .left-time{
       font-size: 16px;
       color: $grey-text-color;
-      margin-left: 10px;
+      margin: 0 20px 0 20px;
     }
   }
   .volume{
     @include flex(row, space-between, center);
     margin-right: 50px;
     flex-basis: 135px;
-    .volume-track{
+    .mute{
+      cursor: pointer;
+      width: 50px;
+    }
+    .volume-wrapper{
       @include size(100px, 5px);
       position: relative;
-      background: white;
       margin-left: 10px;
+      cursor: pointer;
+      .volume-track{
+        height: 5px;
+        position: absolute;
+        background: white;
+        z-index: 4;
+      }
       .left-volume{
-        @include size(30%,5px);
+        @include size(100%,5px);
         position: absolute;
         right: 0;
         background: grey;
