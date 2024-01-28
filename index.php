@@ -7,7 +7,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="styles/style.css">
-    <title>Document</title>
+    <title>Мой плейлист</title>
 </head>
 <body>
 
@@ -73,6 +73,19 @@
         </header>
         <main>
             <div class="podcast-img"><img src="icons/podcast.png" alt="podcast-picture"></div>
+            <div class="control-row">
+                <div class="share"><img src="icons/share.svg" alt="share"></div>
+                <div class="download"><img src="icons/download.svg" alt="share"></div>
+                <div class="filter">
+                    <p>orded by <span><img src="icons/filter_arrow.svg" alt="arrow"></span></p>
+                    <ul class="filter-list">
+                        <li>Artist</li>
+                        <li>Track</li>
+                        <li>Last open</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="track_1"></div>
         </main>
     </div>
 </div>
@@ -87,11 +100,11 @@
     </div>
         </div>
     <div class="track-control">
-        <div><img src="icons/shuffle.svg" alt="shuffle"></div>
-        <div><img src="icons/step-forward2.svg" alt="shuffle"></div>
-        <div class="main-pause"><img src="icons/play.svg" alt="pause"></div>
-        <div><img src="icons/step-forward1.svg" alt="next track"></div>
-        <div><img src="icons/repeat.svg" alt="repeat"></div>
+        <div><img src="icons/shuffle.svg" alt="shuffle" title="перемешать"></div>
+        <div><img src="icons/step-forward2.svg" alt="previous" title="предыдущий трек"></div>
+        <div class="main-pause"><img src="icons/play.svg" alt="pause" title="воспроизведение/пауза"></div>
+        <div><img src="icons/step-forward1.svg" alt="next track" title="следующий трек"></div>
+        <div class="restart"><img src="icons/repeat.svg" alt="repeat" title="начать с начала"></div>
     </div>
         <div class="duration">
             <p class="gone-time"><span class="minutes">00</span>:<span class="seconds">00</span></p>
@@ -126,7 +139,7 @@
     <source  src="tracks/Deafheaven_-_The_Gnashing.mp3" type="audio/mpeg">
 </audio>
 <script src="duration.js"></script>
-
+<script src="filter.js"></script>
 <?php /*https://proweb63.ru/help/js/html5-audio-js
 https://stackoverflow.com/questions/4126708/is-it-possible-to-style-html5-audio-tag/4126871#4126871
 https://packagist.org/packages/wapmorgan/mp3info

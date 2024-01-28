@@ -29,6 +29,11 @@ document.addEventListener('keydown',(event)=>{
         srcSvg.setAttribute('src','icons/play.svg');
     }
 })
+
+//restart
+document.querySelector('.restart').addEventListener('click', ()=>{
+    track.currentTime = 0;
+})
 //rewind
 
 document.addEventListener('keydown',(event)=>{
@@ -50,7 +55,7 @@ mute.addEventListener('click',()=>{
 
 })
 //Default site volume
-track.volume = track.volume/ 2
+track.volume = track.volume/ 5
 
 let goneSec = document.querySelector('.seconds');
 let goneMin = document.querySelector('.minutes');
