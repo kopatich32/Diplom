@@ -122,7 +122,7 @@
                             <div class="artist-main">Madmans Esprit</div>
                         </div>
                     </div>
-                    <div class="duration-main">2:07</div>
+                    <div class="duration-main">4:14</div>
                     <div class="listening-main">127</div>
                     <div class="is_play"><img src="icons/is_play.svg" alt="play now"></div>
                 </div>
@@ -137,8 +137,8 @@
                             <div class="artist-main">AFI</div>
                         </div>
                     </div>
-                    <div class="duration-main">4:14</div>
-                    <div class="listening-main">127</div>
+                    <div class="duration-main">2:07</div>
+                    <div class="listening-main">257</div>
                     <div class="is_play"><img src="icons/is_play.svg" alt="play now"></div>
                 </div>
                 <div class="current-track-main number_">
