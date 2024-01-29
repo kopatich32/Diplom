@@ -193,7 +193,7 @@ main {
     justify-content: normal;
     align-items: normal;
     width: 1200px;
-    height: 90px; }
+    height: 80px; }
     main .control-row div {
       margin: 10px; }
     main .control-row .filter {
@@ -243,7 +243,7 @@ main {
   main .track-area {
     overflow: scroll;
     scrollbar-width: none;
-    height: calc(100vh - 558px); }
+    height: calc(100vh - 524px); }
   main .track-area::-webkit-scrollbar {
     display: none; }
   main .track-stat {

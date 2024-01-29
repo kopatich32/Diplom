@@ -122,7 +122,7 @@
                             <div class="artist-main">Madmans Esprit</div>
                         </div>
                     </div>
-                    <div class="duration-main">4:14</div>
+                    <div class="duration-main">2:07</div>
                     <div class="listening-main">127</div>
                     <div class="is_play"><img src="icons/is_play.svg" alt="play now"></div>
                 </div>
@@ -130,11 +130,11 @@
                     <div class="track-number">3</div>
                     <div class="track-main">
                         <div class="main-cover">
-                            <img src="covers/Madmans_Esprit.jpg" alt="cover">
+                            <img src="covers/The_Missing_Man.jpg" alt="cover">
                         </div>
                         <div class="current-track-cover">
-                            <div class="track-name-main">내버려둬 Leave Me Alone</div>
-                            <div class="artist-main">Madmans Esprit</div>
+                            <div class="track-name-main">Trash Bat</div>
+                            <div class="artist-main">AFI</div>
                         </div>
                     </div>
                     <div class="duration-main">4:14</div>
@@ -200,6 +200,49 @@
                     <div class="duration-main">4:14</div>
                         <div class="listening-main">127</div>
                         <div class="is_play"><img src="icons/is_play.svg" alt="play now"></div>
+                </div>
+                    <div class="current-track-main number_">
+                    <div class="track-number">2</div>
+                    <div class="track-main">
+                        <div class="main-cover">
+                            <img src="covers/Madmans_Esprit.jpg" alt="cover">
+                        </div>
+                        <div class="current-track-cover">
+                            <div class="track-name-main">내버려둬 Leave Me Alone</div>
+                            <div class="artist-main">Madmans Esprit</div>
+                        </div>
+                    </div>
+                    <div class="listening-main">127</div>
+                    <div class="duration-main">4:14</div>
+                    <div class="is_play"><img src="icons/is_play.svg" alt="play now"></div>
+                </div><div class="current-track-main number_">
+                    <div class="track-number">2</div>
+                    <div class="track-main">
+                        <div class="main-cover">
+                            <img src="covers/Madmans_Esprit.jpg" alt="cover">
+                        </div>
+                        <div class="current-track-cover">
+                            <div class="track-name-main">내버려둬 Leave Me Alone</div>
+                            <div class="artist-main">Madmans Esprit</div>
+                        </div>
+                    </div>
+                    <div class="listening-main">127</div>
+                    <div class="duration-main">4:14</div>
+                    <div class="is_play"><img src="icons/is_play.svg" alt="play now"></div>
+                </div><div class="current-track-main number_">
+                    <div class="track-number">2</div>
+                    <div class="track-main">
+                        <div class="main-cover">
+                            <img src="covers/Madmans_Esprit.jpg" alt="cover">
+                        </div>
+                        <div class="current-track-cover">
+                            <div class="track-name-main">내버려둬 Leave Me Alone</div>
+                            <div class="artist-main">Madmans Esprit</div>
+                        </div>
+                    </div>
+                    <div class="listening-main">127</div>
+                    <div class="duration-main">4:14</div>
+                    <div class="is_play"><img src="icons/is_play.svg" alt="play now"></div>
                 </div><div class="current-track-main number_">
                     <div class="track-number">2</div>
                     <div class="track-main">

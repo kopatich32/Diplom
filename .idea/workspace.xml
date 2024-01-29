@@ -5,12 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6359912f-0a1c-476d-99c3-dc560fd4832e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/covers/The_Missing_Man.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tracks/AFI_-_Trash_Bat.mp3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/duration.js" beforeDir="false" afterPath="$PROJECT_DIR$/duration.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/styles/.sass-cache/bc74aba033a7bca701aab53d418cd3003711f91f/style.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/styles/.sass-cache/bc74aba033a7bca701aab53d418cd3003711f91f/style.scssc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/styles/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/style.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/styles/style.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/styles/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/styles/style.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -72,7 +73,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.webide.settings.project.settings.php",
+    "settings.editor.selected.configurable": "IntelliLang.Configuration",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -111,6 +112,9 @@
       <workItem from="1706428635525" duration="14760000" />
       <workItem from="1706443448652" duration="22000" />
       <workItem from="1706448606613" duration="15364000" />
+      <workItem from="1706508856872" duration="1115000" />
+      <workItem from="1706527589259" duration="7802000" />
+      <workItem from="1706542361307" duration="2561000" />
     </task>
     <task id="LOCAL-00001" summary="test branch">
       <option name="closed" value="true" />
@@ -176,7 +180,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706457070258</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Немного верстки, подправил левое меню">
+      <option name="closed" value="true" />
+      <created>1706478114194</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1706478114194</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -216,6 +228,7 @@
     <MESSAGE value="Работает перемотка, громкость время. Перемотка/пауза с клавиш" />
     <MESSAGE value="Добавил паузу/воспроизведение с медиакнопи" />
     <MESSAGE value="Начал основную часть с треками" />
-    <option name="LAST_COMMIT_MESSAGE" value="Начал основную часть с треками" />
+    <MESSAGE value="Немного верстки, подправил левое меню" />
+    <option name="LAST_COMMIT_MESSAGE" value="Немного верстки, подправил левое меню" />
   </component>
 </project>

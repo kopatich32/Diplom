@@ -55,7 +55,7 @@ mute.addEventListener('click',()=>{
 
 })
 //Default site volume
-track.volume = track.volume/ 5
+track.volume = track.volume / 5
 
 let goneSec = document.querySelector('.seconds');
 let goneMin = document.querySelector('.minutes');

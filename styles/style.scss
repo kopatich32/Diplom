@@ -227,7 +227,7 @@ main {
 
   .control-row {
     @include flex(row, normal, normal);
-    @include  size(1200px,90px);
+    @include  size(1200px,80px);
 
     div {
       margin: 10px;
@@ -297,7 +297,7 @@ main {
   .track-area {
     overflow: scroll;
     scrollbar-width: none; // for firefox
-    height: calc(100vh - 558px);
+    height: calc(100vh - 524px);
 
   }
 
