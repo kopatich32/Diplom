@@ -1,4 +1,7 @@
-<?php //require_once ('tracks_data.php')?>
+<?php
+//require_once ('tracks_data.php')
+require_once ('get_tracks.php')
+?>
 
 <!doctype html>
 <html lang="en">
@@ -96,168 +99,26 @@
                 </div>
                 <div class="track-area">
 <!--                Tracks-->
+                    <?php
+                    global $query;
+                    while ($track_data = $query->fetch_assoc()): ?>
                 <div class="current-track-main number_">
-                    <div class="track-number play_now">1</div>
+                    <div class="track-number play_now"><?=$track_data['id']?></div>
                     <div class="track-main">
                         <div class="main-cover">
-                            <img src="covers/Infinite_Granite_2021.png" alt="cover">
+                            <img class="track-cover" src="<?=$track_data['cover']?>" alt="cover">
                         </div>
                         <div class="current-track-cover">
-                            <div class="track-name-main">The Gnashing</div>
-                            <div class="artist-main">Deafheaven</div>
+                            <div class="track-name-main"><?=$track_data['track_name']?></div>
+                            <div class="artist-main"><?=$track_data['artist']?></div>
                         </div>
                     </div>
-                    <div class="duration-main play_now">5:34</div>
-                    <div class="listening-main play_now">412</div>
+                    <div class="duration-main play_now"><?=$track_data['duration']?></div>
+                    <div class="listening-main play_now"><?=$track_data['listening']?></div>
                     <div class="is_play"><img src="icons/pause.svg" alt="play now"></div>
+                    <input class="track-link" type="text" value="<?=$track_data['link']?>" hidden>
                 </div>
-                <div class="current-track-main number_">
-                    <div class="track-number">2</div>
-                    <div class="track-main">
-                        <div class="main-cover">
-                            <img src="covers/Madmans_Esprit.jpg" alt="cover">
-                        </div>
-                        <div class="current-track-cover">
-                            <div class="track-name-main">내버려둬 Leave Me Alone</div>
-                            <div class="artist-main">Madmans Esprit</div>
-                        </div>
-                    </div>
-                    <div class="duration-main">4:14</div>
-                    <div class="listening-main">127</div>
-                    <div class="is_play"><img src="icons/is_play.svg" alt="play now"></div>
-                </div>
-                <div class="current-track-main number_">
-                    <div class="track-number">3</div>
-                    <div class="track-main">
-                        <div class="main-cover">
-                            <img src="covers/The_Missing_Man.jpg" alt="cover">
-                        </div>
-                        <div class="current-track-cover">
-                            <div class="track-name-main">Trash Bat</div>
-                            <div class="artist-main">AFI</div>
-                        </div>
-                    </div>
-                    <div class="duration-main">2:07</div>
-                    <div class="listening-main">257</div>
-                    <div class="is_play"><img src="icons/is_play.svg" alt="play now"></div>
-                </div>
-                <div class="current-track-main number_">
-                    <div class="track-number">4</div>
-                    <div class="track-main">
-                        <div class="main-cover">
-                            <img src="covers/Madmans_Esprit.jpg" alt="cover">
-                        </div>
-                        <div class="current-track-cover">
-                            <div class="track-name-main">내버려둬 Leave Me Alone</div>
-                            <div class="artist-main">Madmans Esprit</div>
-                        </div>
-                    </div>
-                    <div class="duration-main">4:14</div>
-                    <div class="listening-main">127</div>
-                    <div class="is_play"><img src="icons/is_play.svg" alt="play now"></div>
-                </div>
-                <div class="current-track-main number_">
-                    <div class="track-number">5</div>
-                    <div class="track-main">
-                        <div class="main-cover">
-                            <img src="covers/Madmans_Esprit.jpg" alt="cover">
-                        </div>
-                        <div class="current-track-cover">
-                            <div class="track-name-main">내버려둬 Leave Me Alone</div>
-                            <div class="artist-main">Madmans Esprit</div>
-                        </div>
-                    </div>
-                    <div class="duration-main">4:14</div>
-                    <div class="listening-main">127</div>
-                    <div class="is_play"><img src="icons/is_play.svg" alt="play now"></div>
-                </div>
-                <div class="current-track-main number_">
-                    <div class="track-number">6</div>
-                    <div class="track-main">
-                        <div class="main-cover">
-                            <img src="covers/Madmans_Esprit.jpg" alt="cover">
-                        </div>
-                        <div class="current-track-cover">
-                            <div class="track-name-main">내버려둬 Leave Me Alone</div>
-                            <div class="artist-main">Madmans Esprit</div>
-                        </div>
-                    </div>
-                    <div class="duration-main">4:14</div>
-                    <div class="listening-main">127</div>
-                    <div class="is_play"><img src="icons/is_play.svg" alt="play now"></div>
-                </div>
-                    <div class="current-track-main number_">
-                    <div class="track-number">2</div>
-                    <div class="track-main">
-                        <div class="main-cover">
-                            <img src="covers/Madmans_Esprit.jpg" alt="cover">
-                        </div>
-                        <div class="current-track-cover">
-                            <div class="track-name-main">내버려둬 Leave Me Alone</div>
-                            <div class="artist-main">Madmans Esprit</div>
-                        </div>
-                    </div>
-                    <div class="duration-main">4:14</div>
-                        <div class="listening-main">127</div>
-                        <div class="is_play"><img src="icons/is_play.svg" alt="play now"></div>
-                </div>
-                    <div class="current-track-main number_">
-                    <div class="track-number">2</div>
-                    <div class="track-main">
-                        <div class="main-cover">
-                            <img src="covers/Madmans_Esprit.jpg" alt="cover">
-                        </div>
-                        <div class="current-track-cover">
-                            <div class="track-name-main">내버려둬 Leave Me Alone</div>
-                            <div class="artist-main">Madmans Esprit</div>
-                        </div>
-                    </div>
-                    <div class="listening-main">127</div>
-                    <div class="duration-main">4:14</div>
-                    <div class="is_play"><img src="icons/is_play.svg" alt="play now"></div>
-                </div><div class="current-track-main number_">
-                    <div class="track-number">2</div>
-                    <div class="track-main">
-                        <div class="main-cover">
-                            <img src="covers/Madmans_Esprit.jpg" alt="cover">
-                        </div>
-                        <div class="current-track-cover">
-                            <div class="track-name-main">내버려둬 Leave Me Alone</div>
-                            <div class="artist-main">Madmans Esprit</div>
-                        </div>
-                    </div>
-                    <div class="listening-main">127</div>
-                    <div class="duration-main">4:14</div>
-                    <div class="is_play"><img src="icons/is_play.svg" alt="play now"></div>
-                </div><div class="current-track-main number_">
-                    <div class="track-number">2</div>
-                    <div class="track-main">
-                        <div class="main-cover">
-                            <img src="covers/Madmans_Esprit.jpg" alt="cover">
-                        </div>
-                        <div class="current-track-cover">
-                            <div class="track-name-main">내버려둬 Leave Me Alone</div>
-                            <div class="artist-main">Madmans Esprit</div>
-                        </div>
-                    </div>
-                    <div class="listening-main">127</div>
-                    <div class="duration-main">4:14</div>
-                    <div class="is_play"><img src="icons/is_play.svg" alt="play now"></div>
-                </div><div class="current-track-main number_">
-                    <div class="track-number">2</div>
-                    <div class="track-main">
-                        <div class="main-cover">
-                            <img src="covers/Madmans_Esprit.jpg" alt="cover">
-                        </div>
-                        <div class="current-track-cover">
-                            <div class="track-name-main">내버려둬 Leave Me Alone</div>
-                            <div class="artist-main">Madmans Esprit</div>
-                        </div>
-                    </div>
-                    <div class="listening-main">127</div>
-                    <div class="duration-main">4:14</div>
-                    <div class="is_play"><img src="icons/is_play.svg" alt="play now"></div>
-                </div>
+                    <?php endwhile?>
                 </div>
 <!--                -->
             </main>
@@ -266,11 +127,11 @@
     <footer>
         <div class="track">
             <div class="current-cover">
-                <img src="covers/Infinite_Granite_2021.png" alt="Deafheaven">
+                <img class="player-cover" src="covers/Infinite_Granite_2021.png" alt="Deafheaven">
             </div>
             <div class="current-track">
-                <p>The Gnashing</p>
-                <p>Deafheaven</p>
+                <p class="track-player">The Gnashing</p>
+                <p class="artist-player">Deafheaven</p>
             </div>
         </div>
         <div class="track-control">
@@ -319,6 +180,7 @@
 </audio>
 <script src="duration.js"></script>
 <script src="filter.js"></script>
+<script src="choose_tracks.js"></script>
 <?php /*https://proweb63.ru/help/js/html5-audio-js
 https://stackoverflow.com/questions/4126708/is-it-possible-to-style-html5-audio-tag/4126871#4126871
 https://packagist.org/packages/wapmorgan/mp3info
