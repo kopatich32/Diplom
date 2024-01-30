@@ -20,15 +20,15 @@ tracks.forEach(track=>{
                'switch':{ currentTrack: linkOfTrack}
             }),
         })
-            .then(resp =>resp.json())
+            .then(resp => resp.json())
             .then(data => switchTrack(data))
         function  switchTrack(track){
-            $('source').setAttribute('src',track);
-
             console.log(track)
 
+            $('source').setAttribute('src',track);
 
+
+            // $('#track').play()
         }
-        $('#track').play()
     })
 })

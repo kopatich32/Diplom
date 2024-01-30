@@ -1,6 +1,8 @@
 <?php
+session_start();
 //require_once ('tracks_data.php')
-require_once ('get_tracks.php')
+require_once ('get_tracks.php');
+//require ('change_track.php');
 ?>
 
 <!doctype html>
