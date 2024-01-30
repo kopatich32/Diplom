@@ -2,12 +2,8 @@ let playBtn = document.querySelector('.main-pause');
 let source = document.querySelector('source');
 let track = document.querySelector('#track');
 let mute = document.querySelector('.mute');
-let volumeWrapper  = document.querySelector('.volume-wrapper');
 let volumeTrack  = document.querySelector('.volume-track');
-let volumeLeft  = document.querySelector('.left-volume');
 let srcSvg = playBtn.querySelector('img');
-
-// track.volume = .3;
 playBtn.addEventListener('click', ()=>{
     let attr = srcSvg.getAttribute('src');
     if(attr == 'icons/play.svg'){
@@ -72,40 +68,87 @@ track.addEventListener('loadedmetadata',()=>{
 
 })
 
-track.addEventListener('timeupdate',(event)=> {
-    let currTime = Math.floor(event.target.currentTime);
-    let currFullSec = event.target.currentTime;
-    let res = currTime % 10;
-    //seconds
-    if ((currTime < 10)) {
-        goneSec.innerHTML = '0'+res;
-    }else{
-        goneSec.innerHTML = currTime;
+
+class TrackControl{
+    updateTrack(){
+
+        track.addEventListener('timeupdate',(event)=> {
+            let currTime = Math.floor(event.target.currentTime);
+            let currFullSec = event.target.currentTime;
+            let res = currTime % 10;
+            //seconds
+            if ((currTime < 10)) {
+                goneSec.innerHTML = '0'+res;
+            }else{
+                goneSec.innerHTML = currTime;
+            }
+            if(currTime >= 60){
+                goneSec.innerHTML = currTime - (60 * Math.trunc(currTime / 60));
+                if(+goneSec.innerHTML < 10){
+                    goneSec.innerHTML = '0'+res
+                }
+            }
+            // minutes
+            if(currFullSec >= 0){
+                goneMin.innerHTML = '0'+ Math.trunc(currTime / 60);
+            }else if(Math.floor(currFullSec / 60) >= 10){
+                goneMin.innerHTML =  (Math.round(currTime / 60)).toString();
+            }
+            localStorage.setItem('lastPositionOfTrack', currTime)
+            // Width duration
+            let onePercent = Math.trunc(track.duration) / 100;
+            goneTrack.style.width = currTime / onePercent + '%';
+            //Width volume
+            volumeTrack.style.width = (track.volume * 100) + '%';
+        })
     }
-    if(currTime >= 60){
-        goneSec.innerHTML = currTime - (60 * Math.trunc(currTime / 60));
-        if(+goneSec.innerHTML < 10){
-            goneSec.innerHTML = '0'+res
-        }
-    }
-    // minutes
-    if(currFullSec >= 0){
-        goneMin.innerHTML = '0'+ Math.trunc(currTime / 60);
-    }else if(Math.floor(currFullSec / 60) >= 10){
-        goneMin.innerHTML =  (Math.round(currTime / 60)).toString();
-    }
-    localStorage.setItem('lastPositionOfTrack', currTime)
-    // Width duration
-    let onePercent = Math.trunc(track.duration) / 100;
-    goneTrack.style.width = currTime / onePercent + '%';
-    //Width volume
-    volumeTrack.style.width = (track.volume * 100) + '%';
-})
+    endTrack(){
 //End of track
-track.addEventListener('ended',(event)=>{
-    track.currentTime = 0;
-    srcSvg.setAttribute('src','icons/play.svg');
-})
+        track.addEventListener('ended',(event)=>{
+            track.currentTime = 0;
+            srcSvg.setAttribute('src','icons/play.svg');
+        })
+    }
+    chooseTrack(){
+        let tracks = document.querySelectorAll('.current-track-main');
+        let $ = document.querySelector.bind(document);
+
+        function play(){
+            tracks.forEach(track=>{
+                track.addEventListener('click',(e)=>{
+                    $('#track').remove()
+                    let artist = track.querySelector('.track-name-main').innerHTML;
+                    let nameOfTrack = track.querySelector('.artist-main').innerHTML;
+                    let linkOfTrack = track.querySelector('.track-link').value;
+                    let trackCover = track.querySelector('.track-cover').getAttribute('src');
+                    // main-player
+                    $('.track-player').innerHTML = artist;
+                    $('.artist-player').innerHTML = nameOfTrack;
+                    $('.player-cover').setAttribute('src',trackCover);
+                    // $('source').setAttribute('src',track);
+                    let newAudio = document.createElement('audio');
+                    $('.wrapper').insertAdjacentElement('afterend',newAudio);
+                    let newSource = document.createElement('source');
+                    newAudio.insertAdjacentElement('afterbegin',newSource);
+                    newAudio.setAttribute('controls','true');
+                    newAudio.style.display ='none';
+                    newSource.setAttribute('src',linkOfTrack)
+                    newAudio.id = 'track';
+                    $('#track').play()
+
+                })
+            })
+
+        }
+        play()
+
+    }
+}
+let classOfTrack = new TrackControl();
+classOfTrack.updateTrack()
+classOfTrack.endTrack()
+classOfTrack.chooseTrack()
+
 // Change volume width
 track.addEventListener('volumechange',(event)=>{
     volumeTrack.style.width = (track.volume * 100) + '%';

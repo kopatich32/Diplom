@@ -2,14 +2,7 @@
 <project version="4">
   <component name="PublishConfigData" serverName="bitrix" remoteFilesAllowedToDisappearOnAutoupload="false">
     <serverData>
-      <paths name="bitrix">
-        <serverdata>
-          <mappings>
-            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
-          </mappings>
-        </serverdata>
-      </paths>
-      <paths name="kamins.ru">
+      <paths name="bitrix (project level)">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />
