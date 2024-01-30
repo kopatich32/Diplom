@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6359912f-0a1c-476d-99c3-dc560fd4832e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/change_track.php" beforeDir="false" afterPath="$PROJECT_DIR$/change_track.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/choose_tracks.js" beforeDir="false" afterPath="$PROJECT_DIR$/choose_tracks.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/get_tracks.php" beforeDir="false" afterPath="$PROJECT_DIR$/get_tracks.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,27 +49,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowPanel.toolwindow.highlight.mappings&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowPanel.toolwindow.highlight.symlinks&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowPanel.toolwindow.show.date&quot;: &quot;false&quot;,
-    &quot;WebServerToolWindowPanel.toolwindow.show.permissions&quot;: &quot;false&quot;,
-    &quot;WebServerToolWindowPanel.toolwindow.show.size&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/OSPanel/domains/Diplom&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;IntelliLang.Configuration&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "true",
+    "WebServerToolWindowPanel.toolwindow.highlight.mappings": "true",
+    "WebServerToolWindowPanel.toolwindow.highlight.symlinks": "true",
+    "WebServerToolWindowPanel.toolwindow.show.date": "false",
+    "WebServerToolWindowPanel.toolwindow.show.permissions": "false",
+    "WebServerToolWindowPanel.toolwindow.show.size": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/OSPanel/domains/bitrix",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "IntelliLang.Configuration",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\OSPanel\domains\Diplom\tracks" />
@@ -115,7 +110,7 @@
       <workItem from="1706542361307" duration="2773000" />
       <workItem from="1706595026112" duration="170000" />
       <workItem from="1706604096825" duration="9646000" />
-      <workItem from="1706613782394" duration="3563000" />
+      <workItem from="1706613782394" duration="6292000" />
     </task>
     <task id="LOCAL-00001" summary="test branch">
       <option name="closed" value="true" />
@@ -213,7 +208,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706612780755</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary=".">
+      <option name="closed" value="true" />
+      <created>1706617718790</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1706617718790</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -247,7 +250,6 @@
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="test branch" />
     <MESSAGE value="fixed footer" />
-    <MESSAGE value="." />
     <MESSAGE value="add first track&#10;&#10;(cherry picked from commit 510b0a09999b13234d85e2506ff0e00c7445be2e)" />
     <MESSAGE value="work with volume scale" />
     <MESSAGE value="Работает перемотка, громкость время. Перемотка/пауза с клавиш" />
@@ -256,6 +258,7 @@
     <MESSAGE value="Немного верстки, подправил левое меню" />
     <MESSAGE value="main adaptive" />
     <MESSAGE value="fetch" />
-    <option name="LAST_COMMIT_MESSAGE" value="fetch" />
+    <MESSAGE value="." />
+    <option name="LAST_COMMIT_MESSAGE" value="." />
   </component>
 </project>
