@@ -180,9 +180,9 @@ require_once ('get_tracks.php');
 <audio style="display:none;" id="track" controls>
     <source src="tracks/Deafheaven_-_The_Gnashing.mp3" type="audio/mpeg">
 </audio>
-<script src="duration.js"></script>
-<script src="filter.js"></script>
-<script src="choose_tracks.js"></script>
+<script type="module" src="duration.js"></script>
+<script type="module" src="filter.js"></script>
+<script type="module" src="choose_tracks.js"></script>
 <?php /*https://proweb63.ru/help/js/html5-audio-js
 https://stackoverflow.com/questions/4126708/is-it-possible-to-style-html5-audio-tag/4126871#4126871
 https://packagist.org/packages/wapmorgan/mp3info

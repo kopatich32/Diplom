@@ -5,7 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6359912f-0a1c-476d-99c3-dc560fd4832e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_28_01_2024_23_14__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_28_01_2024_23_14__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/change_track.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/choose_tracks.js" beforeDir="false" afterPath="$PROJECT_DIR$/choose_tracks.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/duration.js" beforeDir="false" afterPath="$PROJECT_DIR$/duration.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/player.sql" beforeDir="false" afterPath="$PROJECT_DIR$/player.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tracks/Madmans Esprit_-_내버려둬_Leave_Me_Alone.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/tracks/Madmans_Esprit_-_Leave_Me_Alone.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tracks_data.php" beforeDir="false" afterPath="$PROJECT_DIR$/tracks_data.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +69,7 @@
     "WebServerToolWindowPanel.toolwindow.show.permissions": "false",
     "WebServerToolWindowPanel.toolwindow.show.size": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/OSPanel/domains/bitrix",
+    "last_opened_file_path": "C:/OSPanel/domains/Diplom",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -72,6 +81,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\OSPanel\domains\Diplom" />
       <recent name="C:\OSPanel\domains\Diplom\tracks" />
       <recent name="C:\OSPanel\domains\Diplom\icons" />
     </key>
