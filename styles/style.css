@@ -38,7 +38,7 @@ body {
   justify-content: normal;
   align-items: normal;
   min-height: 100%;
-  max-height: 100vh; }
+  max-height: 100svh; }
 
 .player {
   display: flex;
