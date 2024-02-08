@@ -105,6 +105,7 @@ require_once ('get_tracks.php');
                     global $query;
                     while ($track_data = $query->fetch_assoc()): ?>
                 <div class="current-track-main number_">
+                    <input class="curNum" type="text" hidden value="<?=$track_data['id']?>">
                     <div class="track-number play_now"><?=$track_data['id']?></div>
                     <div class="track-main">
                         <div class="main-cover">

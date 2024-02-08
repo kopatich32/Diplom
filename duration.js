@@ -27,9 +27,7 @@ document.addEventListener('keydown',(event)=>{
 })
 
 //restart
-document.querySelector('.restart').addEventListener('click', ()=>{
-    track.currentTime = 0;
-})
+
 //rewind
 
 document.addEventListener('keydown',(event)=>{
@@ -91,6 +89,8 @@ class TrackControl{
                 goneTrack.style.width = currTime / onePercent + '%';
                 //Width volume
                 volumeTrack.style.width = (elem.volume * 100) + '%';
+fullDurationTrack(elem)
+
             })
 
 
@@ -108,7 +108,11 @@ class TrackControl{
 
         function play(){
             tracks.forEach(track=>{
+
                 track.addEventListener('click',(e)=>{
+                   let curPlaying =track.querySelector('.curNum').value;
+
+
                     $('#track').remove();
                     let artist = track.querySelector('.track-name-main').innerHTML;
                     let nameOfTrack = track.querySelector('.artist-main').innerHTML;
@@ -127,32 +131,24 @@ class TrackControl{
                     // newAudio.style.display ='none';
                     newSource.setAttribute('src',linkOfTrack);
                     newAudio.id = 'track';
-
                     classOfTrack.updateTrack(newAudio);
                     classOfTrack.fillTimeLIne(newAudio);
-                    classOfTrack.timeCurTrack(newAudio);
+                    classOfTrack.restartTrack(newAudio);
+
                     $('#track').play();
-                    // classOfTrack.timeCurTrack();
-                    console.log(newAudio)
+                    track.volume = track.volume / 8
+
 
                 })
             })
+
+
 
         }
         play()
 
     }
-    timeCurTrack(elem){
-        elem.addEventListener('loadedmetadata',()=>{
-            let duration = (elem.duration / 60).toFixed(2).split('.');
-            let endTime = duration[0] + ':'+ (+duration[1] - 23) ;
-            elem.currentTime = localStorage.getItem('lastPositionOfTrack');
-            goneSec.innerHTML = localStorage.getItem('lastPositionOfTrack');
-            leftTime.innerHTML = endTime;
-            // volumeTrack.style.width = (currentVolume * 100) + '%';
 
-        })
-    }
     fillTimeLIne(elem){
 
 // Change volume width
@@ -177,12 +173,32 @@ class TrackControl{
             elem.volume = percentOfLineVolume / 100;
         }
     }
+    restartTrack(elem){
+        document.querySelector('.restart').addEventListener('click', ()=>{
+            elem.currentTime = 0;
+        })
+    }
+    timeCurTrack(elem){
+        elem.addEventListener('loadedmetadata',()=>{
+            fullDurationTrack(elem)
+            classOfTrack.fillTimeLIne(elem)
+            elem.currentTime = localStorage.getItem('lastPositionOfTrack');
+            goneSec.innerHTML = localStorage.getItem('lastPositionOfTrack');
+
+
+        })
+    }
+}
+function fullDurationTrack(elem){
+    let duration = (elem.duration / 60).toFixed(2).split('.');
+    leftTime.innerHTML = duration[0] + ':'+ (duration[1]);
 }
 let classOfTrack = new TrackControl();
 classOfTrack.updateTrack(track);
 classOfTrack.endTrack();
 classOfTrack.chooseTrack();
 classOfTrack.timeCurTrack(track);
+
 
 
 
