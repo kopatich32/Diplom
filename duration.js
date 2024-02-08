@@ -51,56 +51,49 @@ mute.addEventListener('click',()=>{
 
 })
 //Default site volume
-track.volume = track.volume / 5
+track.volume = track.volume / 8
 
 let goneSec = document.querySelector('.seconds');
 let goneMin = document.querySelector('.minutes');
 let leftTime = document.querySelector('.left-time');
 let goneTrack = document.querySelector('.gone-track');
 goneSec.innerHTML = localStorage.getItem('lastPositionOfTrack')
-track.addEventListener('loadedmetadata',()=>{
-    let duration =(track.duration / 60).toFixed(2).split('.');
-    let endTime = duration[0] + ':'+ (+duration[1] - 23) ;
-    track.currentTime = localStorage.getItem('lastPositionOfTrack');
-    goneSec.innerHTML = localStorage.getItem('lastPositionOfTrack');
-    leftTime.innerHTML = endTime;
-    // volumeTrack.style.width = (currentVolume * 100) + '%';
 
-})
 
 
 class TrackControl{
-    updateTrack(){
-
-        track.addEventListener('timeupdate',(event)=> {
-            let currTime = Math.floor(event.target.currentTime);
-            let currFullSec = event.target.currentTime;
-            let res = currTime % 10;
-            //seconds
-            if ((currTime < 10)) {
-                goneSec.innerHTML = '0'+res;
-            }else{
-                goneSec.innerHTML = currTime;
-            }
-            if(currTime >= 60){
-                goneSec.innerHTML = currTime - (60 * Math.trunc(currTime / 60));
-                if(+goneSec.innerHTML < 10){
-                    goneSec.innerHTML = '0'+res
+    updateTrack(elem){
+            elem.addEventListener('timeupdate',(event)=> {
+                let currTime = Math.floor(event.target.currentTime);
+                let currFullSec = event.target.currentTime;
+                let res = currTime % 10;
+                //seconds
+                if ((currTime < 10)) {
+                    goneSec.innerHTML = '0'+res;
+                }else{
+                    goneSec.innerHTML = currTime;
                 }
-            }
-            // minutes
-            if(currFullSec >= 0){
-                goneMin.innerHTML = '0'+ Math.trunc(currTime / 60);
-            }else if(Math.floor(currFullSec / 60) >= 10){
-                goneMin.innerHTML =  (Math.round(currTime / 60)).toString();
-            }
-            localStorage.setItem('lastPositionOfTrack', currTime)
-            // Width duration
-            let onePercent = Math.trunc(track.duration) / 100;
-            goneTrack.style.width = currTime / onePercent + '%';
-            //Width volume
-            volumeTrack.style.width = (track.volume * 100) + '%';
-        })
+                if(currTime >= 60){
+                    goneSec.innerHTML = currTime - (60 * Math.trunc(currTime / 60));
+                    if(+goneSec.innerHTML < 10){
+                        goneSec.innerHTML = '0'+res
+                    }
+                }
+                // minutes
+                if(currFullSec >= 0){
+                    goneMin.innerHTML = '0'+ Math.trunc(currTime / 60);
+                }else if(Math.floor(currFullSec / 60) >= 10){
+                    goneMin.innerHTML =  (Math.round(currTime / 60)).toString();
+                }
+                localStorage.setItem('lastPositionOfTrack', currTime)
+                // Width duration
+                let onePercent = Math.trunc(elem.duration) / 100;
+                goneTrack.style.width = currTime / onePercent + '%';
+                //Width volume
+                volumeTrack.style.width = (elem.volume * 100) + '%';
+            })
+
+
     }
     endTrack(){
 //End of track
@@ -116,7 +109,7 @@ class TrackControl{
         function play(){
             tracks.forEach(track=>{
                 track.addEventListener('click',(e)=>{
-                    $('#track').remove()
+                    $('#track').remove();
                     let artist = track.querySelector('.track-name-main').innerHTML;
                     let nameOfTrack = track.querySelector('.artist-main').innerHTML;
                     let linkOfTrack = track.querySelector('.track-link').value;
@@ -131,10 +124,16 @@ class TrackControl{
                     let newSource = document.createElement('source');
                     newAudio.insertAdjacentElement('afterbegin',newSource);
                     newAudio.setAttribute('controls','true');
-                    newAudio.style.display ='none';
-                    newSource.setAttribute('src',linkOfTrack)
+                    // newAudio.style.display ='none';
+                    newSource.setAttribute('src',linkOfTrack);
                     newAudio.id = 'track';
-                    $('#track').play()
+
+                    classOfTrack.updateTrack(newAudio);
+                    classOfTrack.fillTimeLIne(newAudio);
+                    classOfTrack.timeCurTrack(newAudio);
+                    $('#track').play();
+                    // classOfTrack.timeCurTrack();
+                    console.log(newAudio)
 
                 })
             })
@@ -143,33 +142,49 @@ class TrackControl{
         play()
 
     }
-}
-let classOfTrack = new TrackControl();
-classOfTrack.updateTrack()
-classOfTrack.endTrack()
-classOfTrack.chooseTrack()
+    timeCurTrack(elem){
+        elem.addEventListener('loadedmetadata',()=>{
+            let duration = (elem.duration / 60).toFixed(2).split('.');
+            let endTime = duration[0] + ':'+ (+duration[1] - 23) ;
+            elem.currentTime = localStorage.getItem('lastPositionOfTrack');
+            goneSec.innerHTML = localStorage.getItem('lastPositionOfTrack');
+            leftTime.innerHTML = endTime;
+            // volumeTrack.style.width = (currentVolume * 100) + '%';
+
+        })
+    }
+    fillTimeLIne(elem){
 
 // Change volume width
-track.addEventListener('volumechange',(event)=>{
-    volumeTrack.style.width = (track.volume * 100) + '%';
-})
+        elem.addEventListener('volumechange',(event)=>{
+            volumeTrack.style.width = (elem.volume * 100) + '%';
+        })
 //Choose duration on line
 
-let durationLength = document.querySelector('.duration-track');
-let volumeLevel = document.querySelector('.volume-wrapper');
-durationLength.onclick = (event)=>{
-goneTrack.style.width = event.offsetX + 'px';
-let onePercPX = durationLength.offsetWidth / 100;
-    let percentOfLine = Math.trunc(event.offsetX / onePercPX);
-    track.currentTime = percentOfLine * track.duration / 100;
-}
+        let durationLength = document.querySelector('.duration-track');
+        let volumeLevel = document.querySelector('.volume-wrapper');
+        durationLength.onclick = (event)=>{
+            goneTrack.style.width = event.offsetX + 'px';
+            let onePercPX = durationLength.offsetWidth / 100;
+            let percentOfLine = Math.trunc(event.offsetX / onePercPX);
+            elem.currentTime = percentOfLine * elem.duration / 100;
+        }
 //Choose volume on line
-volumeLevel.onclick = (event)=> {
-    volumeTrack.style.width = event.offsetX + 'px';
-    let onePercPxVolume = volumeLevel.offsetWidth / 100;
-    let percentOfLineVolume = Math.trunc(event.offsetX / onePercPxVolume);
-    track.volume = percentOfLineVolume / 100
+        volumeLevel.onclick = (event)=> {
+            volumeTrack.style.width = event.offsetX + 'px';
+            let onePercPxVolume = volumeLevel.offsetWidth / 100;
+            let percentOfLineVolume = Math.trunc(event.offsetX / onePercPxVolume);
+            elem.volume = percentOfLineVolume / 100;
+        }
+    }
 }
+let classOfTrack = new TrackControl();
+classOfTrack.updateTrack(track);
+classOfTrack.endTrack();
+classOfTrack.chooseTrack();
+classOfTrack.timeCurTrack(track);
+
+
 
 
 
