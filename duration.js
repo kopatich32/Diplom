@@ -1,9 +1,11 @@
+let $ = document.querySelector.bind(document);
 let playBtn = document.querySelector('.main-pause');
 let source = document.querySelector('source');
 let track = document.querySelector('#track');
 let mute = document.querySelector('.mute');
 let volumeTrack  = document.querySelector('.volume-track');
 let srcSvg = playBtn.querySelector('img');
+let isPlaying = false;
 playBtn.addEventListener('click', ()=>{
     let attr = srcSvg.getAttribute('src');
     if(attr == 'icons/play.svg'){
@@ -58,10 +60,11 @@ let goneTrack = document.querySelector('.gone-track');
 goneSec.innerHTML = localStorage.getItem('lastPositionOfTrack')
 
 
-
+let currFullSec = 0;
 class TrackControl{
     updateTrack(elem){
             elem.addEventListener('timeupdate',(event)=> {
+                isPlaying = true;
                 let currTime = Math.floor(event.target.currentTime);
                 let currFullSec = event.target.currentTime;
                 let res = currTime % 10;
@@ -91,9 +94,8 @@ class TrackControl{
                 volumeTrack.style.width = (elem.volume * 100) + '%';
 fullDurationTrack(elem)
 
+
             })
-
-
     }
     endTrack(){
 //End of track
@@ -104,15 +106,11 @@ fullDurationTrack(elem)
     }
     chooseTrack(){
         let tracks = document.querySelectorAll('.current-track-main');
-        let $ = document.querySelector.bind(document);
-
         function play(){
             tracks.forEach(track=>{
 
                 track.addEventListener('click',(e)=>{
-                   let curPlaying =track.querySelector('.curNum').value;
-
-
+                   let curPlaying = track.querySelector('.curNum').value;
                     $('#track').remove();
                     let artist = track.querySelector('.track-name-main').innerHTML;
                     let nameOfTrack = track.querySelector('.artist-main').innerHTML;
@@ -122,7 +120,6 @@ fullDurationTrack(elem)
                     $('.track-player').innerHTML = artist;
                     $('.artist-player').innerHTML = nameOfTrack;
                     $('.player-cover').setAttribute('src',trackCover);
-                    // $('source').setAttribute('src',track);
                     let newAudio = document.createElement('audio');
                     $('.wrapper').insertAdjacentElement('afterend',newAudio);
                     let newSource = document.createElement('source');
@@ -135,17 +132,27 @@ fullDurationTrack(elem)
                     classOfTrack.fillTimeLIne(newAudio);
                     classOfTrack.restartTrack(newAudio);
 
-                    $('#track').play();
+                    newAudio.play()
                     track.volume = track.volume / 8
 
+    if(!track.className.includes('now_playing')){
+        e.target.closest('.current-track-main').classList.add('now_playing');
+        newAudio.currentTime = localStorage.getItem('lastPositionOfTrack');
+        newAudio.play()
+    }else{
+        e.target.closest('.current-track-main').classList.remove('now_playing');
+        newAudio.currentTime = localStorage.getItem('lastPositionOfTrack');
+
+        newAudio.pause()
+    }
 
                 })
+
             })
-
-
 
         }
         play()
+
 
     }
 
@@ -198,9 +205,6 @@ classOfTrack.updateTrack(track);
 classOfTrack.endTrack();
 classOfTrack.chooseTrack();
 classOfTrack.timeCurTrack(track);
-
-
-
 
 
 

@@ -104,7 +104,7 @@ require_once ('get_tracks.php');
                     <?php
                     global $query;
                     while ($track_data = $query->fetch_assoc()): ?>
-                <div class="current-track-main number_">
+                <div class="current-track-main">
                     <input class="curNum" type="text" hidden value="<?=$track_data['id']?>">
                     <div class="track-number play_now"><?=$track_data['id']?></div>
                     <div class="track-main">
@@ -178,7 +178,7 @@ require_once ('get_tracks.php');
         </div>
     </footer>
 </div>
-<audio style="display:none;" id="track" controls>
+<audio style="display:block;" id="track" controls>
     <source src="tracks/Deafheaven_-_The_Gnashing.mp3" type="audio/mpeg">
 </audio>
 <script type="module" src="duration.js"></script>
