@@ -105,12 +105,18 @@ fullDurationTrack(elem)
         })
     }
     chooseTrack(){
-        let tracks = document.querySelectorAll('.current-track-main');
+
         function play(){
+            let tracks = document.querySelectorAll('.current-track-main');
+
             tracks.forEach(track=>{
 
                 track.addEventListener('click',(e)=>{
-                   let curPlaying = track.querySelector('.curNum').value;
+for(let i = 0; i < tracks.length; i++){
+    if(e.target.closest('.current-track-main').className.includes('now_playing')) continue
+    tracks[i].classList.remove('now_playing')
+}
+
                     $('#track').remove();
                     let artist = track.querySelector('.track-name-main').innerHTML;
                     let nameOfTrack = track.querySelector('.artist-main').innerHTML;
@@ -125,6 +131,7 @@ fullDurationTrack(elem)
                     let newSource = document.createElement('source');
                     newAudio.insertAdjacentElement('afterbegin',newSource);
                     newAudio.setAttribute('controls','true');
+                    newAudio.currentTime = 0;
                     // newAudio.style.display ='none';
                     newSource.setAttribute('src',linkOfTrack);
                     newAudio.id = 'track';
@@ -132,19 +139,59 @@ fullDurationTrack(elem)
                     classOfTrack.fillTimeLIne(newAudio);
                     classOfTrack.restartTrack(newAudio);
 
+                    track.volume = track.volume / 8;
                     newAudio.play()
-                    track.volume = track.volume / 8
+                    if(e.target.closest('.current-track-main').className.includes('now_playing')){
+                        newAudio.pause()
+                        newAudio.currentTime = localStorage.getItem('lastPositionOfTrack')
+                        console.log('pause')
+                    }
+                    if(e.target.closest('.current-track-main')) {
+                        e.target.closest('.current-track-main').classList.add('now_playing');
+                        newAudio.currentTime = localStorage.getItem('lastPositionOfTrack')
+                        console.log('play')
+                    }
+                    if(e.target.closest('.current-track-main').className.includes('now_playing')){
+                        console.log('paused')
+                    }
 
-    if(!track.className.includes('now_playing')){
-        e.target.closest('.current-track-main').classList.add('now_playing');
-        newAudio.currentTime = localStorage.getItem('lastPositionOfTrack');
-        newAudio.play()
-    }else{
-        e.target.closest('.current-track-main').classList.remove('now_playing');
-        newAudio.currentTime = localStorage.getItem('lastPositionOfTrack');
 
-        newAudio.pause()
-    }
+
+///////////////////
+//
+//                     let currentSong = null; // Переменная для хранения ссылки на текущую песню
+//
+//                     function playOrPause(song) {
+//                         if (currentSong !== song) { // Если это новая песня
+//                             if (currentSong !== null) {
+//                                 currentSong.pause(); // Приостанавливаем предыдущую песню, если такая есть
+//                             }
+//                             song.play(); // Запускаем новую песню
+//                             currentSong = song; // Сохраняем ссылку на новую песню
+//                         } else { // Если это та же песня, то делаем паузу
+//                             if (song.paused) {
+//                                 song.play();
+//                             } else {
+//                                 song.pause();
+//                             }
+//                         }
+//                     }
+//
+// // Пример использования на вашем сайте
+//                     let song1 = document.getElementById('song1'); // Замените 'song1' на id вашего первого аудиоэлемента
+//                     let song2 = document.getElementById('song2'); // Замените 'song2' на id вашего второго аудиоэлемента
+//
+//                     song1.addEventListener('click', function() {
+//                         playOrPause(song1);
+//                     });
+//
+//                     song2.addEventListener('click', function() {
+//                         playOrPause(song2);
+//                     });
+
+
+
+
 
                 })
 
