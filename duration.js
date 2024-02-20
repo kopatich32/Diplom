@@ -62,11 +62,19 @@ goneSec.innerHTML = localStorage.getItem('lastPositionOfTrack')
 
 let currFullSec = 0;
 class TrackControl{
+
+
+    constructor() {
+        this.time1 = 0;
+    }
+
+
     updateTrack(elem){
             elem.addEventListener('timeupdate',(event)=> {
                 isPlaying = true;
                 let currTime = Math.floor(event.target.currentTime);
                 let currFullSec = event.target.currentTime;
+                // console.log(currTime)
                 let res = currTime % 10;
                 //seconds
                 if ((currTime < 10)) {
@@ -87,6 +95,9 @@ class TrackControl{
                     goneMin.innerHTML =  (Math.round(currTime / 60)).toString();
                 }
                 localStorage.setItem('lastPositionOfTrack', currTime)
+
+                TrackControl.time1 = currTime;
+                //////////////////////////////////////////////////////////////////
                 // Width duration
                 let onePercent = Math.trunc(elem.duration) / 100;
                 goneTrack.style.width = currTime / onePercent + '%';
@@ -116,7 +127,7 @@ for(let i = 0; i < tracks.length; i++){
     if(e.target.closest('.current-track-main').className.includes('now_playing')) continue
     tracks[i].classList.remove('now_playing')
 }
-
+let clickTrack = e.target.closest('.current-track-main');
                     $('#track').remove();
                     let artist = track.querySelector('.track-name-main').innerHTML;
                     let nameOfTrack = track.querySelector('.artist-main').innerHTML;
@@ -140,20 +151,30 @@ for(let i = 0; i < tracks.length; i++){
                     classOfTrack.restartTrack(newAudio);
 
                     track.volume = track.volume / 8;
-                    newAudio.play()
-                    if(e.target.closest('.current-track-main').className.includes('now_playing')){
-                        newAudio.pause()
-                        newAudio.currentTime = localStorage.getItem('lastPositionOfTrack')
+                    // newAudio.play()
+                    // if(newAudio.paused && clickTrack.className.includes('now_paused') ){
+                    //     clickTrack.classList.remove('now_paused')
+                    //
+                    //     newAudio.play();
+                    //     newAudio.currentTime = TrackControl.time1;
+                    //     console.log('laslaalals');
+                    // }
+                    if(clickTrack && clickTrack.className.includes('now_playing')){
+                        newAudio.pause();
+                        clickTrack.classList.add('now_paused');
+                        newAudio.currentTime = TrackControl.time1;
                         console.log('pause')
                     }
-                    if(e.target.closest('.current-track-main')) {
+                    if(!e.target.closest('.current-track-main').className.includes('now_playing')) {
                         e.target.closest('.current-track-main').classList.add('now_playing');
-                        newAudio.currentTime = localStorage.getItem('lastPositionOfTrack')
-                        console.log('play')
+                        newAudio.currentTime = TrackControl.time1;
+                        newAudio.play();
+                        console.log('play');
                     }
-                    if(e.target.closest('.current-track-main').className.includes('now_playing')){
-                        console.log('paused')
-                    }
+
+
+
+
 
 
 
