@@ -51,7 +51,7 @@ mute.addEventListener('click',()=>{
 
 })
 //Default site volume
-track.volume = track.volume / 8
+track.volume = track.volume / 3;
 
 let goneSec = document.querySelector('.seconds');
 let goneMin = document.querySelector('.minutes');
@@ -66,6 +66,7 @@ class TrackControl{
 
     constructor() {
         this.time1 = 0;
+        this.start = 0;
     }
 
 
@@ -74,7 +75,6 @@ class TrackControl{
                 isPlaying = true;
                 let currTime = Math.floor(event.target.currentTime);
                 let currFullSec = event.target.currentTime;
-                // console.log(currTime)
                 let res = currTime % 10;
                 //seconds
                 if ((currTime < 10)) {
@@ -123,11 +123,14 @@ fullDurationTrack(elem)
             tracks.forEach(track=>{
 
                 track.addEventListener('click',(e)=>{
+                    let clickTrack = e.target.closest('.current-track-main');
 for(let i = 0; i < tracks.length; i++){
-    if(e.target.closest('.current-track-main').className.includes('now_playing')) continue
-    tracks[i].classList.remove('now_playing')
+    if(clickTrack.className.includes('now_playing')) continue
+    tracks[i].classList.remove('now_playing');
+    tracks[i].classList.remove('now_pause');
 }
-let clickTrack = e.target.closest('.current-track-main');
+
+
                     $('#track').remove();
                     let artist = track.querySelector('.track-name-main').innerHTML;
                     let nameOfTrack = track.querySelector('.artist-main').innerHTML;
@@ -150,31 +153,23 @@ let clickTrack = e.target.closest('.current-track-main');
                     classOfTrack.fillTimeLIne(newAudio);
                     classOfTrack.restartTrack(newAudio);
 
-                    track.volume = track.volume / 8;
-                    // newAudio.play()
-                    // if(newAudio.paused && clickTrack.className.includes('now_paused') ){
-                    //     clickTrack.classList.remove('now_paused')
-                    //
-                    //     newAudio.play();
-                    //     newAudio.currentTime = TrackControl.time1;
-                    //     console.log('laslaalals');
-                    // }
-                    if(clickTrack && clickTrack.className.includes('now_playing')){
-                        newAudio.pause();
-                        clickTrack.classList.add('now_paused');
-                        newAudio.currentTime = TrackControl.time1;
-                        console.log('pause')
+                    newAudio.volume = newAudio.volume / 3;
+
+
+                    if(clickTrack){
+                        clickTrack.classList.toggle('now_playing');
+                        if(clickTrack.className.includes('now_playing')){
+                            newAudio.currentTime = TrackControl.time1;
+                            newAudio.play();
+                            console.log('play')
+                        } else{
+                            if(newAudio.paused){
+                                clickTrack.classList.toggle('now_pause');
+                                console.log('pause')
+                            }
+
+                        }
                     }
-                    if(!e.target.closest('.current-track-main').className.includes('now_playing')) {
-                        e.target.closest('.current-track-main').classList.add('now_playing');
-                        newAudio.currentTime = TrackControl.time1;
-                        newAudio.play();
-                        console.log('play');
-                    }
-
-
-
-
 
 
 
@@ -199,25 +194,15 @@ let clickTrack = e.target.closest('.current-track-main');
 //                     }
 //
 // // Пример использования на вашем сайте
-//                     let song1 = document.getElementById('song1'); // Замените 'song1' на id вашего первого аудиоэлемента
-//                     let song2 = document.getElementById('song2'); // Замените 'song2' на id вашего второго аудиоэлемента
+//                     let song = document.querySelectorAll('#track'); // Замените 'song1' на id вашего первого аудиоэлемента
+// song.forEach(song1=>{
+//     song1.addEventListener('click', function() {
+//         playOrPause(song1);
+//     });
 //
-//                     song1.addEventListener('click', function() {
-//                         playOrPause(song1);
-//                     });
-//
-//                     song2.addEventListener('click', function() {
-//                         playOrPause(song2);
-//                     });
-
-
-
-
-
+// })
                 })
-
             })
-
         }
         play()
 
