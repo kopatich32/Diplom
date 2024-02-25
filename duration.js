@@ -72,7 +72,7 @@ class TrackControl{
 
     updateTrack(elem){
             elem.addEventListener('timeupdate',(event)=> {
-                isPlaying = true;
+                // isPlaying = true;
                 let currTime = Math.floor(event.target.currentTime);
                 let currFullSec = event.target.currentTime;
                 let res = currTime % 10;
@@ -155,7 +155,6 @@ for(let i = 0; i < tracks.length; i++){
 
                     newAudio.volume = newAudio.volume / 3;
 
-
                     if(clickTrack){
                         clickTrack.classList.toggle('now_playing');
                         if(clickTrack.className.includes('now_playing')){
@@ -171,36 +170,6 @@ for(let i = 0; i < tracks.length; i++){
                         }
                     }
 
-
-
-///////////////////
-//
-//                     let currentSong = null; // Переменная для хранения ссылки на текущую песню
-//
-//                     function playOrPause(song) {
-//                         if (currentSong !== song) { // Если это новая песня
-//                             if (currentSong !== null) {
-//                                 currentSong.pause(); // Приостанавливаем предыдущую песню, если такая есть
-//                             }
-//                             song.play(); // Запускаем новую песню
-//                             currentSong = song; // Сохраняем ссылку на новую песню
-//                         } else { // Если это та же песня, то делаем паузу
-//                             if (song.paused) {
-//                                 song.play();
-//                             } else {
-//                                 song.pause();
-//                             }
-//                         }
-//                     }
-//
-// // Пример использования на вашем сайте
-//                     let song = document.querySelectorAll('#track'); // Замените 'song1' на id вашего первого аудиоэлемента
-// song.forEach(song1=>{
-//     song1.addEventListener('click', function() {
-//         playOrPause(song1);
-//     });
-//
-// })
                 })
             })
         }
@@ -209,6 +178,24 @@ for(let i = 0; i < tracks.length; i++){
 
     }
 
+//
+//     let playingtrack;
+//     if(isPlaying){
+//         if(playingtrack != clickTrack){
+//             isPlaying = true;
+//             newAudio.play();
+//         }else{
+//             newAudio.pause();
+//             isPlaying = false;
+//         }
+//     }else{
+//     isPlaying = true;
+//     if(playingtrack != clickTrack){
+//     newSource.setAttribute('src',linkOfTrack);
+//
+// }
+// newAudio.play();
+// }
     fillTimeLIne(elem){
 
 // Change volume width
