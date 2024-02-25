@@ -178,24 +178,7 @@ for(let i = 0; i < tracks.length; i++){
 
     }
 
-//
-//     let playingtrack;
-//     if(isPlaying){
-//         if(playingtrack != clickTrack){
-//             isPlaying = true;
-//             newAudio.play();
-//         }else{
-//             newAudio.pause();
-//             isPlaying = false;
-//         }
-//     }else{
-//     isPlaying = true;
-//     if(playingtrack != clickTrack){
-//     newSource.setAttribute('src',linkOfTrack);
-//
-// }
-// newAudio.play();
-// }
+
     fillTimeLIne(elem){
 
 // Change volume width
