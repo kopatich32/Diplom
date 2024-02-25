@@ -1,3 +1,5 @@
+
+
 let $ = document.querySelector.bind(document);
 let playBtn = document.querySelector('.main-pause');
 let source = document.querySelector('source');
@@ -117,66 +119,31 @@ fullDurationTrack(elem)
     }
     chooseTrack(){
 
-        function play(){
             let tracks = document.querySelectorAll('.current-track-main');
 
-            tracks.forEach(track=>{
+            tracks.forEach(audio=>{
 
-                track.addEventListener('click',(e)=>{
+                audio.addEventListener('click',(e)=>{
                     let clickTrack = e.target.closest('.current-track-main');
-for(let i = 0; i < tracks.length; i++){
-    if(clickTrack.className.includes('now_playing')) continue
-    tracks[i].classList.remove('now_playing');
-    tracks[i].classList.remove('now_pause');
-}
-
-
-                    $('#track').remove();
-                    let artist = track.querySelector('.track-name-main').innerHTML;
-                    let nameOfTrack = track.querySelector('.artist-main').innerHTML;
-                    let linkOfTrack = track.querySelector('.track-link').value;
-                    let trackCover = track.querySelector('.track-cover').getAttribute('src');
-                    // main-player
-                    $('.track-player').innerHTML = artist;
-                    $('.artist-player').innerHTML = nameOfTrack;
-                    $('.player-cover').setAttribute('src',trackCover);
-                    let newAudio = document.createElement('audio');
-                    $('.wrapper').insertAdjacentElement('afterend',newAudio);
-                    let newSource = document.createElement('source');
-                    newAudio.insertAdjacentElement('afterbegin',newSource);
-                    newAudio.setAttribute('controls','true');
-                    newAudio.currentTime = 0;
-                    // newAudio.style.display ='none';
-                    newSource.setAttribute('src',linkOfTrack);
-                    newAudio.id = 'track';
-                    classOfTrack.updateTrack(newAudio);
-                    classOfTrack.fillTimeLIne(newAudio);
-                    classOfTrack.restartTrack(newAudio);
-
-                    newAudio.volume = newAudio.volume / 3;
-
-                    if(clickTrack){
-                        clickTrack.classList.toggle('now_playing');
-                        if(clickTrack.className.includes('now_playing')){
-                            newAudio.currentTime = TrackControl.time1;
-                            newAudio.play();
-                            console.log('play')
-                        } else{
-                            if(newAudio.paused){
-                                clickTrack.classList.toggle('now_pause');
-                                console.log('pause')
-                            }
-
-                        }
+                    let trackLink = clickTrack.querySelector('.track-link').value;
+                    track.src = trackLink;
+                    let playingID = clickTrack.dataset.track_id;
+                    track.id = playingID
+                    if(track.id != playingID){
+                        track.pause();
+                        console.log('play')
+                    }else{
+                        track.play();
+                        console.log('pause')
                     }
+                    // track.play()
+
+                    console.log(track.id)
+                    console.log('track of number - ' + playingID)
 
                 })
             })
         }
-        play()
-
-
-    }
 
 
     fillTimeLIne(elem){
@@ -214,8 +181,6 @@ for(let i = 0; i < tracks.length; i++){
             classOfTrack.fillTimeLIne(elem)
             elem.currentTime = localStorage.getItem('lastPositionOfTrack');
             goneSec.innerHTML = localStorage.getItem('lastPositionOfTrack');
-
-
         })
     }
 }
@@ -226,8 +191,9 @@ function fullDurationTrack(elem){
 let classOfTrack = new TrackControl();
 classOfTrack.updateTrack(track);
 classOfTrack.endTrack();
-classOfTrack.chooseTrack();
 classOfTrack.timeCurTrack(track);
+classOfTrack.chooseTrack();
+
 
 
 
