@@ -111,7 +111,7 @@ require_once ('get_tracks.php');
                             <img class="track-cover" src="<?=$track_data['cover']?>" alt="cover">
                         </div>
                         <div class="current-track-cover">
-                            <div class="track-name-main"><?=$track_data['track_name']?></div>
+                            <div class="track-name-main play_now"><?=$track_data['track_name']?></div>
                             <div class="artist-main"><?=$track_data['artist']?></div>
                         </div>
                     </div>
@@ -177,7 +177,7 @@ require_once ('get_tracks.php');
         </div>
     </footer>
 </div>
-<audio style="display:block;" id="track" src="tracks/Deafheaven_-_The_Gnashing.mp3" controls></audio>
+<audio style="display:none;" class="audioTag" id="track" src="tracks/Deafheaven_-_The_Gnashing.mp3" controls></audio>
 <script type="module" src="duration.js"></script>
 <script type="module" src="filter.js"></script>
 <script type="module" src="choose_tracks.js"></script>
