@@ -1,12 +1,13 @@
 let $ = document.querySelector.bind(document);
 let playBtn = document.querySelector('.main-pause');
-let source = document.querySelector('source');
 let track = document.querySelector('#track');
 let mute = document.querySelector('.mute');
 let volumeTrack = document.querySelector('.volume-track');
 let srcSvg = playBtn.querySelector('img');
 let isPlaying = false;
 let playingTrack;
+//Default site volume
+track.volume = track.volume / 2;
 playBtn.addEventListener('click', () => {
     let attr = srcSvg.getAttribute('src');
     if (attr == 'icons/play.svg') {
@@ -29,7 +30,6 @@ document.addEventListener('keydown', (event) => {
     }
 })
 
-//restart
 
 //rewind
 
@@ -51,8 +51,6 @@ mute.addEventListener('click', () => {
     track.muted = track.muted === false;
 
 })
-//Default site volume
-track.volume = track.volume / 3;
 
 let goneSec = document.querySelector('.seconds');
 let goneMin = document.querySelector('.minutes');
@@ -65,7 +63,6 @@ let currFullSec = 0;
 
 class TrackControl {
 
-
     constructor() {
         this.time1 = 0;
     }
@@ -73,7 +70,6 @@ class TrackControl {
 
     updateTrack(elem) {
         elem.addEventListener('timeupdate', (event) => {
-            // isPlaying = true;
             let currTime = Math.floor(event.target.currentTime);
             let currFullSec = event.target.currentTime;
             let res = currTime % 10;
@@ -125,21 +121,24 @@ class TrackControl {
 
                 let clickTrack = e.target.closest('.current-track-main');
                 let trackLink = clickTrack.querySelector('.track-link').value;
+                let idCurrentTrack = clickTrack.dataset.track_id;
                 track.id = clickTrack.dataset.track_id;
-                // if(clickTrack){
-                //     // Show current track in tracklist
-                //     if(clickTrack.dataset.track_id == track.id){
-                //         clickTrack.querySelectorAll('.play_now').forEach(paint=>{
-                //             paint.style.color = '#5C67DE';
-                //         })
-                //         clickTrack.querySelector('.artist-main').style.color = 'white';
-                //
-                //     }
-                // }
-
+                    // Show current track in tracklist
+                document.querySelectorAll('.play_now').forEach(paint=>{
+                    paint.style.color = '';
+                })
+                document.querySelectorAll('.artist-main').forEach(artisColor=>{
+                    artisColor.style.color = '';
+                })
+                if(idCurrentTrack === track.id){
+                        clickTrack.querySelectorAll('.play_now').forEach(paint=>{
+                            paint.style.color = '#5C67DE';
+                        })
+                        clickTrack.querySelector('.artist-main').style.color = 'white';
+                    }
 
                 if (isPlaying) {
-                    if (playingTrack != clickTrack.dataset.track_id) {
+                    if (playingTrack !== idCurrentTrack) {
                         isPlaying = true;
                         track.src = trackLink;
                         track.play();
@@ -148,15 +147,15 @@ class TrackControl {
                         isPlaying = false;
                         track.pause();
                         srcSvg.setAttribute('src', 'icons/play.svg');
-
                     }
                 }else{
                     isPlaying = true;
-                    if(playingTrack != clickTrack.dataset.track_id){
-                        track.src =trackLink;
+                    if(playingTrack !== idCurrentTrack){
+                        track.src = trackLink;
                     }
                     track.play();
                     trackData();
+
                 }
                 playingTrack = clickTrack.dataset.track_id;
                 function trackData(){
@@ -165,20 +164,21 @@ class TrackControl {
                     $('.artist-player').innerText = clickTrack.querySelector('.artist-main').innerText;
                     $('.player-cover').src = clickTrack.querySelector('.track-cover').src;
                 }
+                    localStorage.setItem('lastArtist', clickTrack.querySelector('.artist-main').innerText);
+                    localStorage.setItem('lastTrack', clickTrack.querySelector('.track-name-main').innerText);
+                    localStorage.setItem('lastCover', clickTrack.querySelector('.track-cover').src);
+                    localStorage.setItem('lastFullTime', clickTrack.querySelector('.duration-main').innerText);
+                    localStorage.setItem('lastVolumeLevel', track.volume);
+                    localStorage.setItem('lastLink', track.src);
             })
         })
-
     }
-
-
     fillTimeLIne(elem) {
-
 // Change volume width
-        elem.addEventListener('volumechange', (event) => {
+        elem.addEventListener('volumechange', () => {
             volumeTrack.style.width = (elem.volume * 100) + '%';
         })
 //Choose duration on line
-
         let durationLength = document.querySelector('.duration-track');
         let volumeLevel = document.querySelector('.volume-wrapper');
         durationLength.onclick = (event) => {
@@ -195,19 +195,17 @@ class TrackControl {
             elem.volume = percentOfLineVolume / 100;
         }
     }
-
     restartTrack(elem) {
         document.querySelector('.restart').addEventListener('click', () => {
             elem.currentTime = 0;
         })
     }
-
     timeCurTrack(elem) {
         elem.addEventListener('loadedmetadata', () => {
             fullDurationTrack(elem)
-            classOfTrack.fillTimeLIne(elem)
+            classOfTrack.fillTimeLIne(elem);
             elem.currentTime = localStorage.getItem('lastPositionOfTrack');
-            goneSec.innerHTML = localStorage.getItem('lastPositionOfTrack');
+
         })
     }
 }
@@ -222,7 +220,21 @@ classOfTrack.updateTrack(track);
 classOfTrack.endTrack();
 classOfTrack.timeCurTrack(track);
 classOfTrack.chooseTrack();
+classOfTrack.restartTrack(track);
+
+function first (){
+    $('.audioTag').src = localStorage.getItem('lastLink');
+    $('.player-cover').src = localStorage.getItem('lastCover')
+
+    goneSec.innerHTML = localStorage.getItem('lastPositionOfTrack');
+    $('.track-player').innerText = localStorage.getItem('lastTrack');
+    $('.artist-player').innerText = localStorage.getItem('lastArtist');
+    $('.left-time').innerText = localStorage.getItem('lastFullTime');
+    // $('.audioTag').volume = localStorage.getItem('lastVolumeLevel');
+    $('.audioTag').currentTime = localStorage.getItem('lastPositionOfTrack');
 
 
 
 
+}
+document.addEventListener('DOMContentLoaded', first);

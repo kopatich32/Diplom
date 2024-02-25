@@ -137,11 +137,11 @@ require_once ('get_tracks.php');
             </div>
         </div>
         <div class="track-control">
-            <div><img src="icons/shuffle.svg" alt="shuffle" title="перемешать"></div>
-            <div><img src="icons/step-forward2.svg" alt="previous" title="предыдущий трек"></div>
-            <div class="main-pause"><img src="icons/play.svg" alt="pause" title="воспроизведение/пауза"></div>
-            <div><img src="icons/step-forward1.svg" alt="next track" title="следующий трек"></div>
-            <div class="restart"><img src="icons/repeat.svg" alt="repeat" title="начать с начала"></div>
+            <div><img src="icons/shuffle.svg" alt="" title="перемешать"></div>
+            <div><img src="icons/step-forward2.svg" alt="" title="предыдущий трек"></div>
+            <div class="main-pause"><img src="icons/play.svg" alt="" title="воспроизведение/пауза"></div>
+            <div class="next-track"><img src="icons/step-forward1.svg" alt="" title="следующий трек"></div>
+            <div class="restart"><img src="icons/repeat.svg" alt="" title="начать с начала"></div>
         </div>
         <div class="duration">
             <p class="gone-time"><span class="minutes">00</span>:<span class="seconds">00</span></p>
