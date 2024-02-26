@@ -64,7 +64,7 @@ let currFullSec = 0;
 class TrackControl {
 
     constructor() {
-        this.time1 = 0;
+        this.storageVolume = 0;
     }
 
 
@@ -91,23 +91,17 @@ class TrackControl {
             } else if (Math.floor(currFullSec / 60) >= 10) {
                 goneMin.innerHTML = (Math.round(currTime / 60)).toString();
             }
-            localStorage.setItem('lastPositionOfTrack', currTime)
-
-            TrackControl.time1 = currTime;
-            //////////////////////////////////////////////////////////////////
+            localStorage.setItem('lastPositionOfTrack', currTime);
             // Width duration
             let onePercent = Math.trunc(elem.duration) / 100;
             goneTrack.style.width = currTime / onePercent + '%';
             //Width volume
             volumeTrack.style.width = (elem.volume * 100) + '%';
             fullDurationTrack(elem)
-
-
         })
     }
 
     endTrack() {
-//End of track
         track.addEventListener('ended', (event) => {
             track.currentTime = 0;
             srcSvg.setAttribute('src', 'icons/play.svg');
@@ -117,6 +111,7 @@ class TrackControl {
     chooseTrack() {
         let tracks = document.querySelectorAll('.current-track-main');
         tracks.forEach(audio => {
+
             audio.addEventListener('click', (e) => {
 
                 let clickTrack = e.target.closest('.current-track-main');
@@ -168,7 +163,6 @@ class TrackControl {
                     localStorage.setItem('lastTrack', clickTrack.querySelector('.track-name-main').innerText);
                     localStorage.setItem('lastCover', clickTrack.querySelector('.track-cover').src);
                     localStorage.setItem('lastFullTime', clickTrack.querySelector('.duration-main').innerText);
-                    localStorage.setItem('lastVolumeLevel', track.volume);
                     localStorage.setItem('lastLink', track.src);
             })
         })
@@ -177,6 +171,7 @@ class TrackControl {
 // Change volume width
         elem.addEventListener('volumechange', () => {
             volumeTrack.style.width = (elem.volume * 100) + '%';
+            // TrackControl.storageVolume = currTime;
         })
 //Choose duration on line
         let durationLength = document.querySelector('.duration-track');
@@ -193,6 +188,9 @@ class TrackControl {
             let onePercPxVolume = volumeLevel.offsetWidth / 100;
             let percentOfLineVolume = Math.trunc(event.offsetX / onePercPxVolume);
             elem.volume = percentOfLineVolume / 100;
+            localStorage.setItem('lastVolumeLevel', elem.volume);
+
+
         }
     }
     restartTrack(elem) {
@@ -230,10 +228,8 @@ function first (){
     $('.track-player').innerText = localStorage.getItem('lastTrack');
     $('.artist-player').innerText = localStorage.getItem('lastArtist');
     $('.left-time').innerText = localStorage.getItem('lastFullTime');
-    // $('.audioTag').volume = localStorage.getItem('lastVolumeLevel');
+    $('.audioTag').volume = localStorage.getItem('lastVolumeLevel');
     $('.audioTag').currentTime = localStorage.getItem('lastPositionOfTrack');
-
-
 
 
 }

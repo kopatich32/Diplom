@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="15646b44-9323-4f68-a446-cd834617ab93" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/duration.js" beforeDir="false" afterPath="$PROJECT_DIR$/duration.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/player.sql" beforeDir="false" afterPath="$PROJECT_DIR$/tracks.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,6 +72,7 @@
       <recent name="C:\OSPanel\domains\Diplom" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\OSPanel\domains\Diplom" />
       <recent name="C:\OSPanel\domains\Diplom\covers" />
       <recent name="C:\OSPanel\domains\Diplom\tracks" />
     </key>

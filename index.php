@@ -177,7 +177,7 @@ require_once ('get_tracks.php');
         </div>
     </footer>
 </div>
-<audio style="display:none;" class="audioTag" id="track" src="tracks/Deafheaven_-_The_Gnashing.mp3" controls></audio>
+<audio style="display:block;" class="audioTag" id="track" src="tracks/Deafheaven_-_The_Gnashing.mp3" controls></audio>
 <script type="module" src="duration.js"></script>
 <script type="module" src="filter.js"></script>
 <script type="module" src="choose_tracks.js"></script>
