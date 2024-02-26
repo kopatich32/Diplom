@@ -48,8 +48,11 @@ document.addEventListener('keydown', (event) => {
     }
 })
 mute.addEventListener('click', () => {
+    let muteIcon = document.querySelectorAll('.mute-line');
     track.muted = track.muted === false;
-
+    muteIcon.forEach(lines=>{
+        lines.classList.toggle('mute')
+    })
 })
 
 let goneSec = document.querySelector('.seconds');
@@ -118,7 +121,7 @@ class TrackControl {
                 let trackLink = clickTrack.querySelector('.track-link').value;
                 let idCurrentTrack = clickTrack.dataset.track_id;
                 track.id = clickTrack.dataset.track_id;
-                    // Show current track in tracklist
+                // Show current track in tracklist
                 document.querySelectorAll('.play_now').forEach(paint=>{
                     paint.style.color = '';
                 })
@@ -126,18 +129,18 @@ class TrackControl {
                     artisColor.style.color = '';
                 })
                 if(idCurrentTrack === track.id){
-                        clickTrack.querySelectorAll('.play_now').forEach(paint=>{
-                            paint.style.color = '#5C67DE';
-                        })
-                        clickTrack.querySelector('.artist-main').style.color = 'white';
-                    }
+                    clickTrack.querySelectorAll('.play_now').forEach(paint=>{
+                        paint.style.color = '#5C67DE';
+                    })
+                    clickTrack.querySelector('.artist-main').style.color = 'white';
+                }
 
                 if (isPlaying) {
                     if (playingTrack !== idCurrentTrack) {
                         isPlaying = true;
                         track.src = trackLink;
                         track.play();
-                       trackData();
+                        trackData();
                     }else {
                         isPlaying = false;
                         track.pause();
@@ -159,11 +162,11 @@ class TrackControl {
                     $('.artist-player').innerText = clickTrack.querySelector('.artist-main').innerText;
                     $('.player-cover').src = clickTrack.querySelector('.track-cover').src;
                 }
-                    localStorage.setItem('lastArtist', clickTrack.querySelector('.artist-main').innerText);
-                    localStorage.setItem('lastTrack', clickTrack.querySelector('.track-name-main').innerText);
-                    localStorage.setItem('lastCover', clickTrack.querySelector('.track-cover').src);
-                    localStorage.setItem('lastFullTime', clickTrack.querySelector('.duration-main').innerText);
-                    localStorage.setItem('lastLink', track.src);
+                localStorage.setItem('lastArtist', clickTrack.querySelector('.artist-main').innerText);
+                localStorage.setItem('lastTrack', clickTrack.querySelector('.track-name-main').innerText);
+                localStorage.setItem('lastCover', clickTrack.querySelector('.track-cover').src);
+                localStorage.setItem('lastFullTime', clickTrack.querySelector('.duration-main').innerText);
+                localStorage.setItem('lastLink', track.src);
             })
         })
     }
