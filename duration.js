@@ -1,6 +1,6 @@
 let $ = document.querySelector.bind(document);
 let playBtn = document.querySelector('.main-pause');
-let track = document.querySelector('#track');
+let track = document.querySelector('audio');
 let mute = document.querySelector('.mute');
 let volumeTrack = document.querySelector('.volume-track');
 let srcSvg = playBtn.querySelector('img');
@@ -50,7 +50,7 @@ document.addEventListener('keydown', (event) => {
 mute.addEventListener('click', () => {
     let muteIcon = document.querySelectorAll('.mute-line');
     track.muted = track.muted === false;
-    muteIcon.forEach(lines=>{
+    muteIcon.forEach(lines => {
         lines.classList.toggle('mute')
     })
 })
@@ -116,20 +116,26 @@ class TrackControl {
         tracks.forEach(audio => {
 
             audio.addEventListener('click', (e) => {
+                for (let i = 0; i < tracks.length; i++) {
+                    // if(audio.className.includes('playing')) continue
+                    tracks[i].classList.remove('playing');
+                    tracks[i].classList.remove('paused');
+                }
 
                 let clickTrack = e.target.closest('.current-track-main');
                 let trackLink = clickTrack.querySelector('.track-link').value;
                 let idCurrentTrack = clickTrack.dataset.track_id;
+                clickTrack.classList.add('playing');
                 track.id = clickTrack.dataset.track_id;
                 // Show current track in tracklist
-                document.querySelectorAll('.play_now').forEach(paint=>{
+                document.querySelectorAll('.play_now').forEach(paint => {
                     paint.style.color = '';
                 })
-                document.querySelectorAll('.artist-main').forEach(artisColor=>{
+                document.querySelectorAll('.artist-main').forEach(artisColor => {
                     artisColor.style.color = '';
                 })
-                if(idCurrentTrack === track.id){
-                    clickTrack.querySelectorAll('.play_now').forEach(paint=>{
+                if (idCurrentTrack === track.id) {
+                    clickTrack.querySelectorAll('.play_now').forEach(paint => {
                         paint.style.color = '#5C67DE';
                     })
                     clickTrack.querySelector('.artist-main').style.color = 'white';
@@ -141,35 +147,42 @@ class TrackControl {
                         track.src = trackLink;
                         track.play();
                         trackData();
-                    }else {
+                    } else {
                         isPlaying = false;
                         track.pause();
                         srcSvg.setAttribute('src', 'icons/play.svg');
+                        clickTrack.classList.remove('playing');
+                        clickTrack.classList.add('paused');
+
                     }
-                }else{
+
+                } else {
                     isPlaying = true;
-                    if(playingTrack !== idCurrentTrack){
+                    if (playingTrack !== idCurrentTrack) {
                         track.src = trackLink;
                     }
                     track.play();
                     trackData();
-
                 }
                 playingTrack = clickTrack.dataset.track_id;
-                function trackData(){
+
+                function trackData() {
                     srcSvg.setAttribute('src', 'icons/main-pause.svg');
                     $('.track-player').innerText = clickTrack.querySelector('.track-name-main').innerText;
                     $('.artist-player').innerText = clickTrack.querySelector('.artist-main').innerText;
                     $('.player-cover').src = clickTrack.querySelector('.track-cover').src;
                 }
+
                 localStorage.setItem('lastArtist', clickTrack.querySelector('.artist-main').innerText);
                 localStorage.setItem('lastTrack', clickTrack.querySelector('.track-name-main').innerText);
                 localStorage.setItem('lastCover', clickTrack.querySelector('.track-cover').src);
                 localStorage.setItem('lastFullTime', clickTrack.querySelector('.duration-main').innerText);
                 localStorage.setItem('lastLink', track.src);
+                localStorage.setItem('lastIDtrack', clickTrack.dataset.track_id);
             })
         })
     }
+
     fillTimeLIne(elem) {
 // Change volume width
         elem.addEventListener('volumechange', () => {
@@ -196,11 +209,13 @@ class TrackControl {
 
         }
     }
+
     restartTrack(elem) {
         document.querySelector('.restart').addEventListener('click', () => {
             elem.currentTime = 0;
         })
     }
+
     timeCurTrack(elem) {
         elem.addEventListener('loadedmetadata', () => {
             fullDurationTrack(elem)
@@ -223,7 +238,7 @@ classOfTrack.timeCurTrack(track);
 classOfTrack.chooseTrack();
 classOfTrack.restartTrack(track);
 
-function first (){
+function first() {
     $('.audioTag').src = localStorage.getItem('lastLink');
     $('.player-cover').src = localStorage.getItem('lastCover')
 
@@ -233,7 +248,20 @@ function first (){
     $('.left-time').innerText = localStorage.getItem('lastFullTime');
     $('.audioTag').volume = localStorage.getItem('lastVolumeLevel');
     $('.audioTag').currentTime = localStorage.getItem('lastPositionOfTrack');
+    track.id = localStorage.getItem('lastIDtrack');
 
+
+    let painLastTrack = document.querySelectorAll('.current-track-main');
+    painLastTrack.forEach(song => {
+
+        if (song.dataset.track_id == track.id) {
+            song.querySelectorAll('.play_now').forEach(paintedBlue => {
+                paintedBlue.style.color = '#5C67DE';
+                song.querySelector('.artist-main').style.color = 'white';
+            })
+        }
+    })
 
 }
+
 document.addEventListener('DOMContentLoaded', first);
