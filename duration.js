@@ -116,69 +116,94 @@ class TrackControl {
         tracks.forEach(audio => {
 
             audio.addEventListener('click', (e) => {
-                for (let i = 0; i < tracks.length; i++) {
-                    // if(audio.className.includes('playing')) continue
-                    tracks[i].classList.remove('playing');
-                    tracks[i].classList.remove('paused');
-                }
+                if(audio.className.includes('PastPaused')){
+                    track.currentTime = localStorage.getItem('lastPositionOfTrack');
+                    audio.classList.remove('PastPaused');
+                    audio.classList.add('playing');
+                    isPlaying = true;
+                    playingTrack = audio.dataset.track_id;
+                    srcSvg.setAttribute('src', 'icons/main-pause.svg');
+                    console.log('Fist value after load page - ' + isPlaying)
+                    track.play();
+                    console.log('play after load')
 
-                let clickTrack = e.target.closest('.current-track-main');
-                let trackLink = clickTrack.querySelector('.track-link').value;
-                let idCurrentTrack = clickTrack.dataset.track_id;
-                clickTrack.classList.add('playing');
-                track.id = clickTrack.dataset.track_id;
-                // Show current track in tracklist
-                document.querySelectorAll('.play_now').forEach(paint => {
-                    paint.style.color = '';
-                })
-                document.querySelectorAll('.artist-main').forEach(artisColor => {
-                    artisColor.style.color = '';
-                })
-                if (idCurrentTrack === track.id) {
-                    clickTrack.querySelectorAll('.play_now').forEach(paint => {
-                        paint.style.color = '#5C67DE';
+                }else{
+                    for (let i = 0; i < tracks.length; i++) {
+                        tracks[i].classList.remove('playing');
+                        tracks[i].classList.remove('paused');
+                        tracks[i].classList.remove('PastPaused');
+                    }
+
+                    let clickTrack = e.target.closest('.current-track-main');
+                    let trackLink = clickTrack.querySelector('.track-link').value;
+                    let idCurrentTrack = clickTrack.dataset.track_id;
+                    clickTrack.classList.add('playing');
+                    track.id = clickTrack.dataset.track_id;
+                    // Show current track in tracklist
+                    document.querySelectorAll('.play_now').forEach(paint => {
+                        paint.style.color = '';
                     })
-                    clickTrack.querySelector('.artist-main').style.color = 'white';
-                }
+                    document.querySelectorAll('.artist-main').forEach(artisColor => {
+                        artisColor.style.color = '';
+                    })
+                    if (idCurrentTrack === track.id) {
+                        clickTrack.querySelectorAll('.play_now').forEach(paint => {
+                            paint.style.color = '#5C67DE';
+                        })
+                        clickTrack.querySelector('.artist-main').style.color = 'white';
+                    }
 
-                if (isPlaying) {
-                    if (playingTrack !== idCurrentTrack) {
+
+
+                    if (isPlaying) {
+                        if (playingTrack !== idCurrentTrack) {
+                            isPlaying = true;
+                            track.src = trackLink;
+                            track.play();
+                            console.log('play1')
+                            trackData();
+                        } else {
+                            isPlaying = false;
+                            track.pause();
+                            srcSvg.setAttribute('src', 'icons/play.svg');
+                            clickTrack.classList.remove('playing');
+                            clickTrack.classList.add('paused');
+                            console.log('pause')
+
+                        }
+
+                    } else {
                         isPlaying = true;
-                        track.src = trackLink;
+                        if (playingTrack !== idCurrentTrack) {
+                            track.src = trackLink;
+                        }
                         track.play();
                         trackData();
-                    } else {
-                        isPlaying = false;
-                        track.pause();
-                        srcSvg.setAttribute('src', 'icons/play.svg');
-                        clickTrack.classList.remove('playing');
-                        clickTrack.classList.add('paused');
+                        console.log('play2')
+                    }
+                    playingTrack = clickTrack.dataset.track_id;
 
+
+                    console.log('on click - ' + isPlaying)
+
+
+                    function trackData() {
+                        srcSvg.setAttribute('src', 'icons/main-pause.svg');
+                        $('.track-player').innerText = clickTrack.querySelector('.track-name-main').innerText;
+                        $('.artist-player').innerText = clickTrack.querySelector('.artist-main').innerText;
+                        $('.player-cover').src = clickTrack.querySelector('.track-cover').src;
                     }
 
-                } else {
-                    isPlaying = true;
-                    if (playingTrack !== idCurrentTrack) {
-                        track.src = trackLink;
-                    }
-                    track.play();
-                    trackData();
-                }
-                playingTrack = clickTrack.dataset.track_id;
+                    localStorage.setItem('lastArtist', clickTrack.querySelector('.artist-main').innerText);
+                    localStorage.setItem('lastTrack', clickTrack.querySelector('.track-name-main').innerText);
+                    localStorage.setItem('lastCover', clickTrack.querySelector('.track-cover').src);
+                    localStorage.setItem('lastFullTime', clickTrack.querySelector('.duration-main').innerText);
+                    localStorage.setItem('lastLink', track.src);
+                    localStorage.setItem('lastIDtrack', clickTrack.dataset.track_id);
 
-                function trackData() {
-                    srcSvg.setAttribute('src', 'icons/main-pause.svg');
-                    $('.track-player').innerText = clickTrack.querySelector('.track-name-main').innerText;
-                    $('.artist-player').innerText = clickTrack.querySelector('.artist-main').innerText;
-                    $('.player-cover').src = clickTrack.querySelector('.track-cover').src;
                 }
 
-                localStorage.setItem('lastArtist', clickTrack.querySelector('.artist-main').innerText);
-                localStorage.setItem('lastTrack', clickTrack.querySelector('.track-name-main').innerText);
-                localStorage.setItem('lastCover', clickTrack.querySelector('.track-cover').src);
-                localStorage.setItem('lastFullTime', clickTrack.querySelector('.duration-main').innerText);
-                localStorage.setItem('lastLink', track.src);
-                localStorage.setItem('lastIDtrack', clickTrack.dataset.track_id);
+
             })
         })
     }
@@ -239,6 +264,7 @@ classOfTrack.chooseTrack();
 classOfTrack.restartTrack(track);
 
 function first() {
+    console.log('On DOM load - ' + isPlaying)
     $('.audioTag').src = localStorage.getItem('lastLink');
     $('.player-cover').src = localStorage.getItem('lastCover')
 
@@ -251,10 +277,12 @@ function first() {
     track.id = localStorage.getItem('lastIDtrack');
 
 
+
     let painLastTrack = document.querySelectorAll('.current-track-main');
     painLastTrack.forEach(song => {
 
         if (song.dataset.track_id == track.id) {
+            song.classList.add('PastPaused');
             song.querySelectorAll('.play_now').forEach(paintedBlue => {
                 paintedBlue.style.color = '#5C67DE';
                 song.querySelector('.artist-main').style.color = 'white';

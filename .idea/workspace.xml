@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="15646b44-9323-4f68-a446-cd834617ab93" name="Changes" comment="..">
+    <list default="true" id="15646b44-9323-4f68-a446-cd834617ab93" name="Changes" comment="попытка заводить песни с прошлога раза, кликая по списку">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/duration.js" beforeDir="false" afterPath="$PROJECT_DIR$/duration.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +25,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="minSwitch" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -56,7 +55,7 @@
     &quot;WebServerToolWindowPanel.toolwindow.show.date&quot;: &quot;false&quot;,
     &quot;WebServerToolWindowPanel.toolwindow.show.permissions&quot;: &quot;false&quot;,
     &quot;WebServerToolWindowPanel.toolwindow.show.size&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/OSPanel/domains/PHP-practicle-/HomeBase&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/OSPanel/domains/React&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -102,6 +101,7 @@
       <workItem from="1708850481902" duration="1574000" />
       <workItem from="1708876695114" duration="12194000" />
       <workItem from="1709050803242" duration="6005000" />
+      <workItem from="1709220949613" duration="2306000" />
     </task>
     <task id="LOCAL-00001" summary="Сделал прогресс вновь включаемых треков">
       <option name="closed" value="true" />
@@ -150,6 +150,7 @@
     <MESSAGE value="Сделал прогресс вновь включаемых треков" />
     <MESSAGE value="Корректное воспроизведение новых треков" />
     <MESSAGE value=".." />
-    <option name="LAST_COMMIT_MESSAGE" value=".." />
+    <MESSAGE value="попытка заводить песни с прошлога раза, кликая по списку" />
+    <option name="LAST_COMMIT_MESSAGE" value="попытка заводить песни с прошлога раза, кликая по списку" />
   </component>
 </project>
