@@ -6,6 +6,7 @@ let volumeTrack = document.querySelector('.volume-track');
 let srcSvg = playBtn.querySelector('img');
 let isPlaying = false;
 let playingTrack;
+let counterToBase;
 //Default site volume
 track.volume = track.volume / 2;
 playBtn.addEventListener('click', () => {
@@ -67,7 +68,9 @@ let currFullSec = 0;
 class TrackControl {
 
     constructor() {
-        this.storageVolume = 0;
+        this.listeningCounter = 0;
+        this.lastTimePosition = 0;
+
     }
 
 
@@ -75,6 +78,7 @@ class TrackControl {
         elem.addEventListener('timeupdate', (event) => {
             let currTime = Math.floor(event.target.currentTime);
             let currFullSec = event.target.currentTime;
+            this.lastTimePosition = currTime;
             let res = currTime % 10;
             //seconds
             if ((currTime < 10)) {
@@ -100,12 +104,18 @@ class TrackControl {
             goneTrack.style.width = currTime / onePercent + '%';
             //Width volume
             volumeTrack.style.width = (elem.volume * 100) + '%';
-            fullDurationTrack(elem)
+            fullDurationTrack(elem);
+            // COUNTER LISTENING
+            // console.log('прослушанное время - ' + (currTime - this.listeningCounter))
+            if(isPlaying && currTime - this.listeningCounter == 10){
+                console.log('listened')
+            }
+
         })
     }
 
     endTrack() {
-        track.addEventListener('ended', (event) => {
+        track.addEventListener('ended', () => {
             track.currentTime = 0;
             srcSvg.setAttribute('src', 'icons/play.svg');
         })
@@ -123,9 +133,7 @@ class TrackControl {
                     isPlaying = true;
                     playingTrack = audio.dataset.track_id;
                     srcSvg.setAttribute('src', 'icons/main-pause.svg');
-                    console.log('Fist value after load page - ' + isPlaying)
                     track.play();
-                    console.log('play after load')
 
                 }else{
                     for (let i = 0; i < tracks.length; i++) {
@@ -153,14 +161,11 @@ class TrackControl {
                         clickTrack.querySelector('.artist-main').style.color = 'white';
                     }
 
-
-
                     if (isPlaying) {
                         if (playingTrack !== idCurrentTrack) {
                             isPlaying = true;
                             track.src = trackLink;
                             track.play();
-                            console.log('play1')
                             trackData();
                         } else {
                             isPlaying = false;
@@ -168,8 +173,6 @@ class TrackControl {
                             srcSvg.setAttribute('src', 'icons/play.svg');
                             clickTrack.classList.remove('playing');
                             clickTrack.classList.add('paused');
-                            console.log('pause')
-
                         }
 
                     } else {
@@ -179,12 +182,8 @@ class TrackControl {
                         }
                         track.play();
                         trackData();
-                        console.log('play2')
                     }
                     playingTrack = clickTrack.dataset.track_id;
-
-
-                    console.log('on click - ' + isPlaying)
 
 
                     function trackData() {
@@ -202,7 +201,7 @@ class TrackControl {
                     localStorage.setItem('lastIDtrack', clickTrack.dataset.track_id);
 
                 }
-
+                this.listeningCounter = track.currentTime;
 
             })
         })
@@ -264,7 +263,6 @@ classOfTrack.chooseTrack();
 classOfTrack.restartTrack(track);
 
 function first() {
-    console.log('On DOM load - ' + isPlaying)
     $('.audioTag').src = localStorage.getItem('lastLink');
     $('.player-cover').src = localStorage.getItem('lastCover')
 
@@ -276,9 +274,8 @@ function first() {
     $('.audioTag').currentTime = localStorage.getItem('lastPositionOfTrack');
     track.id = localStorage.getItem('lastIDtrack');
 
-
-
     let painLastTrack = document.querySelectorAll('.current-track-main');
+    document.querySelector('.tracks-amount').innerText = painLastTrack.length;
     painLastTrack.forEach(song => {
 
         if (song.dataset.track_id == track.id) {

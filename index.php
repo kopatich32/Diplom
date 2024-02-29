@@ -14,7 +14,6 @@ require_once ('get_tracks.php');
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="styles/style.css">
     <title>Мой плейлист</title>
-
 </head>
 <body>
 <div class="wrapper">
@@ -43,7 +42,7 @@ require_once ('get_tracks.php');
                     <div class="wrapper"><img src="icons/Rectangle2.png" alt="test"></div>
                     <div>
                         <p>How to Start Podcast</p>
-                        <p>31 tracks</p>
+                        <p><span class="tracks-amount">31</span> tracks</p>
                     </div>
                     <div><img src="icons/pause.svg" alt="pause"></div>
                 </li>
@@ -188,5 +187,7 @@ https://stackoverflow.com/questions/4126708/is-it-possible-to-style-html5-audio-
 https://packagist.org/packages/wapmorgan/mp3info
  */ ?>
 
+
+<h1>https://yandex.ru/dev/audio/jsapi/doc/dg/concepts/load.html</h1>
 </body>
 </html
