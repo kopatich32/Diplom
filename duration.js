@@ -117,16 +117,21 @@ class TrackControl {
 
             audio.addEventListener('click', (e) => {
                 if(audio.className.includes('PastPaused')){
-                    console.log('aga')
-                    console.log(track.currentTime);
-                    console.log(localStorage.getItem('lastPositionOfTrack'))
                     track.currentTime = localStorage.getItem('lastPositionOfTrack');
+                    audio.classList.remove('PastPaused');
+                    audio.classList.add('playing');
+                    isPlaying = true;
+                    playingTrack = audio.dataset.track_id;
+                    srcSvg.setAttribute('src', 'icons/main-pause.svg');
+                    console.log('Fist value after load page - ' + isPlaying)
                     track.play();
-                    audio.classList.remove('PastPaused')
+                    console.log('play after load')
+
                 }else{
                     for (let i = 0; i < tracks.length; i++) {
                         tracks[i].classList.remove('playing');
                         tracks[i].classList.remove('paused');
+                        tracks[i].classList.remove('PastPaused');
                     }
 
                     let clickTrack = e.target.closest('.current-track-main');
@@ -155,6 +160,7 @@ class TrackControl {
                             isPlaying = true;
                             track.src = trackLink;
                             track.play();
+                            console.log('play1')
                             trackData();
                         } else {
                             isPlaying = false;
@@ -162,6 +168,7 @@ class TrackControl {
                             srcSvg.setAttribute('src', 'icons/play.svg');
                             clickTrack.classList.remove('playing');
                             clickTrack.classList.add('paused');
+                            console.log('pause')
 
                         }
 
@@ -172,11 +179,12 @@ class TrackControl {
                         }
                         track.play();
                         trackData();
+                        console.log('play2')
                     }
                     playingTrack = clickTrack.dataset.track_id;
 
 
-                    console.log(isPlaying)
+                    console.log('on click - ' + isPlaying)
 
 
                     function trackData() {
@@ -256,7 +264,7 @@ classOfTrack.chooseTrack();
 classOfTrack.restartTrack(track);
 
 function first() {
-    console.log(isPlaying)
+    console.log('On DOM load - ' + isPlaying)
     $('.audioTag').src = localStorage.getItem('lastLink');
     $('.player-cover').src = localStorage.getItem('lastCover')
 
