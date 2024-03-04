@@ -12,9 +12,17 @@ track.volume = track.volume / 2;
 playBtn.addEventListener('click', () => {
     let attr = srcSvg.getAttribute('src');
     if (attr == 'icons/play.svg') {
+        isPlaying = true;
+        // let clear = document.querySelectorAll('.current-track-main');
+        // clear.forEach(classes => {
+        //     classes.classList.remove('PastPaused');
+        // })
+        console.log('main play')
         srcSvg.setAttribute('src', 'icons/main-pause.svg');
         track.play();
     } else {
+        console.log('main pause')
+        isPlaying = false;
         track.pause()
         srcSvg.setAttribute('src', 'icons/play.svg');
     }
@@ -106,7 +114,6 @@ class TrackControl {
             volumeTrack.style.width = (elem.volume * 100) + '%';
             fullDurationTrack(elem);
             // COUNTER LISTENING
-            // console.log('прослушанное время - ' + (currTime - this.listeningCounter))
             if(isPlaying && currTime - this.listeningCounter == 10){
                 console.log('listened')
             }
@@ -133,6 +140,7 @@ class TrackControl {
                     isPlaying = true;
                     playingTrack = audio.dataset.track_id;
                     srcSvg.setAttribute('src', 'icons/main-pause.svg');
+                    console.log('Past paused play')
                     track.play();
 
                 }else{
@@ -163,6 +171,7 @@ class TrackControl {
 
                     if (isPlaying) {
                         if (playingTrack !== idCurrentTrack) {
+                            console.log('new playing')
                             isPlaying = true;
                             track.src = trackLink;
                             track.play();
@@ -170,6 +179,7 @@ class TrackControl {
                         } else {
                             isPlaying = false;
                             track.pause();
+                            console.log('pause on click same track')
                             srcSvg.setAttribute('src', 'icons/play.svg');
                             clickTrack.classList.remove('playing');
                             clickTrack.classList.add('paused');
@@ -180,6 +190,7 @@ class TrackControl {
                         if (playingTrack !== idCurrentTrack) {
                             track.src = trackLink;
                         }
+                        console.log('play after pause')
                         track.play();
                         trackData();
                     }

@@ -102,12 +102,14 @@ require_once ('get_tracks.php');
 <!--                Tracks-->
                     <?php
                     global $query;
-                    while ($track_data = $query->fetch_assoc()): ?>
+                    while ($track_data = $query->fetch_assoc()):
+	                    $trackCover = $track_data['cover'] != "" ?  $track_data['cover'] : '/icons/no_cover.svg';
+	                    ?>
                 <div class="current-track-main" data-track_id="<?=$track_data['id']?>">
                     <div class="track-number play_now"><?=$track_data['id']?></div>
                     <div class="track-main">
                         <div class="main-cover">
-                            <img class="track-cover" src="<?=$track_data['cover']?>" alt="cover">
+                            <img class="track-cover" src="<?=$trackCover?>" alt="cover">
                         </div>
                         <div class="current-track-cover">
                             <div class="track-name-main play_now"><?=$track_data['track_name']?></div>
@@ -188,6 +190,6 @@ https://packagist.org/packages/wapmorgan/mp3info
  */ ?>
 
 
-<h1>https://yandex.ru/dev/audio/jsapi/doc/dg/concepts/load.html</h1>
+<!--<h1>https://yandex.ru/dev/audio/jsapi/doc/dg/concepts/load.html</h1>-->
 </body>
 </html
