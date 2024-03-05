@@ -5,18 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="15646b44-9323-4f68-a446-cd834617ab93" name="Changes" comment="Теперь продолжается воспроизведение с последней позиции по клику из списка.">
-      <change afterPath="$PROJECT_DIR$/covers/code_orange_-_forever.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/covers/interpol-_- Marauder.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/covers/metric_-_ Formentera.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/icons/no_cover.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/observer.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tracks/Deafheaven_-_Shellstar.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tracks/Interpol_-_Flight_of_Fancy.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tracks/Metric_-_What_Feels_Like_Eternity.mp3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/duration.js" beforeDir="false" afterPath="$PROJECT_DIR$/duration.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tracks.sql" beforeDir="false" afterPath="$PROJECT_DIR$/tracks.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +59,7 @@
     "WebServerToolWindowPanel.toolwindow.show.date": "false",
     "WebServerToolWindowPanel.toolwindow.show.permissions": "false",
     "WebServerToolWindowPanel.toolwindow.show.size": "false",
-    "last_opened_file_path": "C:/OSPanel/domains/Diplom",
+    "last_opened_file_path": "C:/OSPanel/domains/Diagram",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -117,6 +108,8 @@
       <workItem from="1709050803242" duration="6005000" />
       <workItem from="1709220949613" duration="2306000" />
       <workItem from="1709580772198" duration="5384000" />
+      <workItem from="1709653199242" duration="6191000" />
+      <workItem from="1709659483182" duration="1119000" />
     </task>
     <task id="LOCAL-00001" summary="Сделал прогресс вновь включаемых треков">
       <option name="closed" value="true" />

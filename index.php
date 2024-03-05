@@ -3,6 +3,8 @@ session_start();
 //require_once ('tracks_data.php')
 require_once ('get_tracks.php');
 //require ('change_track.php');
+
+$ley = "123";
 ?>
 
 <!doctype html>
@@ -102,10 +104,16 @@ require_once ('get_tracks.php');
 <!--                Tracks-->
                     <?php
                     global $query;
+                    global $connect;
+                    $cursor = 0;
                     while ($track_data = $query->fetch_assoc()):
 	                    $trackCover = $track_data['cover'] != "" ?  $track_data['cover'] : '/icons/no_cover.svg';
+                            if($cursor == 0) {
+                                $ley = $track_data;
+                                $cursor ++;
+                            }
 	                    ?>
-                <div class="current-track-main" data-track_id="<?=$track_data['id']?>">
+                    <div class="current-track-main" data-track_id="<?=$track_data['id']?>">
                     <div class="track-number play_now"><?=$track_data['id']?></div>
                     <div class="track-main">
                         <div class="main-cover">
@@ -128,13 +136,20 @@ require_once ('get_tracks.php');
         </div>
     </div>
     <footer>
+        <?php
+
+        foreach ($ley as $data){
+        echo print_r($data, true) .'<br>';
+        }
+
+        ?>
         <div class="track">
             <div class="current-cover">
                 <img class="player-cover" src="covers/Infinite_Granite_2021.png" alt="Deafheaven">
             </div>
             <div class="current-track">
-                <p class="track-player">The Gnashing</p>
-                <p class="artist-player">Deafheaven</p>
+                <p class="track-player"><?= $ley['track-name']?></p>
+                <p class="artist-player"><?= $ley['artist']?></p>
             </div>
         </div>
         <div class="track-control">
