@@ -137,10 +137,9 @@ $ley = "123";
     </div>
     <footer>
         <?php
+	      
+//        echo print_r($data, true) .'<br>';
 
-        foreach ($ley as $data){
-        echo print_r($data, true) .'<br>';
-        }
 
         ?>
         <div class="track">
