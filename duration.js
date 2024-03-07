@@ -6,7 +6,7 @@ let volumeTrack = document.querySelector('.volume-track');
 let srcSvg = playBtn.querySelector('img');
 let isPlaying = false;
 let playingTrack;
-let counterToBase;
+let counterToBase = 0;
 //Default site volume
 track.volume = track.volume / 2;
 
@@ -77,10 +77,11 @@ class TrackControl {
                     classes.classList.remove('PastPaused');
                 })
                 srcSvg.setAttribute('src', 'icons/main-pause.svg');
+                playingTrack = track.id
                 track.play();
             } else {
                 isPlaying = false;
-                track.pause()
+                track.pause();
                 srcSvg.setAttribute('src', 'icons/play.svg');
             }
         })
@@ -117,10 +118,23 @@ class TrackControl {
             //Width volume
             volumeTrack.style.width = (elem.volume * 100) + '%';
             fullDurationTrack(elem);
-            // COUNTER LISTENING
-            if (isPlaying && currTime - this.listeningCounter == 10) {
-            }
+            counterToBase = this.lastTimePosition;
+            // if (currTime - this.listeningCounter == 2) {
+            //     let tracks = document.querySelectorAll('.current-track-main');
+            //     tracks.forEach(count => {
+            //
+            //         if (event.target.id == count.dataset.track_id) {
+            //             count.querySelector('.listening-main').innerHTML += (count.querySelector('.listening-main').innerHTML)++ ;
+            //         }
+            //     })
 
+                // fetch('listened.php', {
+                //     method: 'POST',
+                //     body: listened,
+                // })
+                //     .then(resp => resp.json())
+                //     .then(data => console.log(data))
+            //}
         })
     }
 
@@ -256,6 +270,7 @@ class TrackControl {
 
         })
     }
+
 }
 
 function fullDurationTrack(elem) {
@@ -281,7 +296,7 @@ function first() {
     $('.audioTag').volume = localStorage.getItem('lastVolumeLevel');
     $('.audioTag').currentTime = localStorage.getItem('lastPositionOfTrack');
     track.id = localStorage.getItem('lastIDtrack');
-    TrackControl.idFromMainButton = localStorage.getItem('lastIDtrack');
+
 
     let painLastTrack = document.querySelectorAll('.current-track-main');
     document.querySelector('.tracks-amount').innerText = painLastTrack.length;
