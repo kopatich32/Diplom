@@ -11,7 +11,6 @@ let counterToBase = 0;
 //Default site volume
 track.volume = track.volume / 2;
 
-
 // Play/pause on keyboard buttons
 document.addEventListener('keydown', (event) => {
     if ((event.code === 'Space' || event.key === 'MediaPlayPause') && srcSvg.getAttribute('src') === 'icons/play.svg') {
@@ -22,22 +21,17 @@ document.addEventListener('keydown', (event) => {
         srcSvg.setAttribute('src', 'icons/play.svg');
     }
 })
-
-
 //rewind
-
 document.addEventListener('keydown', (event) => {
     if (event.code === 'ArrowRight') {
         track.currentTime += 5;
         track.play();
         srcSvg.setAttribute('src', 'icons/main-pause.svg');
-
     }
     if (event.code === 'ArrowLeft') {
         track.currentTime -= 5;
         track.play();
         srcSvg.setAttribute('src', 'icons/main-pause.svg');
-
     }
 })
 mute.addEventListener('click', () => {
@@ -53,7 +47,6 @@ let goneMin = document.querySelector('.minutes');
 let leftTime = document.querySelector('.left-time');
 let goneTrack = document.querySelector('.gone-track');
 goneSec.innerHTML = localStorage.getItem('lastPositionOfTrack')
-
 
 let currFullSec = 0;
 class TrackControl {
@@ -230,18 +223,14 @@ class TrackControl {
                         trackData(clickTrack);
                     }
                     playingTrack = clickTrack.dataset.track_id;
-
-
                     localStorage.setItem('lastArtist', clickTrack.querySelector('.artist-main').innerText);
                     localStorage.setItem('lastTrack', clickTrack.querySelector('.track-name-main').innerText);
                     localStorage.setItem('lastCover', clickTrack.querySelector('.track-cover').src);
                     localStorage.setItem('lastFullTime', clickTrack.querySelector('.duration-main').innerText);
                     localStorage.setItem('lastLink', track.src);
                     localStorage.setItem('lastIDtrack', clickTrack.dataset.track_id);
-
                 }
                 this.listeningCounter = track.currentTime;
-
             })
         })
     }
@@ -282,7 +271,6 @@ class TrackControl {
             fullDurationTrack(elem)
             classOfTrack.fillTimeLIne(elem);
             elem.currentTime = localStorage.getItem('lastPositionOfTrack');
-
         })
     }
 }
@@ -318,7 +306,6 @@ function first() {
     $('.audioTag').currentTime = localStorage.getItem('lastPositionOfTrack');
     track.id = localStorage.getItem('lastIDtrack');
 
-
     document.querySelector('.tracks-amount').innerText = trackList.length;
     trackList.forEach(song => {
 
@@ -326,30 +313,14 @@ function first() {
             song.classList.add('PastPaused');
             song.querySelectorAll('.play_now').forEach(paintedBlue => {
                 paintedBlue.style.color = '#5C67DE';
-
                 song.querySelector('.artist-main').style.color = 'white';
                 song.querySelector('.play_now_list').setAttribute('src','icons/pause_list.svg');
-
             })
         }
     })
 }
 
-//First browser launch
-
-// function incognitoMode() {
-//     if (!localStorage.getItem('lastLink')) {
-//         let song = document.querySelectorAll('.current-track-main')[0];
-//         console.log(song)
-//         $('footer').querySelector('.player-cover').src = song.querySelector('.track-cover').src;
-//         $('footer').querySelector('.track-player').innerText = song.querySelector('.track-name-main').innerText;
-//         $('footer').querySelector('.artist-player').innerText = song.querySelector('.artist-main').innerText;
-//     }
-// }
-
 document.addEventListener('DOMContentLoaded', first);
-// document.addEventListener('DOMContentLoaded', incognitoMode);
-
 
 // SWITCH TRACK NEXT/PREVIOUS
 let switchButtons = document.querySelectorAll('.switch-track');

@@ -141,7 +141,7 @@ aside {
       border-radius: 15px;
       margin: 0 20px 0 20px;
       padding: 8px;
-      width: 100%; }
+      width: 70%; }
       .cnt header label img {
         margin-right: 10px; }
       .cnt header label input {
@@ -396,4 +396,4 @@ footer {
 .mute {
   display: block !important; }
 
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=mobile.css.map */

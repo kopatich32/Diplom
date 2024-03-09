@@ -1,7 +1,7 @@
 <?php
 	session_start();
 	//require_once ('tracks_data.php')
-	require_once('get_tracks.php');
+//	require_once('get_tracks.php');
 	//require ('change_track.php');
 
 	$ley = "123";
@@ -14,7 +14,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/mobile.css">
     <link rel="icon" href="icons/play.svg" type="image/svg+xml">
     <title>Мой плейлист</title>
 </head>
@@ -22,7 +22,7 @@
 <div class="wrapper">
     <div class="player">
 
-        <aside class="aside-left">
+        <aside style="display: none"  class="aside-left">
             <nav class="links">
                 <ul>
                     <li><span><img src="icons/house-chimney.svg" alt="main-page"></span>Home</li>
@@ -75,9 +75,8 @@
             <header>
                 <label>
                     <img src="icons/search.svg" alt="search">
-                    <input type="text" placeholder="i want to listen...">
+                    <input type="text">
                 </label>
-                <div class="notification"><img src="icons/bell.svg" alt="notification"></div>
                 <div class="profile"><img src="icons/vse-ochen-ploho.jpg" alt="user-photo "></div>
             </header>
             <main>
@@ -103,39 +102,39 @@
                 </div>
                 <div class="track-area">
                     <!--                Tracks-->
-					<?php
-						global $query;
-						global $connect;
-						$cursor = 0;
-						while ($track_data = $query->fetch_assoc()):
-							$trackCover = $track_data['cover'] != "" ? $track_data['cover'] : '/icons/no_cover.svg';
-							if ($cursor == 0) {
-								$ley = $track_data;
-								$cursor++;
-							}
-							?>
-                            <div id="<?= $track_data['id'] ?>" class="current-track-main" data-track_id="<?= $track_data['id'] ?>">
-                                <div class="track-number play_now"><?= $track_data['id'] ?></div>
+<!--					--><?php
+//						global $query;
+//						global $connect;
+//						$cursor = 0;
+//						while ($track_data = $query->fetch_assoc()):
+//							$trackCover = $track_data['cover'] != "" ? $track_data['cover'] : '/icons/no_cover.svg';
+//							if ($cursor == 0) {
+//								$ley = $track_data;
+//								$cursor++;
+//							}
+//							?>
+                            <div id="<?// $track_data['id'] ?>" class="current-track-main" data-track_id="<?// $track_data['id'] ?>">
+                                <div class="track-number play_now"><? //$track_data['id'] ?></div>
                                 <div class="track-main">
                                     <div class="main-cover">
-                                        <img class="track-cover" src="<?= $trackCover ?>" alt="cover">
+                                        <img class="track-cover" src="<? //$trackCover ?>" alt="cover">
                                     </div>
                                     <div class="current-track-cover">
-                                        <div class="track-name-main play_now"><?= $track_data['track_name'] ?></div>
-                                        <div class="artist-main"><?= $track_data['artist'] ?></div>
+                                        <div class="track-name-main play_now"><?// $track_data['track_name'] ?></div>
+                                        <div class="artist-main"><? //$track_data['artist'] ?></div>
                                     </div>
                                 </div>
-                                <div class="duration-main play_now"><?= $track_data['duration'] ?></div>
-                                <div class="listening-main play_now"><?= $track_data['listening'] ?></div>
+                                <div class="duration-main play_now"><?// $track_data['duration'] ?></div>
+                                <div class="listening-main play_now"><?// $track_data['listening'] ?></div>
                                 <div class="is_play">
                                     <img loading="lazy" class="play_now_list" src="icons/play_list.svg" alt="">
                                 </div>
                                 <div class="track-detail">
                                     <img src="icons/track_info.svg" alt="">
                                 </div>
-                                <input class="track-link" type="text" value="<?= $track_data['link'] ?>" hidden>
+                                <input class="track-link" type="text" value="<?// $track_data['link'] ?>" hidden>
                             </div>
-						<?php endwhile ?>
+<!--						--><?php //endwhile ?>
                 </div>
                 <!--                -->
             </main>
@@ -153,8 +152,8 @@
                 <img class="player-cover" src="covers/Infinite_Granite_2021.png" alt="Deafheaven">
             </div>
             <div class="current-track">
-                <p class="track-player"><?= $ley['track-name'] ?></p>
-                <p class="artist-player"><?= $ley['artist'] ?></p>
+                <p class="track-player"><? //$ley['track-name'] ?></p>
+                <p class="artist-player"><?// $ley['artist'] ?></p>
             </div>
         </div>
         <div class="track-control">
