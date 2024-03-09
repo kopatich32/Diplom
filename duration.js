@@ -353,47 +353,48 @@ document.addEventListener('DOMContentLoaded', first);
 
 // SWITCH TRACK NEXT/PREVIOUS
 let switchButtons = document.querySelectorAll('.switch-track');
-    let prevTrack = document.querySelector('.previous-track');
-    let nextTrack = document.querySelector('.next-track');
     let curId =  localStorage.getItem('lastIDtrack');
 track.id = curId;
-nextTrack.addEventListener('click', nextButton);
-
-
-    function nextButton (){
-curId = track.id
+switchButtons.forEach(btn => {
+    btn.addEventListener('click',(e)=>{
+curId = track.id;
         if(curId >= trackList.length){
             curId = 0;
         }
-        ++curId
-    let elemFromList = document.getElementById(curId)
-    track.id = curId;
-    track.src = elemFromList.querySelector('.track-link').value;
-    trackList.forEach(clearIcon =>{
-            clearIcon.classList.remove('PastPaused');
-            clearIcon.classList.remove('paused_now');
-            clearIcon.classList.remove('playing_now');
+        if(btn.className.includes('next-track')){
+            ++curId;
+        }
+        if(btn.className.includes('previous-track')){
+         --curId;
+        }
 
-        clearIcon.querySelector('.play_now_list').setAttribute('src', 'icons/play_list.svg');
-    })
-    trackData(elemFromList)
+let elemFromList = document.getElementById(curId)
+track.id = curId;
+track.src = elemFromList.querySelector('.track-link').value;
+trackList.forEach(clearIcon =>{
+    clearIcon.classList.remove('PastPaused');
+    clearIcon.classList.remove('paused_now');
+    clearIcon.classList.remove('playing_now');
 
-    document.querySelectorAll('.play_now').forEach(paint => {
-        paint.style.color = '';
-    })
-    document.querySelectorAll('.artist-main').forEach(artisColor => {
-        artisColor.style.color = '';
-    })
-    if (elemFromList.id === track.id) {
-        elemFromList.querySelectorAll('.play_now').forEach(paint => {
-            paint.style.color = '#5C67DE';
-            elemFromList.querySelector('.artist-main').style.color = 'white';
-            elemFromList.classList.add('playing_now');
-        })
-    }
-    playingTrack = elemFromList.id;
-    isPlaying = true;
-    track.play()
+    clearIcon.querySelector('.play_now_list').setAttribute('src', 'icons/play_list.svg');
+})
+trackData(elemFromList)
 
+document.querySelectorAll('.play_now').forEach(paint => {
+    paint.style.color = '';
+})
+document.querySelectorAll('.artist-main').forEach(artisColor => {
+    artisColor.style.color = '';
+})
+if (elemFromList.id === track.id) {
+    elemFromList.querySelectorAll('.play_now').forEach(paint => {
+        paint.style.color = '#5C67DE';
+        elemFromList.querySelector('.artist-main').style.color = 'white';
+        elemFromList.classList.add('playing_now');
+    })
 }
-
+playingTrack = elemFromList.id;
+isPlaying = true;
+track.play()
+    })
+})
