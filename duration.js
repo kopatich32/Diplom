@@ -84,10 +84,9 @@ class TrackControl {
 
             if (!isPlaying) {
                 isPlaying = true;
-                listElem.classList.add('playing_now');
+                listElem.classList.toggle('playing_now');
                 listElem.classList.remove('paused_now');
                 srcSvg.setAttribute('src', 'icons/play.svg');
-                // playingTrack = TrackControl.idFromMainButton;
                 trackList.forEach(classes => {
                     classes.classList.remove('PastPaused');
                 })
@@ -157,27 +156,13 @@ class TrackControl {
     }
 
     endTrack() {
-        let curId = track.id - 1;
-
         track.addEventListener('ended', (e) => {
-            console.log(curId)
-            // //////////////////////////
             track.currentTime = 0;
             let endedTrack = document.getElementById(e.target.id);
             endedTrack.querySelector('.play_now_list').setAttribute('src', 'icons/pause_list.svg');
-            // srcSvg.setAttribute('src', 'icons/play.svg');
+            srcSvg.setAttribute('src', 'icons/play.svg');
             endedTrack.classList.remove('playing_now');
             endedTrack.classList.add('paused_now');
-            let arrLinks = [];
-            trackList.forEach(links =>{
-                arrLinks.push(links.querySelector('.track-link').value)
-            })
-                if(curId >= trackList.length){
-                    curId = 0;
-                }
-                ++curId
-            track.src = arrLinks[curId];
-                track.play()
         })
     }
 
@@ -195,7 +180,6 @@ class TrackControl {
                     playingTrack = audio.dataset.track_id;
                     srcSvg.setAttribute('src', 'icons/main-pause.svg');
                     track.play();
-
                 } else {
                     for (let i = 0; i < trackList.length; i++) {
                         trackList[i].classList.remove('playing_now');
@@ -227,7 +211,7 @@ class TrackControl {
                             isPlaying = true;
                             track.src = trackLink;
                             track.play();
-                            trackData();
+                            trackData(clickTrack);
                         } else {
                             isPlaying = false;
                             track.pause();
@@ -243,18 +227,10 @@ class TrackControl {
                             track.src = trackLink;
                         }
                         track.play();
-                        trackData();
+                        trackData(clickTrack);
                     }
                     playingTrack = clickTrack.dataset.track_id;
 
-                    function trackData() {
-                        srcSvg.setAttribute('src', 'icons/main-pause.svg');
-                        $('.track-player').innerText = clickTrack.querySelector('.track-name-main').innerText;
-                        $('.artist-player').innerText = clickTrack.querySelector('.artist-main').innerText;
-                        $('.player-cover').src = clickTrack.querySelector('.track-cover').src;
-                        clickTrack.querySelector('.play_now_list').setAttribute('src','icons/pause.svg');
-
-                    }
 
                     localStorage.setItem('lastArtist', clickTrack.querySelector('.artist-main').innerText);
                     localStorage.setItem('lastTrack', clickTrack.querySelector('.track-name-main').innerText);
@@ -310,6 +286,14 @@ class TrackControl {
         })
     }
 }
+function trackData(elem) {
+    srcSvg.setAttribute('src', 'icons/main-pause.svg');
+    $('.track-player').innerText = elem.querySelector('.track-name-main').innerText;
+    $('.artist-player').innerText = elem.querySelector('.artist-main').innerText;
+    $('.player-cover').src = elem.querySelector('.track-cover').src;
+    elem.querySelector('.play_now_list').setAttribute('src','icons/pause.svg');
+
+}
 function fullDurationTrack(elem) {
     let duration = (elem.duration / 60).toFixed(2).split('.');
     leftTime.innerHTML = duration[0] + ':' + (duration[1]);
@@ -342,6 +326,7 @@ function first() {
             song.classList.add('PastPaused');
             song.querySelectorAll('.play_now').forEach(paintedBlue => {
                 paintedBlue.style.color = '#5C67DE';
+
                 song.querySelector('.artist-main').style.color = 'white';
                 song.querySelector('.play_now_list').setAttribute('src','icons/pause_list.svg');
 
@@ -367,25 +352,48 @@ document.addEventListener('DOMContentLoaded', first);
 
 
 // SWITCH TRACK NEXT/PREVIOUS
-// document.addEventListener('DOMContentLoaded', ()=>{
-//
-//     let prevTrack = document.querySelector('.previous-track');
-//     let nextTrack = document.querySelector('.next-track');
-//     let curId = track.id - 1;
-//     let arrLinks = [];
-//     trackList.forEach(links =>{
-//     arrLinks.push(links.querySelector('.track-link').value)
-//     })
-//     nextTrack.onclick = (e)=>{
-//         if(curId >= trackList.length){
-//             curId = 0;
-//         }
-//         ++curId
-//         let player = new Audio(arrLinks[curId]);
-//         player.play()
-//         console.log(player)
-//     }
-//
-//     console.log(player)
-// });
+let switchButtons = document.querySelectorAll('.switch-track');
+    let prevTrack = document.querySelector('.previous-track');
+    let nextTrack = document.querySelector('.next-track');
+    let curId =  localStorage.getItem('lastIDtrack');
+track.id = curId;
+nextTrack.addEventListener('click', nextButton);
+
+
+    function nextButton (){
+curId = track.id
+        if(curId >= trackList.length){
+            curId = 0;
+        }
+        ++curId
+    let elemFromList = document.getElementById(curId)
+    track.id = curId;
+    track.src = elemFromList.querySelector('.track-link').value;
+    trackList.forEach(clearIcon =>{
+            clearIcon.classList.remove('PastPaused');
+            clearIcon.classList.remove('paused_now');
+            clearIcon.classList.remove('playing_now');
+
+        clearIcon.querySelector('.play_now_list').setAttribute('src', 'icons/play_list.svg');
+    })
+    trackData(elemFromList)
+
+    document.querySelectorAll('.play_now').forEach(paint => {
+        paint.style.color = '';
+    })
+    document.querySelectorAll('.artist-main').forEach(artisColor => {
+        artisColor.style.color = '';
+    })
+    if (elemFromList.id === track.id) {
+        elemFromList.querySelectorAll('.play_now').forEach(paint => {
+            paint.style.color = '#5C67DE';
+            elemFromList.querySelector('.artist-main').style.color = 'white';
+            elemFromList.classList.add('playing_now');
+        })
+    }
+    playingTrack = elemFromList.id;
+    isPlaying = true;
+    track.play()
+
+}
 

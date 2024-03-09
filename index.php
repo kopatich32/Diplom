@@ -15,6 +15,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="icon" href="icons/play.svg" type="image/svg+xml">
     <title>Мой плейлист</title>
 </head>
 <body>
@@ -127,7 +128,7 @@
                                 <div class="duration-main play_now"><?= $track_data['duration'] ?></div>
                                 <div class="listening-main play_now"><?= $track_data['listening'] ?></div>
                                 <div class="is_play">
-                                    <img class="play_now_list" src="icons/play_list.svg" alt="">
+                                    <img loading="lazy" class="play_now_list" src="icons/play_list.svg" alt="">
                                 </div>
                                 <input class="track-link" type="text" value="<?= $track_data['link'] ?>" hidden>
                             </div>
@@ -155,9 +156,13 @@
         </div>
         <div class="track-control">
             <div><img src="icons/shuffle.svg" alt="" title="перемешать"></div>
-            <div class="previous-track"><img src="icons/step-forward2.svg" alt="" title="предыдущий трек"></div>
+            <div class="previous-track switch-track">
+                <img src="icons/step-forward2.svg" alt="" title="предыдущий трек">
+            </div>
             <div class="main-pause"><img src="icons/play.svg" alt="" title="воспроизведение/пауза"></div>
-            <div class="next-track"><img src="icons/step-forward1.svg" alt="" title="следующий трек"></div>
+            <div class="next-track switch-track">
+                <img src="icons/step-forward1.svg" alt="" title="следующий трек">
+            </div>
             <div class="restart"><img src="icons/repeat.svg" alt="" title="начать с начала"></div>
         </div>
         <div class="duration">
