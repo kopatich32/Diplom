@@ -4,6 +4,7 @@ let track = document.querySelector('audio');
 let mute = document.querySelector('.mute');
 let volumeTrack = document.querySelector('.volume-track');
 let srcSvg = playBtn.querySelector('img');
+let trackList = document.querySelectorAll('.current-track-main');
 let isPlaying = false;
 let playingTrack;
 let counterToBase = 0;
@@ -55,33 +56,49 @@ goneSec.innerHTML = localStorage.getItem('lastPositionOfTrack')
 
 
 let currFullSec = 0;
-
 class TrackControl {
 
     constructor() {
         this.listeningCounter = 0;
         this.lastTimePosition = 0;
         this.idFromMainButton = 0;
+        this.idCurrentTrack = 0;
 
     }
-
     playMainButton() {
-
         playBtn.addEventListener('click', () => {
-            let attr = srcSvg.getAttribute('src');
-            if (attr == 'icons/play.svg') {
+
+            let load = document.querySelector('.PastPaused');
+            let playing = document.querySelector('.playing_now');
+            let paused = document.querySelector('.paused_now');
+            let listElem = document.getElementById(track.id);
+           if(load){
+               load.querySelector('.play_now_list').setAttribute('src', 'icons/pause.svg')
+           }
+           if(playing) {
+               playing.querySelector('.play_now_list').setAttribute('src', 'icons/pause_list.svg')
+           }
+           if(paused) {
+               paused.querySelector('.play_now_list').setAttribute('src', 'icons/pause.svg')
+           }
+
+            if (!isPlaying) {
                 isPlaying = true;
-                playingTrack = TrackControl.idFromMainButton;
-                let clear = document.querySelectorAll('.current-track-main');
-                clear.forEach(classes => {
+                listElem.classList.add('playing_now');
+                listElem.classList.remove('paused_now');
+                srcSvg.setAttribute('src', 'icons/play.svg');
+                // playingTrack = TrackControl.idFromMainButton;
+                trackList.forEach(classes => {
                     classes.classList.remove('PastPaused');
                 })
                 srcSvg.setAttribute('src', 'icons/main-pause.svg');
                 playingTrack = track.id
                 track.play();
             } else {
-                isPlaying = false;
                 track.pause();
+                isPlaying = false;
+                listElem.classList.remove('playing_now');
+                listElem.classList.add('paused_now');
                 srcSvg.setAttribute('src', 'icons/play.svg');
             }
         })
@@ -119,6 +136,7 @@ class TrackControl {
             volumeTrack.style.width = (elem.volume * 100) + '%';
             fullDurationTrack(elem);
             counterToBase = this.lastTimePosition;
+            this.idCurrentTrack = event.target.id;
             // if (currTime - this.listeningCounter == 2) {
             //     let tracks = document.querySelectorAll('.current-track-main');
             //     tracks.forEach(count => {
@@ -139,37 +157,56 @@ class TrackControl {
     }
 
     endTrack() {
-        track.addEventListener('ended', () => {
+        let curId = track.id - 1;
+
+        track.addEventListener('ended', (e) => {
+            console.log(curId)
+            // //////////////////////////
             track.currentTime = 0;
-            srcSvg.setAttribute('src', 'icons/play.svg');
+            let endedTrack = document.getElementById(e.target.id);
+            endedTrack.querySelector('.play_now_list').setAttribute('src', 'icons/pause_list.svg');
+            // srcSvg.setAttribute('src', 'icons/play.svg');
+            endedTrack.classList.remove('playing_now');
+            endedTrack.classList.add('paused_now');
+            let arrLinks = [];
+            trackList.forEach(links =>{
+                arrLinks.push(links.querySelector('.track-link').value)
+            })
+                if(curId >= trackList.length){
+                    curId = 0;
+                }
+                ++curId
+            track.src = arrLinks[curId];
+                track.play()
         })
     }
 
     chooseTrack() {
-        let tracks = document.querySelectorAll('.current-track-main');
-        tracks.forEach(audio => {
-
+        trackList.forEach(audio => {
             audio.addEventListener('click', (e) => {
+                trackList.forEach(clearIcon =>{
+                    clearIcon.querySelector('.play_now_list').setAttribute('src', 'icons/play_list.svg')
+                })
                 if (audio.className.includes('PastPaused')) {
                     track.currentTime = localStorage.getItem('lastPositionOfTrack');
                     audio.classList.remove('PastPaused');
-                    audio.classList.add('playing');
+                    audio.classList.add('playing_now');
                     isPlaying = true;
                     playingTrack = audio.dataset.track_id;
                     srcSvg.setAttribute('src', 'icons/main-pause.svg');
                     track.play();
 
                 } else {
-                    for (let i = 0; i < tracks.length; i++) {
-                        tracks[i].classList.remove('playing');
-                        tracks[i].classList.remove('paused');
-                        tracks[i].classList.remove('PastPaused');
+                    for (let i = 0; i < trackList.length; i++) {
+                        trackList[i].classList.remove('playing_now');
+                        trackList[i].classList.remove('paused_now');
+                        trackList[i].classList.remove('PastPaused');
                     }
 
                     let clickTrack = e.target.closest('.current-track-main');
                     let trackLink = clickTrack.querySelector('.track-link').value;
                     let idCurrentTrack = clickTrack.dataset.track_id;
-                    clickTrack.classList.add('playing');
+                    clickTrack.classList.add('playing_now');
                     track.id = clickTrack.dataset.track_id;
                     // Show current track in tracklist
                     document.querySelectorAll('.play_now').forEach(paint => {
@@ -195,8 +232,9 @@ class TrackControl {
                             isPlaying = false;
                             track.pause();
                             srcSvg.setAttribute('src', 'icons/play.svg');
-                            clickTrack.classList.remove('playing');
-                            clickTrack.classList.add('paused');
+                            clickTrack.querySelector('.play_now_list').setAttribute('src','icons/pause_list.svg');
+                            clickTrack.classList.remove('playing_now');
+                            clickTrack.classList.add('paused_now');
                         }
 
                     } else {
@@ -209,12 +247,13 @@ class TrackControl {
                     }
                     playingTrack = clickTrack.dataset.track_id;
 
-
                     function trackData() {
                         srcSvg.setAttribute('src', 'icons/main-pause.svg');
                         $('.track-player').innerText = clickTrack.querySelector('.track-name-main').innerText;
                         $('.artist-player').innerText = clickTrack.querySelector('.artist-main').innerText;
                         $('.player-cover').src = clickTrack.querySelector('.track-cover').src;
+                        clickTrack.querySelector('.play_now_list').setAttribute('src','icons/pause.svg');
+
                     }
 
                     localStorage.setItem('lastArtist', clickTrack.querySelector('.artist-main').innerText);
@@ -270,9 +309,7 @@ class TrackControl {
 
         })
     }
-
 }
-
 function fullDurationTrack(elem) {
     let duration = (elem.duration / 60).toFixed(2).split('.');
     leftTime.innerHTML = duration[0] + ':' + (duration[1]);
@@ -298,15 +335,16 @@ function first() {
     track.id = localStorage.getItem('lastIDtrack');
 
 
-    let painLastTrack = document.querySelectorAll('.current-track-main');
-    document.querySelector('.tracks-amount').innerText = painLastTrack.length;
-    painLastTrack.forEach(song => {
+    document.querySelector('.tracks-amount').innerText = trackList.length;
+    trackList.forEach(song => {
 
         if (song.dataset.track_id == track.id) {
             song.classList.add('PastPaused');
             song.querySelectorAll('.play_now').forEach(paintedBlue => {
                 paintedBlue.style.color = '#5C67DE';
                 song.querySelector('.artist-main').style.color = 'white';
+                song.querySelector('.play_now_list').setAttribute('src','icons/pause_list.svg');
+
             })
         }
     })
@@ -324,6 +362,30 @@ function first() {
 //     }
 // }
 
-
 document.addEventListener('DOMContentLoaded', first);
 // document.addEventListener('DOMContentLoaded', incognitoMode);
+
+
+// SWITCH TRACK NEXT/PREVIOUS
+// document.addEventListener('DOMContentLoaded', ()=>{
+//
+//     let prevTrack = document.querySelector('.previous-track');
+//     let nextTrack = document.querySelector('.next-track');
+//     let curId = track.id - 1;
+//     let arrLinks = [];
+//     trackList.forEach(links =>{
+//     arrLinks.push(links.querySelector('.track-link').value)
+//     })
+//     nextTrack.onclick = (e)=>{
+//         if(curId >= trackList.length){
+//             curId = 0;
+//         }
+//         ++curId
+//         let player = new Audio(arrLinks[curId]);
+//         player.play()
+//         console.log(player)
+//     }
+//
+//     console.log(player)
+// });
+
