@@ -102,7 +102,6 @@
                     <div></div>
                 </div>
                 <div class="track-area">
-                    <!--                Tracks-->
 					<?php
 						global $query;
 						global $connect;
@@ -137,7 +136,6 @@
                             </div>
 						<?php endwhile ?>
                 </div>
-                <!--                -->
             </main>
         </div>
     </div>
@@ -206,7 +204,7 @@
         </div>
     </footer>
 </div>
-<audio style="display:none;" class="audioTag" id="" src="tracks/Deafheaven_-_The_Gnashing.mp3" controls></audio>
+<audio  class="audioTag" id="" src="tracks/Deafheaven_-_The_Gnashing.mp3" controls></audio>
 <script type="module" src="duration.js"></script>
 <script type="module" src="filter.js"></script>
 <script type="module" src="choose_tracks.js"></script>
@@ -217,5 +215,14 @@ https://packagist.org/packages/wapmorgan/mp3info
 
 
 <!--<h1>https://yandex.ru/dev/audio/jsapi/doc/dg/concepts/load.html</h1>-->
+<?/*
+beget
+Логин: r93987lp
+Пароль: dKojXS3cuA9P
+
+FTP
+login r93987lp_r93987lp
+password GzKBud7&
+*/?>
 </body>
 </html

@@ -8,8 +8,7 @@ let trackList = document.querySelectorAll('.current-track-main');
 let isPlaying = false;
 let playingTrack;
 let counterToBase = 0;
-//Default site volume
-track.volume = track.volume / 2;
+
 
 // Play/pause on keyboard buttons
 document.addEventListener('keydown', (event) => {
@@ -162,6 +161,7 @@ class TrackControl {
     chooseTrack() {
         trackList.forEach(audio => {
             audio.addEventListener('click', (e) => {
+                track.volume = 0.5;
                 trackList.forEach(clearIcon =>{
                     clearIcon.querySelector('.play_now_list').setAttribute('src', 'icons/play_list.svg')
                 })

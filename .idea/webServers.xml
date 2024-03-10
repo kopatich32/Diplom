@@ -9,6 +9,20 @@
           </advancedOptions>
         </fileTransfer>
       </webServer>
+      <webServer id="384382a5-7b9f-4939-b2e5-da4358decc75" name="gk52.itesc.ru">
+        <fileTransfer rootFolder="/home/i/itesc1/gk52.itesc.ru/" accessType="SFTP" host="gk52.itesc.ru" port="22" sshConfigId="722445b5-56b6-4f19-ac23-fc475ba7b07c" sshConfig="gk52.itesc.ru">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+      <webServer id="b114f7c7-321d-41ae-aa7b-26c9421a5f7e" name="playlist" url="">
+        <fileTransfer rootFolder="/r93987lp.beget.tech/public_html" host="r93987lp.beget.tech" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
     </option>
   </component>
 </project>

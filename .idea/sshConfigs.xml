@@ -5,6 +5,12 @@
       <sshConfig authType="PASSWORD" host="192.168.1.242" id="3def9c71-fed5-45ab-83a9-fe1719001100" port="22" customName="bitrix" nameFormat="CUSTOM" username="bitrix" useOpenSSHConfig="true">
         <option name="customName" value="bitrix" />
       </sshConfig>
+      <sshConfig authType="PASSWORD" host="gk52.itesc.ru" id="722445b5-56b6-4f19-ac23-fc475ba7b07c" port="22" customName="gk52.itesc.ru" nameFormat="CUSTOM" username="itesc1" useOpenSSHConfig="true">
+        <option name="customName" value="gk52.itesc.ru" />
+      </sshConfig>
+      <sshConfig authType="PASSWORD" host="r93987lp.beget.tech" id="2c7b65fe-2930-48e8-9d40-e403a9e54114" port="22" customName="my_playlist" nameFormat="CUSTOM" username="r93987lp" useOpenSSHConfig="true">
+        <option name="customName" value="my_playlist" />
+      </sshConfig>
     </configs>
   </component>
 </project>
