@@ -16,6 +16,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="styles/style.css">
     <link rel="icon" href="icons/play.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="dragula-master/dist/dragula.css">
+    <script src="dragula-master/dist/dragula.js"></script>
     <title>Мой плейлист</title>
 </head>
 <body>
@@ -113,11 +115,11 @@
 								$cursor++;
 							}
 							?>
-                            <div id="<?= $track_data['id'] ?>" class="current-track-main" data-track_id="<?= $track_data['id'] ?>">
+                            <div id="<?= $track_data['id'] ?>" class="current-track-main cursor-grab" data-track_id="<?= $track_data['id'] ?>">
                                 <div class="track-number play_now"><?= $track_data['id'] ?></div>
                                 <div class="track-main">
                                     <div class="main-cover">
-                                        <img class="track-cover" src="<?= $trackCover ?>" alt="cover">
+                                        <img class="track-cover"  style="width: 45px; height: 45px" src="<?= $trackCover ?>" alt="cover">
                                     </div>
                                     <div class="current-track-cover">
                                         <div class="track-name-main play_now"><?= $track_data['track_name'] ?></div>
@@ -204,10 +206,12 @@
         </div>
     </footer>
 </div>
-<audio  class="audioTag" id="" src="tracks/Deafheaven_-_The_Gnashing.mp3" controls></audio>
+<audio style="display: none"  class="audioTag" id="" src="tracks/Deafheaven_-_The_Gnashing.mp3" controls></audio>
 <script type="module" src="duration.js"></script>
 <script type="module" src="filter.js"></script>
 <script type="module" src="choose_tracks.js"></script>
+<script src="dragula.js"></script>
+
 <?php /*https://proweb63.ru/help/js/html5-audio-js
 https://stackoverflow.com/questions/4126708/is-it-possible-to-style-html5-audio-tag/4126871#4126871
 https://packagist.org/packages/wapmorgan/mp3info
@@ -221,6 +225,7 @@ beget
 Пароль: dKojXS3cuA9P
 
 FTP
+host r93987lp.beget.tech
 login r93987lp_r93987lp
 password GzKBud7&
 */?>

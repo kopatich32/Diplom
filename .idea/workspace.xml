@@ -5,18 +5,56 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="15646b44-9323-4f68-a446-cd834617ab93" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sshConfigs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sshConfigs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/webServers.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webServers.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dragula-master/.editorconfig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dragula-master/.github/FUNDING.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dragula-master/.github/contributing.markdown" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dragula-master/.github/issue_template.markdown" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dragula-master/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dragula-master/.jshintignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dragula-master/.jshintrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dragula-master/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dragula-master/changelog.markdown" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dragula-master/classes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dragula-master/dist/dragula.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dragula-master/dist/dragula.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dragula-master/dist/dragula.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dragula-master/dist/dragula.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dragula-master/dragula.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dragula-master/dragula.styl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dragula-master/example/example.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dragula-master/example/example.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dragula-master/example/example.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dragula-master/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dragula-master/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dragula-master/license" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dragula-master/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dragula-master/readme.markdown" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dragula-master/resources/demo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dragula-master/resources/eyes.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dragula-master/resources/icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dragula-master/resources/icon.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dragula-master/resources/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dragula-master/resources/logo.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dragula-master/resources/patreon.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dragula-master/test/cancel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dragula-master/test/classes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dragula-master/test/containers.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dragula-master/test/defaults.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dragula-master/test/destroy.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dragula-master/test/drag.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dragula-master/test/drake-api.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dragula-master/test/end.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dragula-master/test/events.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dragula-master/test/lib/events.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dragula-master/test/public-api.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dragula-master/test/remove.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dragula-master/yarn.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dragula.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/duration.js" beforeDir="false" afterPath="$PROJECT_DIR$/duration.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/get_tracks.php" beforeDir="false" afterPath="$PROJECT_DIR$/get_tracks.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_page.php" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_page.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/.sass-cache/bc74aba033a7bca701aab53d418cd3003711f91f/mobile.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/styles/.sass-cache/bc74aba033a7bca701aab53d418cd3003711f91f/mobile.scssc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/mobile.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/mobile.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/mobile.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/styles/mobile.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/mobile.scss" beforeDir="false" afterPath="$PROJECT_DIR$/styles/mobile.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/.sass-cache/bc74aba033a7bca701aab53d418cd3003711f91f/style.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/styles/.sass-cache/bc74aba033a7bca701aab53d418cd3003711f91f/style.scssc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/style.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/styles/style.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/styles/style.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +124,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "settings.php.debug.servers",
+    "settings.editor.selected.configurable": "actions.on.save",
     "settings.editor.splitter.proportion": "0.23649338",
     "vue.rearranger.settings.migration": "true"
   }
@@ -96,8 +134,8 @@
       <recent name="C:\OSPanel\domains\Diplom" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\OSPanel\domains\Diplom\icons" />
       <recent name="C:\OSPanel\domains\Diplom" />
+      <recent name="C:\OSPanel\domains\Diplom\icons" />
       <recent name="C:\OSPanel\domains\Diplom\tracks" />
       <recent name="C:\OSPanel\domains\Diplom\covers" />
     </key>
@@ -162,6 +200,7 @@
       <workItem from="1710070343045" duration="44000" />
       <workItem from="1710070548562" duration="179000" />
       <workItem from="1710070966438" duration="14563000" />
+      <workItem from="1710258458246" duration="7830000" />
     </task>
     <task id="LOCAL-00001" summary="Сделал прогресс вновь включаемых треков">
       <option name="closed" value="true" />
