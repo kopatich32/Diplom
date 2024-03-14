@@ -396,4 +396,171 @@ footer {
 .mute {
   display: block !important; }
 
+.registration_wrapper {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999999999;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px); }
+  .registration_wrapper form {
+    width: 450px;
+    height: 240px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.67);
+    top: 50%;
+    left: 50%;
+    height: 350px;
+    border-radius: 5px;
+    transform: translate(-50%, -50%);
+    box-shadow: 1px 1px 10px 2px black; }
+    .registration_wrapper form p:first-child {
+      margin-bottom: 20px;
+      margin-top: 20px;
+      font-size: 24px; }
+    .registration_wrapper form label {
+      position: relative; }
+      .registration_wrapper form label .file-input {
+        position: absolute;
+        width: 0;
+        opacity: 0; }
+      .registration_wrapper form label span {
+        position: relative;
+        cursor: pointer;
+        background: #2a73f9;
+        color: white;
+        padding: 10px; }
+    .registration_wrapper form .form_buttons {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      align-items: center;
+      margin-top: 20px; }
+      .registration_wrapper form .form_buttons button:first-child {
+        margin-right: 30px;
+        font-size: 1.2em; }
+      .registration_wrapper form .form_buttons button {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        height: 30px;
+        background-color: #0962E8;
+        border-radius: 12px;
+        border: none;
+        color: #ffffff;
+        cursor: pointer;
+        margin-right: 20px; }
+    .registration_wrapper form .insert_field .top > input, .registration_wrapper form .insert_field .bottom > input {
+      width: 210px;
+      height: 30px;
+      margin-bottom: 25px; }
+
+.display {
+  display: block; }
+
+.bottomWrapper {
+  display: flex;
+  width: 100%; }
+  .bottomWrapper label {
+    height: 30px; }
+  .bottomWrapper div {
+    margin-left: auto;
+    border: 2px solid orangered; }
+
+.alert {
+  display: none;
+  padding: 4px;
+  font-size: 14px; }
+
+.auth_wrapper {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999999999;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(8px); }
+  .auth_wrapper form {
+    width: 450px;
+    height: 240px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.67);
+    top: 50%;
+    left: 50%;
+    height: 350px;
+    border-radius: 5px;
+    transform: translate(-50%, -50%);
+    box-shadow: 1px 1px 10px 2px black; }
+    .auth_wrapper form .insert_field .top > input, .auth_wrapper form .insert_field .bottom > input {
+      width: 210px;
+      height: 30px;
+      margin-bottom: 25px; }
+    .auth_wrapper form p:first-child {
+      margin-bottom: 20px;
+      margin-top: 20px;
+      font-size: 24px; }
+    .auth_wrapper form label {
+      positiosn: relative; }
+      .auth_wrapper form label .file-input {
+        position: absolute;
+        width: 0;
+        opacity: 0; }
+      .auth_wrapper form label span {
+        position: relative;
+        cursor: pointer;
+        background: #2a73f9;
+        color: white;
+        padding: 10px; }
+    .auth_wrapper form .form_buttons {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      align-items: center;
+      margin-top: 20px; }
+      .auth_wrapper form .form_buttons button:first-child {
+        margin-right: 30px;
+        font-size: 1.2em; }
+      .auth_wrapper form .form_buttons button {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        height: 30px;
+        background-color: #0962E8;
+        border-radius: 12px;
+        border: none;
+        color: #ffffff;
+        cursor: pointer;
+        margin-right: 20px; }
+
+.exist, .success {
+  margin-bottom: 5px;
+  padding: 4px; }
+
+.success_registration {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  font-size: 20px; }
+
 /*# sourceMappingURL=style.css.map */

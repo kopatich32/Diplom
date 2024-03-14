@@ -3,7 +3,6 @@
   box-sizing: border-box;
   font-family: Quicksand;
 }
-
 $front-background: #1A1A1A;
 $back-background: #0A0A0A;
 $playing-playlist-color: #5C67DE;
@@ -12,6 +11,7 @@ $current-artist-footer-color: rgba(255, 255, 255, 0.3);
 $grey-text-color: rgba(255, 255, 255, 0.3);
 $track-border: rgba(255, 255, 255, 0.3);
 $line-height: 8px;
+$textColor: #0962E8;
 .play_now {
   //color: $playing-playlist-color;
 }
@@ -488,5 +488,193 @@ footer {
 .mute{
   display: block!important;
 }
+
+// FORM
+// Registration form
+.registration_wrapper{
+  display: none;
+  //display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  @include size(100vw,100vh);
+  z-index: 9999999999;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+
+  form{
+    @include size(450px, 240px);
+    @include flex(column, center,center);
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.67);
+    top: 50%;
+    left: 50%;
+    height: 350px;
+    border-radius: 5px;
+    transform: translate(-50%, -50%);
+    box-shadow: 1px 1px 10px 2px black;
+    p:first-child{
+      margin-bottom: 20px;
+      margin-top: 20px;
+      font-size: 24px;
+    }
+    label{
+      position: relative;
+      .file-input{
+        position: absolute;
+        width: 0;
+        opacity: 0;
+      }
+      span{
+        position: relative;
+        cursor: pointer;
+        background: $textColor + #211111;
+        color: white;
+        padding: 10px;
+      }
+    }
+
+    .form_buttons {
+      @include flex(row, space-evenly, center);
+      margin-top: 20px;
+      button:first-child{
+        margin-right: 30px;
+        font-size: 1.2em;
+      }
+      button {
+        @include flex(column, center, center);
+        padding: 10px;
+        height: 30px;
+        background-color: $textColor;
+        border-radius: 12px;
+        border: none;
+        color: #ffffff;
+        cursor: pointer;
+        &:first-child{}
+        margin-right: 20px;
+      }
+    }
+    .insert_field{
+
+      .top > input, .bottom > input{
+        @include size(210px, 30px);
+        margin-bottom: 25px;
+      }
+    }
+  }
+
+}
+.display{
+  display: block;
+}
+
+.bottomWrapper{
+  label{
+    height: 30px;
+  }
+  display: flex;
+  width: 100%;
+  div{
+    margin-left: auto;
+    border: 2px solid orangered;
+
+  }
+}
+
+.alert{
+  display: none;
+  padding: 4px;
+  font-size: 14px;
+}
+
+//auth
+.auth_wrapper{
+  display: none;
+  //display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  @include size(100vw,100vh);
+  z-index: 9999999999;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(8px);
+
+  form{
+    @include size(450px, 240px);
+    @include flex(column, center,center);
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.67);
+    top: 50%;
+    left: 50%;
+    height: 350px;
+    border-radius: 5px;
+    transform: translate(-50%, -50%);
+    box-shadow: 1px 1px 10px 2px black;
+    .insert_field{
+      .top > input, .bottom > input{
+        @include size(210px, 30px);
+        margin-bottom: 25px;
+      }
+    }
+    p:first-child{
+      margin-bottom: 20px;
+      margin-top: 20px;
+      font-size: 24px;
+    }
+    label{
+      positiosn: relative;
+      .file-input{
+        position: absolute;
+        width: 0;
+        opacity: 0;
+      }
+      span{
+        position: relative;
+        cursor: pointer;
+        background: $textColor + #211111;
+        color: white;
+        padding: 10px;
+      }
+    }
+
+    .form_buttons {
+      @include flex(row, space-evenly, center);
+      margin-top: 20px;
+      button:first-child{
+        margin-right: 30px;
+        font-size: 1.2em;
+      }
+      button {
+        @include flex(column, center, center);
+        padding: 10px;
+        height: 30px;
+        background-color: $textColor;
+        border-radius: 12px;
+        border: none;
+        color: #ffffff;
+        cursor: pointer;
+        &:first-child{}
+        margin-right: 20px;
+      }
+    }
+  }
+}
+.exist, .success{
+  margin-bottom: 5px;
+  padding:4px;
+}
+
+.success_registration{
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  font-size: 20px;
+}
+
+
 
 // ADAPIVE
