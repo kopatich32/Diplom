@@ -678,3 +678,26 @@ footer {
 
 
 // ADAPIVE
+@media screen and (max-width: 500px){
+  .aside-left,
+  .podcast-img,
+  .share,
+  .download,
+  .listening-main,
+  .is_play,
+  .track-duration,
+  .listening{
+    display: none;
+  }
+  .duration-main{
+    padding: 0 10px 0 0;
+  }
+  main{
+    .track-stat{
+      grid-template-columns: 12px 1fr 1fr 40px;
+    }
+    .current-track-main{
+      grid-template-columns: 12px 1fr auto 40px;
+    }
+  }
+}

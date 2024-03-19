@@ -27,7 +27,7 @@ if(isset($_FILES['FILE']['size']) && $_FILES['FILE']['size'] > 0){
     $getDuration =  $fileInfo['playtime_string'];
     $linkNewtrack = 'tracks/'.$_FILES['FILE']['full_path'];
     $coverName = 'covers/'.$addedTimeCover;
-    $query = $connect->query( "INSERT INTO `tracks`(`cover`, `track_name`, `artist`, `duration`,`listening`,`link`) VALUES ('$coverName','$getTrackName','$getArtist','$getDuration','12','$linkNewtrack')");
+    $query = $connect->query( "INSERT INTO `tracks`(`cover`, `track_name`, `artist`, `duration`,`link`) VALUES ('$coverName','$getTrackName','$getArtist','$getDuration','$linkNewtrack')");
 
 }
 
