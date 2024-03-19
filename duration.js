@@ -161,7 +161,7 @@ class TrackControl {
     chooseTrack() {
         trackList.forEach(audio => {
             audio.addEventListener('click', (e) => {
-                track.volume = 0.5;
+                // track.volume = 0.5;
                 trackList.forEach(clearIcon =>{
                     clearIcon.querySelector('.play_now_list').setAttribute('src', 'icons/play_list.svg')
                 })
