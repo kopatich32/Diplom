@@ -679,14 +679,17 @@ footer {
 
 // ADAPIVE
 @media screen and (max-width: 500px){
-  .aside-left,
+ .aside-left,
   .podcast-img,
   .share,
   .download,
   .listening-main,
   .is_play,
   .track-duration,
-  .listening{
+  .listening,
+  footer .track-control > div:not(.main-pause),
+  footer .duration,
+  footer .volume{
     display: none;
   }
   .duration-main{
@@ -698,6 +701,21 @@ footer {
     }
     .current-track-main{
       grid-template-columns: 12px 1fr auto 40px;
+    }
+    .track-area{
+      height: calc(100vh - 294px);
+    }
+  }
+  footer{
+    .track-control{
+      margin: 0;
+      flex-basis: auto;
+    }
+    .main-pause{
+      width: 40px;
+    img{
+      width: 100%;
+    }
     }
   }
 }

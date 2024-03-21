@@ -2,7 +2,7 @@
 	session_start();
 	//require_once ('tracks_data.php')
 	require_once('get_tracks.php');
-    include 'registrationForm.php';
+//    include 'registrationForm.php';
 	//require ('change_track.php');
 
 	$ley = "123";
@@ -106,11 +106,11 @@
                 </div>
                 <div class="track-area">
 					<?php
-						global $allTracks;
+						global $query;
 						global $connect;
                         global $pagination;
 						$cursor = 0;
-						while ($track_data = $allTracks->fetch_assoc()):
+						while ($track_data = $query->fetch_assoc()):
 							$trackCover = $track_data['cover'] != "" ? $track_data['cover'] : '/icons/no_cover.svg';
 							if ($cursor == 0) {
 								$ley = $track_data;
@@ -213,12 +213,12 @@
     </footer>
 </div>
 
-<audio style="display: none"  class="audioTag" id="" src="tracks/Deafheaven_-_The_Gnashing.mp3" controls></audio>
+<audio style="display: none" class="audioTag" id="" src="tracks/Deafheaven_-_The_Gnashing.mp3" controls></audio>
 <script type="module" src="duration.js"></script>
 <script type="module" src="filter.js"></script>
 <script type="module" src="choose_tracks.js"></script>
 <script src="dragula.js"></script>
-<script src="registration_form.js"></script>
+<!--<script src="registration_form.js"></script>-->
 
 <?php /*https://proweb63.ru/help/js/html5-audio-js
 https://stackoverflow.com/questions/4126708/is-it-possible-to-style-html5-audio-tag/4126871#4126871

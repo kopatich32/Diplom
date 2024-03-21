@@ -2,7 +2,7 @@
 $connect = @new mysqli('localhost','root','','player');
 //$connect = @new mysqli('localhost','r93987lp_player','89398786029Aa.','r93987lp_player'); hosting
 
-$allTracks = $connect->query("SELECT * FROM `tracks`");
+$query = $connect->query("SELECT * FROM `tracks`");
 
 //    $start = $_GET['start'];
 //    $pagination = $connect->query("SELECT * FROM `tracks` LIMIT 5 OFFSET ".$start);
