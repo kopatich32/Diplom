@@ -36,7 +36,7 @@ html, body {
   padding: 0;
   margin: 0;
   width: 100%;
-  height: 99%;
+  height: 100%;
   //overflow: hidden;
 }
 
@@ -420,7 +420,7 @@ footer {
     .gone-time {
       color: $current-track-footer-color;
       font-size: 16px;
-      margin-right: 10px;
+      margin: 0 10px 0 20px;
       width: 70px;
     }
 
@@ -707,15 +707,49 @@ footer {
     }
   }
   footer{
+    .track{
+      cursor: pointer;
+      transition: .3s;
+    }
     .track-control{
       margin: 0;
       flex-basis: auto;
     }
     .main-pause{
       width: 40px;
+      height: 40px;
     img{
       width: 100%;
     }
     }
+  }
+.back-to-wrapper {
+  @include  flex(row, normal, bormal);
+  margin-top: 20px;
+  width: 100%;
+  color: rgba(92, 103, 222, 0.78);
+  .back-to-list{
+    margin: 20px 20px 0 auto;
+    width: 50px;
+    height: 50px;
+    img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      cursor: pointer;
+
+    }
+  }
+}
+
+  .detail-track-view{
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  flex-direction: column;
+  transition: .3s;
+  bottom: 0;
+  z-index: 6;
+  justify-content: normal;
   }
 }

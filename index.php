@@ -7,7 +7,14 @@
 
 	$ley = "123";
 ?>
-
+<?
+	$width = "<script>
+document.addEventListener('DOMContentLoaded',()=>{
+	return document.write(window.innerWidth)
+})
+</script>";
+	$str = (int)$width;
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -145,10 +152,8 @@
     </div>
     <footer>
 		<?php
-
 			//        echo print_r($data, true) .'<br>';
-
-
+			
 		?>
         <div class="track">
             <div class="current-cover">
@@ -164,16 +169,45 @@
             </div>
         </div>
         <div class="track-control">
+	       
             <div><img src="icons/shuffle.svg" alt="" title="перемешать"></div>
-            <div class="previous-track switch-track">
+            <?php if($str > 500): ?>
+	        <div class="previous-track switch-track">
                 <img src="icons/step-forward2.svg" alt="" title="предыдущий трек">
             </div>
-            <div class="main-pause"><img src="icons/play.svg" alt="" title="воспроизведение/пауза"></div>
+	        <?php else: ?>
+	            <div class="previous-track switch-track" style="width: 30px; height: 30px">
+		            <img src="icons/step-forward2.svg" style="width: 100%; height:100%" alt="" title="предыдущий трек">
+	            </div>
+	        <?php endif;?>
+	        <?php if ($str > 500): ?>
+            <div class="main-pause">
+	            <img src="icons/play.svg" alt="" title="воспроизведение/пауза">
+            </div>
+	        <?php else:?>
+	        <div class="main-pause" style="width: 70px; height: 70px">
+		        <img src="icons/play.svg" style="width: 100%; height:100%" alt="" title="воспроизведение/пауза">
+	        </div>
+	        <?php endif; ?>
+	        <?php if($str > 500): ?>
             <div class="next-track switch-track">
                 <img src="icons/step-forward1.svg" alt="" title="следующий трек">
             </div>
-            <div class="restart"><img src="icons/repeat.svg" alt="" title="начать с начала"></div>
+	        <?php else: ?>
+		        <div class="next-track switch-track" style="width: 30px; height: 30px">
+			        <img src="icons/step-forward1.svg" style="width: 100%; height:100%" alt="" title="следующий трек">
+		        </div>
+	        <?php endif;?>
+            <?php if($width > 500): ?>
+	        <div class="restart"><img src="icons/repeat.svg" alt="" title="начать с начала"></div>
+	        <?php endif;?>
         </div>
+	    
+		    <div class="back-to-wrapper" style="display: none" title="к списку треков">
+			    <div class="back-to-list">
+				    <img src="icons/back_to_list.svg" alt="">
+			    </div>
+		    </div>
         <div class="duration">
             <p class="gone-time"><span class="minutes">00</span>:<span class="seconds">00</span></p>
             <div class="duration-track">
@@ -182,6 +216,7 @@
             </div>
             <p class="left-time"></p>
         </div>
+	    
         <div class="volume">
             <div class="mute">
                 <svg class="play" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -218,6 +253,7 @@
 <script type="module" src="filter.js"></script>
 <script type="module" src="choose_tracks.js"></script>
 <script src="dragula.js"></script>
+<script src="mobile_script.js"></script>
 <!--<script src="registration_form.js"></script>-->
 
 <?php /*https://proweb63.ru/help/js/html5-audio-js
@@ -236,6 +272,8 @@ FTP
 host r93987lp.beget.tech
 login r93987lp_r93987lp
 password GzKBud7&
+
+https://github.com/kopatich32/Diplom
 */?>
 </body>
 </html
