@@ -8,8 +8,6 @@ let trackList = document.querySelectorAll('.current-track-main');
 let isPlaying = false;
 let playingTrack;
 let counterToBase = 0;
-
-
 // Play/pause on keyboard buttons
 document.addEventListener('keydown', (event) => {
 	if ((event.code === 'Space' || event.key === 'MediaPlayPause') && !isPlaying) {
@@ -35,6 +33,7 @@ document.addEventListener('keydown', (event) => {
 	if (event.code === 'ArrowRight') {
 		track.currentTime += 5;
 		track.play();
+		isPlaying = true;
 		if (window.innerWidth < 500) {
 			srcSvg.setAttribute('src', 'icons/pause.svg');
 		} else {
@@ -44,6 +43,7 @@ document.addEventListener('keydown', (event) => {
 	if (event.code === 'ArrowLeft') {
 		track.currentTime -= 5;
 		track.play();
+		isPlaying = true;
 		if (window.innerWidth < 500) {
 			srcSvg.setAttribute('src', 'icons/pause.svg');
 		} else {
@@ -343,7 +343,12 @@ function trackData(elem) {
 
 function fullDurationTrack(elem) {
 	let duration = (elem.duration / 60).toFixed(2).split('.');
-	leftTime.innerHTML = duration[0] + ':' + (duration[1]);
+	let leftMin = elem.duration - duration[0] * 60;
+	if(Math.floor(leftMin) < 10){
+		leftTime.innerHTML = duration[0] + ':0' + (Math.floor(leftMin));
+	}else{
+		leftTime.innerHTML = duration[0] + ':' + (Math.floor(leftMin));
+	}
 }
 
 let classOfTrack = new TrackControl();
@@ -358,7 +363,6 @@ function first() {
 	if (window.innerWidth <= 500) {
 		srcSvg.src = 'icons/pause_list.svg';
 		track.volume = 1;
-		console.log(track.volume)
 	}
 
 	$('.audioTag').src = localStorage.getItem('lastLink');
@@ -404,7 +408,6 @@ switchButtons.forEach(btn => {
 			if(curId === trackList.length){
 				curId = 1;
 			}
-
 		}
 		if (btn.className.includes('previous-track')) {
 			--curId;
@@ -447,4 +450,3 @@ switchButtons.forEach(btn => {
 		track.play()
 	})
 })
-

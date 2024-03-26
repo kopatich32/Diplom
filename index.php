@@ -65,19 +65,11 @@ document.addEventListener('DOMContentLoaded',()=>{
                             <p>Late Night Horror</p>
                             <p>1 track</p>
                         </div>
-                        <!--                <div><img src="icons/pause.svg" alt="pause"></div>-->
                     </li>
-                    <li>3</li>
-                    <li>4</li>
-                    <li>5</li>
-                    <li>5</li>
-                    <li>5</li>
-                    <li>5</li>
-                    <li>5</li>
-                    <li>5</li>
-                    <li>5</li>
-                    <li>5</li>
-
+	                <?php
+	                for($i =3; $i <= 16; $i++):?>
+		                <li><?=$i?></li>
+	                <?php endfor;?>
                 </ul>
             </div>
         </aside>
@@ -151,10 +143,6 @@ document.addEventListener('DOMContentLoaded',()=>{
         </div>
     </div>
     <footer>
-		<?php
-			//        echo print_r($data, true) .'<br>';
-			
-		?>
         <div class="track">
             <div class="current-cover">
                 <img class="player-cover" src="covers/Infinite_Granite_2021.png" alt="Deafheaven">
@@ -248,7 +236,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     </footer>
 </div>
 
-<audio style="display: none" class="audioTag" id="" src="tracks/Deafheaven_-_The_Gnashing.mp3" controls></audio>
+<audio style="display: block" class="audioTag" id="" src="tracks/Deafheaven_-_The_Gnashing.mp3" controls></audio>
 <script type="module" src="duration.js"></script>
 <script type="module" src="filter.js"></script>
 <script type="module" src="choose_tracks.js"></script>
