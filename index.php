@@ -269,9 +269,16 @@ beget
 Пароль: dKojXS3cuA9P
 
 FTP
-host r93987lp.beget.tech
-login r93987lp_r93987lp
-password GzKBud7&
+host
+
+r93987lp.beget.tech
+login
+
+r93987lp_r93987lp
+
+password
+
+GzKBud7&
 
 https://github.com/kopatich32/Diplom
 */?>

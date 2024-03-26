@@ -14,7 +14,7 @@ let counterToBase = 0;
 document.addEventListener('keydown', (event) => {
 	if ((event.code === 'Space' || event.key === 'MediaPlayPause') && !isPlaying) {
 		track.play()
-		isPlaying=true;
+		isPlaying = true;
 		if (window.innerWidth < 500) {
 			srcSvg.setAttribute('src', 'icons/pause.svg');
 		} else {
@@ -22,10 +22,10 @@ document.addEventListener('keydown', (event) => {
 		}
 	} else {
 		track.pause()
-		isPlaying=false
+		isPlaying = false
 		if (window.innerWidth < 500) {
 			srcSvg.setAttribute('src', 'icons/pause_list.svg');
-		}else{
+		} else {
 			srcSvg.setAttribute('src', 'icons/play.svg');
 		}
 	}
@@ -48,7 +48,8 @@ document.addEventListener('keydown', (event) => {
 			srcSvg.setAttribute('src', 'icons/pause.svg');
 		} else {
 			srcSvg.setAttribute('src', 'icons/main-pause.svg');
-		}	}
+		}
+	}
 })
 mute.addEventListener('click', () => {
 	let muteIcon = document.querySelectorAll('.mute-line');
@@ -65,6 +66,7 @@ let goneTrack = document.querySelector('.gone-track');
 goneSec.innerHTML = localStorage.getItem('lastPositionOfTrack')
 
 let currFullSec = 0;
+
 class TrackControl {
 
 	constructor() {
@@ -178,11 +180,11 @@ class TrackControl {
 		track.addEventListener('ended', (e) => {
 			track.currentTime = 0;
 
-				let endedTrack = document.getElementById(e.target.id);
+			let endedTrack = document.getElementById(e.target.id);
 			endedTrack.querySelector('.play_now_list').setAttribute('src', 'icons/pause_list.svg');
 			if (window.innerWidth <= 500) {
 				srcSvg.setAttribute('src', 'icons/pause_list.svg');
-			}else{
+			} else {
 				srcSvg.setAttribute('src', 'icons/play.svg');
 			}
 
@@ -214,7 +216,7 @@ class TrackControl {
 					playingTrack = audio.dataset.track_id;
 					if (window.innerWidth > 500) {
 						srcSvg.setAttribute('src', 'icons/main-pause.svg');
-					}else{
+					} else {
 						srcSvg.setAttribute('src', 'icons/pause.svg');
 					}
 
@@ -253,7 +255,7 @@ class TrackControl {
 							trackData(clickTrack);
 							if (window.innerWidth > 500) {
 								srcSvg.setAttribute('src', 'icons/main-pause.svg');
-							}else{
+							} else {
 								srcSvg.setAttribute('src', 'icons/pause.svg');
 							}
 						} else {
@@ -261,7 +263,7 @@ class TrackControl {
 							track.pause();
 							if (window.innerWidth > 500) {
 								srcSvg.setAttribute('src', 'icons/play.svg');
-							}else{
+							} else {
 								srcSvg.setAttribute('src', 'icons/pause_list.svg');
 							}
 							clickTrack.querySelector('.play_now_list').setAttribute('src', 'icons/pause_list.svg');
@@ -365,7 +367,7 @@ function first() {
 	$('.track-player').innerText = localStorage.getItem('lastTrack');
 	$('.artist-player').innerText = localStorage.getItem('lastArtist');
 	$('.left-time').innerText = localStorage.getItem('lastFullTime');
-	if(!localStorage.getItem('lastVolumeLevel')){
+	if (!localStorage.getItem('lastVolumeLevel')) {
 		track.volume = 0.5;
 	}
 	$('.audioTag').volume = localStorage.getItem('lastVolumeLevel');
@@ -394,15 +396,23 @@ track.id = curId;
 switchButtons.forEach(btn => {
 	btn.addEventListener('click', (e) => {
 		curId = track.id;
-		if (curId >= trackList.length) {
-			curId = 0;
-		}
+		// if (curId >= trackList.length) {
+		// 	curId = 0;
+		// }
 		if (btn.className.includes('next-track')) {
 			++curId;
+			if(curId === trackList.length){
+				curId = 1;
+			}
+
 		}
 		if (btn.className.includes('previous-track')) {
 			--curId;
+			if (curId === 0) {
+				curId = trackList.length;
+			}
 		}
+
 
 		let elemFromList = document.getElementById(curId)
 		track.id = curId;
@@ -431,8 +441,8 @@ switchButtons.forEach(btn => {
 		}
 		playingTrack = elemFromList.id;
 		isPlaying = true;
-		if(window.innerWidth < 500){
-			srcSvg.setAttribute('src','icons/pause.svg');
+		if (window.innerWidth < 500) {
+			srcSvg.setAttribute('src', 'icons/pause.svg');
 		}
 		track.play()
 	})

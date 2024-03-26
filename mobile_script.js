@@ -48,7 +48,7 @@ cursor: pointer;
 width: 110px;
 height: 100%;`
 	bottomPanel.querySelector('.current-cover').style.cssText = `width: 110px; height: 110%';`;
-		bottomPanel.querySelector('.current-track').style.cssText = 'width: 110px; margin-top: -20px;';
+		bottomPanel.querySelector('.current-track').style.cssText = 'width: 110px; justify-content: center';
 		bottomPanel.querySelector('.track-player').style.cssText = 'font-size: 16px';
 		bottomPanel.querySelector('.artist-player').style.cssText = 'font-size: 16px';
 		trackControl.querySelector('.previous-track').style.display = 'none';
