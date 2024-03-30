@@ -186,19 +186,19 @@ class TrackControl {
 	endTrack() {
 		track.addEventListener('ended', (e) => {
 			track.currentTime = 0;
-
 			let endedTrack = document.getElementById(e.target.id);
 			endedTrack.querySelector('.play_now_list').setAttribute('src', 'icons/pause_list.svg');
-			if (window.innerWidth <= 500) {
-				srcSvg.setAttribute('src', 'icons/pause_list.svg');
-			} else {
-				srcSvg.setAttribute('src', 'icons/play.svg');
-			}
-
 			endedTrack.classList.remove('playing_now');
 			endedTrack.classList.add('paused_now');
 			isPlaying = false;
 			let idEndedTrack = e.srcElement.id;
+
+			//
+			let targetElem2 = +idEndedTrack  + 1;
+			let targetElem = document.getElementById(targetElem2);
+			trackData(targetElem)
+
+			//
 			if(idEndedTrack == arrSrc.length){
 				track.id = 1;
 				track.src = arrSrc[0];
@@ -216,7 +216,6 @@ class TrackControl {
 			} else {
 				srcSvg.setAttribute('src', 'icons/pause.svg');
 			}
-
 
 		})
 	}
