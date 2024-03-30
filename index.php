@@ -2,7 +2,7 @@
 	session_start();
 	//require_once ('tracks_data.php')
 	require_once('get_tracks.php');
-//    include 'registrationForm.php';
+    include 'registrationForm.php';
 	//require ('change_track.php');
 
 	$ley = "123";
@@ -242,7 +242,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 <script type="module" src="choose_tracks.js"></script>
 <script src="dragula.js"></script>
 <script src="mobile_script.js"></script>
-<!--<script src="registration_form.js"></script>-->
+<script src="registration_form.js"></script>
 
 <?php /*https://proweb63.ru/help/js/html5-audio-js
 https://stackoverflow.com/questions/4126708/is-it-possible-to-style-html5-audio-tag/4126871#4126871
@@ -270,5 +270,6 @@ GzKBud7&
 
 https://github.com/kopatich32/Diplom
 */?>
+
 </body>
 </html
