@@ -11,7 +11,7 @@ trackList.forEach(link => {
 	let srcTrack =link.querySelector('.track-link').value;
 	arrSrc.push(srcTrack)
 })
-console.log(arrSrc.length)
+
 let isPlaying = false;
 let playingTrack;
 let counterToBase = 0;
@@ -190,15 +190,16 @@ class TrackControl {
 			endedTrack.querySelector('.play_now_list').setAttribute('src', 'icons/pause_list.svg');
 			endedTrack.classList.remove('playing_now');
 			endedTrack.classList.add('paused_now');
-			isPlaying = false;
+
 			let idEndedTrack = e.srcElement.id;
+			// Упростить, есть playingTrack
+			if(idEndedTrack  == arrSrc.length){
+				playingTrack = 1;
+			}else{
+				playingTrack = +idEndedTrack  + 1;
+			}
+			let targetElem = document.getElementById(playingTrack);
 
-			//
-			let targetElem2 = +idEndedTrack  + 1;
-			let targetElem = document.getElementById(targetElem2);
-			trackData(targetElem)
-
-			//
 			if(idEndedTrack == arrSrc.length){
 				track.id = 1;
 				track.src = arrSrc[0];
@@ -211,6 +212,16 @@ class TrackControl {
 				track.play();
 				isPlaying = true;
 			}
+			trackData(targetElem)
+
+			// if ((idCurrentTrack + 1) === track.id) {
+			// 	clickTrack.querySelectorAll('.play_now').forEach(paint => {
+			// 		paint.style.color = '#5C67DE';
+			// 	})
+			// 	clickTrack.querySelector('.artist-main').style.color = 'white';
+			// }
+
+			console.log(track.id)
 			if (isPlaying && window.innerWidth > 500) {
 				srcSvg.setAttribute('src', 'icons/main-pause.svg');
 			} else {
