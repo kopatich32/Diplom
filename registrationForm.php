@@ -32,11 +32,12 @@ global $errors;
         </div>
     </form>
 </div>
-<?= @$GLOBALS['success_login']?>
+<?=@$_POST['auth_email'] ?>
+<div style="color: red; font-size: 20px"><?= @$GLOBALS['success_login']?></div>
 <div class="auth_wrapper">
     <form class="authForm" action="<?= htmlspecialchars($_SERVER['PHP_SELF'])?>" name="auth" method="POST" enctype="multipart/form-data">
         <p>Войти в профиль</p>
-        <?= @array_shift($auth_errors)?>
+        <div style="color: red; font-size: 26px"><?= @array_shift($auth_errors)?></div>
         <div class="insert_field">
             <div class="bottom">
                 <input type="email" name="auth_email" placeholder="Почта *" value="<?=@$_POST['auth_email'] ?>" required>

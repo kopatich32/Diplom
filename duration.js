@@ -5,6 +5,13 @@ let mute = document.querySelector('.mute');
 let volumeTrack = document.querySelector('.volume-track');
 let srcSvg = playBtn.querySelector('img');
 let trackList = document.querySelectorAll('.current-track-main');
+let arrSrc = [];
+// for next track on ended event
+trackList.forEach(link => {
+	let srcTrack =link.querySelector('.track-link').value;
+	arrSrc.push(srcTrack)
+})
+
 let isPlaying = false;
 let playingTrack;
 let counterToBase = 0;
@@ -179,18 +186,48 @@ class TrackControl {
 	endTrack() {
 		track.addEventListener('ended', (e) => {
 			track.currentTime = 0;
-
 			let endedTrack = document.getElementById(e.target.id);
 			endedTrack.querySelector('.play_now_list').setAttribute('src', 'icons/pause_list.svg');
-			if (window.innerWidth <= 500) {
-				srcSvg.setAttribute('src', 'icons/pause_list.svg');
-			} else {
-				srcSvg.setAttribute('src', 'icons/play.svg');
-			}
-
 			endedTrack.classList.remove('playing_now');
 			endedTrack.classList.add('paused_now');
-			isPlaying = false;
+
+			let idEndedTrack = e.srcElement.id;
+			// Упростить, есть playingTrack
+			if(idEndedTrack  == arrSrc.length){
+				playingTrack = 1;
+			}else{
+				playingTrack = +idEndedTrack  + 1;
+			}
+			let targetElem = document.getElementById(playingTrack);
+
+			if(idEndedTrack == arrSrc.length){
+				track.id = 1;
+				track.src = arrSrc[0];
+				track.play();
+				isPlaying = true;
+			}else{
+				track.id = ++idEndedTrack;
+				track.src = arrSrc[idEndedTrack  - 1];
+				track.currentTime  = 0;
+				track.play();
+				isPlaying = true;
+			}
+			trackData(targetElem)
+
+			// if ((idCurrentTrack + 1) === track.id) {
+			// 	clickTrack.querySelectorAll('.play_now').forEach(paint => {
+			// 		paint.style.color = '#5C67DE';
+			// 	})
+			// 	clickTrack.querySelector('.artist-main').style.color = 'white';
+			// }
+
+			console.log(track.id)
+			if (isPlaying && window.innerWidth > 500) {
+				srcSvg.setAttribute('src', 'icons/main-pause.svg');
+			} else {
+				srcSvg.setAttribute('src', 'icons/pause.svg');
+			}
+
 		})
 	}
 
@@ -344,12 +381,16 @@ function trackData(elem) {
 function fullDurationTrack(elem) {
 	let duration = (elem.duration / 60).toFixed(2).split('.');
 	let leftMin = elem.duration - duration[0] * 60;
-	if(Math.floor(leftMin) < 10){
-		leftTime.innerHTML = duration[0] + ':0' + (Math.ceil(leftMin));
-	}else{
-		leftTime.innerHTML = duration[0] + ':' + (Math.ceil(leftMin));
+if(duration[1] === '00'){
+		leftTime.innerHTML = duration[0] + ':' + duration[1];
 	}
-	console.log(leftMin)
+	else if(Math.floor(leftMin) < 10){
+		leftTime.innerHTML = duration[0] + ':0' + (Math.floor(leftMin));
+	}
+
+	else{
+		leftTime.innerHTML = duration[0] + ':' + (Math.floor(leftMin));
+	}
 }
 
 let classOfTrack = new TrackControl();
@@ -397,16 +438,14 @@ document.addEventListener('DOMContentLoaded', first);
 // SWITCH TRACK NEXT/PREVIOUS
 let switchButtons = document.querySelectorAll('.switch-track');
 let curId = localStorage.getItem('lastIDtrack');
-track.id = curId;
 switchButtons.forEach(btn => {
 	btn.addEventListener('click', (e) => {
+
 		curId = track.id;
-		// if (curId >= trackList.length) {
-		// 	curId = 0;
-		// }
 		if (btn.className.includes('next-track')) {
+			curId = track.id;
 			++curId;
-			if(curId === trackList.length){
+			if(curId === trackList.length+1){
 				curId = 1;
 			}
 		}
@@ -416,7 +455,6 @@ switchButtons.forEach(btn => {
 				curId = trackList.length;
 			}
 		}
-
 
 		let elemFromList = document.getElementById(curId)
 		track.id = curId;

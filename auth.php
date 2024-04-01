@@ -19,7 +19,8 @@ if (isset($_POST['reg'])) {
     $name = $_POST['reg_name'];
     $lastname = $_POST['reg_lastname'];
     $email = $_POST['reg_email'];
-    $password = password_hash($_POST['reg_password'], PASSWORD_DEFAULT);
+//    $password = password_hash($_POST['reg_password'], PASSWORD_DEFAULT);
+    $password = $_POST['reg_password'];
     $profile_avatar = $_FILES['avatar'];
     $role = 'user';
     if ($name == '') {
@@ -40,18 +41,28 @@ if (isset($_POST['reg'])) {
             $exist_email = '<div class="exist" style="border: 3px solid #af1212">Такой email уже зарегистрирован</div>';
         }else{
             @$connect->query("INSERT INTO `authorization`(`name`, `surname`, `email`, `password`, `avatar`, `role`) VALUES ('$name','$lastname','$email','$password','$profile_avatar','$role')");
-//            header('Location:'.$_SERVER['PHP_SELF'] . '?message=success');
-            header('Location:'.$_SERVER['PHP_SELF']);
+            header('Location:'.$_SERVER['PHP_SELF'] . '?message=success');
+
 
         }
     } else {
         echo '<div style="background: red">' . array_shift($errors) . '</div>';
     }
 }
-//if(@$_GET['message'] == 'success'){
-//    $GLOBALS['success'] = '<div class="success" style="border: 3px solid green">Успешная регистрация</div>';
-//        header('Location:'.$_SERVER['PHP_SELF']);
-//}
+if(@$_GET['message'] == 'success'){?>
+
+	<div class="success" onclick="clearURL()">
+		<div class="success-position">
+			<div class="success-message">успешная регистрация</div>
+			<div class="success-close-btn" onclick="clearURL()">
+				<img src="icons/close_form.svg" alt="">
+			</div>
+		</div>
+	</div>
+
+<?php }
+
+
 // Auth
 $auth_errors = [];
 if(isset($_POST['login'])){
@@ -60,9 +71,11 @@ if(isset($_POST['login'])){
     $auth_rows = $connect->query("SELECT * FROM `authorization` WHERE `email` = '$auth_email'");
     if($auth_rows->num_rows>0){
         $data = $auth_rows->fetch_assoc();
-        if(password_verify($auth_password, $data['password'])){
+		echo '<pre>' . print_r($data, true) . '</pre>';
+//        if(password_verify($auth_password, $data['password'])){
+        if($auth_password ==  $data['password']){
 
-            $success_login = 'Вы успешно вошли в профиль';
+	        $GLOBALS['success_login'] = 'Вы успешно вошли в профиль';
             $_SESSION['online'] = true;
             $_SESSION['name'] = $data['name'];
             $_SESSION['lastname'] = $data['surname'];

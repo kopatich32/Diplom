@@ -194,6 +194,7 @@ aside {
       border-radius: 15px;
       background: $front-background;
       overflow: hidden;
+      cursor: pointer;
 
       img {
         object-fit: cover;
@@ -491,27 +492,28 @@ footer {
 
 // FORM
 // Registration form
-.registration_wrapper{
+.registration_wrapper {
   display: none;
   //display: block;
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
-  @include size(100vw,100vh);
+  @include size(100vw, 100vh);
   z-index: 9999999999;
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
+  opacity: 88%;
+  background: -webkit-linear-gradient(44deg, #201e1e,#121111,#201d1f,#1a1919);
+  background: linear-gradient(44deg, #201e1e,#121111,#201d1f,#1a1919);
+
 
   form{
-    @include size(450px, 240px);
+    @include size(450px, 350px);
     @include flex(column, center,center);
     position: relative;
-    background-color: rgba(0, 0, 0, 0.67);
     top: 50%;
     left: 50%;
-    height: 350px;
-    border-radius: 5px;
+    background: linear-gradient(90deg, rgba(74,74,78,0.9178046218487395) 0%, rgba(56,56,61,0.8057598039215687) 46%, rgba(37,38,42,0.7833508403361344) 64%);
+    border-radius: 50px;
     transform: translate(-50%, -50%);
     box-shadow: 1px 1px 10px 2px black;
     p:first-child{
@@ -596,20 +598,23 @@ footer {
   top: 0;
   right: 0;
   bottom: 0;
+  opacity: 88%;
   @include size(100vw,100vh);
   z-index: 9999999999;
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(8px);
+  //-webkit-backdrop-filter: blur(10px);
+  //backdrop-filter: blur(10px);
+  background: -webkit-linear-gradient(44deg, #201e1e,#121111,#201d1f,#1a1919);
+  background: linear-gradient(44deg, #201e1e,#121111,#201d1f,#1a1919);
 
   form{
-    @include size(450px, 240px);
     @include flex(column, center,center);
     position: relative;
-    background-color: rgba(0, 0, 0, 0.67);
+    max-width: 450px;
     top: 50%;
     left: 50%;
+    background: linear-gradient(90deg, rgba(74,74,78,0.9178046218487395) 0%, rgba(56,56,61,0.8057598039215687) 46%, rgba(37,38,42,0.7833508403361344) 64%);
     height: 350px;
-    border-radius: 5px;
+    border-radius: 50px;
     transform: translate(-50%, -50%);
     box-shadow: 1px 1px 10px 2px black;
     .insert_field{
@@ -618,6 +623,7 @@ footer {
         margin-bottom: 25px;
       }
     }
+
     p:first-child{
       margin-bottom: 20px;
       margin-top: 20px;
@@ -751,5 +757,36 @@ footer {
   bottom: 0;
   z-index: 6;
   justify-content: normal;
+  }
+}
+//success reg
+.success {
+  @include flex(row, center, center);
+  width: 100svw;
+  height: 100svh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  backdrop-filter: blur(4px);
+  .success-position {
+position: relative;
+  }
+ .success-message {
+   color: #d0d0d0;
+   padding: 40px 60px 40px 40px;
+   font-size: 50px;
+   border-radius: 50px;
+   box-shadow: 1px 1px 10px 2px white;
+ }
+  .success-close-btn {
+    @include size(40px, 40px);
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    img {
+      @include size(100%, 100%);
+      object-fit: cover;
+    }
   }
 }
