@@ -192,13 +192,13 @@ class TrackControl {
 			endedTrack.classList.add('paused_now');
 
 			let idEndedTrack = e.srcElement.id;
-			// Упростить, есть playingTrack
 			if(idEndedTrack  == arrSrc.length){
 				playingTrack = 1;
 			}else{
 				playingTrack = +idEndedTrack  + 1;
 			}
 			let targetElem = document.getElementById(playingTrack);
+			console.log(targetElem)
 
 			if(idEndedTrack == arrSrc.length){
 				track.id = 1;
@@ -212,6 +212,17 @@ class TrackControl {
 				track.play();
 				isPlaying = true;
 			}
+
+			console.log(track.id)
+
+			if (targetElem  == track.id) {
+				alert('sksa')
+				targetElem.querySelectorAll('.play_now').forEach(paint => {
+					paint.style.color = '#5C67DE';
+				})
+				targetElem.querySelector('.artist-main').style.color = 'white';
+			}
+
 			trackData(targetElem)
 
 			// if ((idCurrentTrack + 1) === track.id) {
@@ -221,7 +232,6 @@ class TrackControl {
 			// 	clickTrack.querySelector('.artist-main').style.color = 'white';
 			// }
 
-			console.log(track.id)
 			if (isPlaying && window.innerWidth > 500) {
 				srcSvg.setAttribute('src', 'icons/main-pause.svg');
 			} else {
