@@ -345,10 +345,11 @@ function fullDurationTrack(elem) {
 	let duration = (elem.duration / 60).toFixed(2).split('.');
 	let leftMin = elem.duration - duration[0] * 60;
 	if(Math.floor(leftMin) < 10){
-		leftTime.innerHTML = duration[0] + ':0' + (Math.floor(leftMin));
+		leftTime.innerHTML = duration[0] + ':0' + (Math.ceil(leftMin));
 	}else{
-		leftTime.innerHTML = duration[0] + ':' + (Math.floor(leftMin));
+		leftTime.innerHTML = duration[0] + ':' + (Math.ceil(leftMin));
 	}
+	console.log(leftMin)
 }
 
 let classOfTrack = new TrackControl();
