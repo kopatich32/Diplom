@@ -185,6 +185,15 @@ class TrackControl {
 
 	endTrack() {
 		track.addEventListener('ended', (e) => {
+			// console.log(trackList)
+			// for (let i = 0; i < trackList.length; i++) {
+			// 	trackList[i].classList.remove('playing_now');
+			// 	trackList[i].classList.remove('paused_now');
+			// 	trackList[i].classList.remove('PastPaused');
+			// }
+
+
+
 			track.currentTime = 0;
 			let endedTrack = document.getElementById(e.target.id);
 			endedTrack.querySelector('.play_now_list').setAttribute('src', 'icons/pause_list.svg');
@@ -192,13 +201,29 @@ class TrackControl {
 			endedTrack.classList.add('paused_now');
 
 			let idEndedTrack = e.srcElement.id;
+
+
+
 			// Упростить, есть playingTrack
 			if(idEndedTrack  == arrSrc.length){
 				playingTrack = 1;
 			}else{
 				playingTrack = +idEndedTrack  + 1;
 			}
-			let targetElem = document.getElementById(playingTrack);
+			let nextTrackAfterEnd = document.getElementById(playingTrack);
+
+			console.log(nextTrackAfterEnd)
+
+			trackList.forEach(clearIcon => {
+				clearIcon.querySelector('.play_now_list').setAttribute('src', 'icons/play_list.svg')
+			})
+
+
+				nextTrackAfterEnd.querySelectorAll('.play_now').forEach(paint => {
+					paint.style.color = '#5C67DE';
+				})
+			nextTrackAfterEnd.querySelector('.artist-main').style.color = 'white';
+
 
 			if(idEndedTrack == arrSrc.length){
 				track.id = 1;
@@ -212,16 +237,10 @@ class TrackControl {
 				track.play();
 				isPlaying = true;
 			}
-			trackData(targetElem)
+			trackData(nextTrackAfterEnd)
 
-			// if ((idCurrentTrack + 1) === track.id) {
-			// 	clickTrack.querySelectorAll('.play_now').forEach(paint => {
-			// 		paint.style.color = '#5C67DE';
-			// 	})
-			// 	clickTrack.querySelector('.artist-main').style.color = 'white';
-			// }
 
-			console.log(track.id)
+
 			if (isPlaying && window.innerWidth > 500) {
 				srcSvg.setAttribute('src', 'icons/main-pause.svg');
 			} else {
@@ -385,11 +404,11 @@ if(duration[1] === '00'){
 		leftTime.innerHTML = duration[0] + ':' + duration[1];
 	}
 	else if(Math.floor(leftMin) < 10){
-		leftTime.innerHTML = duration[0] + ':0' + (Math.floor(leftMin));
+		leftTime.innerHTML = duration[0] + ':0' + (Math.ceil(leftMin));
 	}
 
 	else{
-		leftTime.innerHTML = duration[0] + ':' + (Math.floor(leftMin));
+		leftTime.innerHTML = duration[0] + ':' + (Math.ceil(leftMin));
 	}
 }
 

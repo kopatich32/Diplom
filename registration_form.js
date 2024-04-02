@@ -15,7 +15,7 @@ let fileInput = $('.file-input').parentElement;
 
 //Scroll width
 let scrollwidth = window.innerWidth - document.documentElement.clientWidth;
-console.log(scrollwidth+'px');
+
 
 document.addEventListener('click', (e) => {
     if (accBtn.contains(e.target)) {
