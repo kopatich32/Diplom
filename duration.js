@@ -201,10 +201,6 @@ class TrackControl {
 			endedTrack.classList.add('paused_now');
 
 			let idEndedTrack = e.srcElement.id;
-
-
-
-			// Упростить, есть playingTrack
 			if(idEndedTrack  == arrSrc.length){
 				playingTrack = 1;
 			}else{
@@ -237,7 +233,7 @@ class TrackControl {
 				track.play();
 				isPlaying = true;
 			}
-			trackData(nextTrackAfterEnd)
+			trackData(nextTrackAfterEnd);
 
 
 
