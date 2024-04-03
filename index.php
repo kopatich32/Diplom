@@ -1,11 +1,11 @@
 <?php
 	session_start();
+	global $arResult;
+	global $curID;
 	//require_once ('tracks_data.php')
-	require_once('get_tracks.php');
+	include 'get_tracks.php';
     include 'registrationForm.php';
 	//require ('change_track.php');
-
-	$ley = "123";
 ?>
 <?
 	$width = "<script>
@@ -105,39 +105,32 @@ document.addEventListener('DOMContentLoaded',()=>{
                 </div>
                 <div class="track-area">
 					<?php
-						global $query;
-						global $connect;
-                        global $pagination;
-						$cursor = 0;
-						while ($track_data = $query->fetch_assoc()):
-							$trackCover = $track_data['cover'] != "" ? $track_data['cover'] : '/icons/no_cover.svg';
-							if ($cursor == 0) {
-								$ley = $track_data;
-								$cursor++;
-							}
+						foreach ($arResult as $arItem):
+							$trackCover = $arItem['cover'] != "" ? $arItem['cover'] : '/icons/no_cover.svg';
 							?>
-                            <div id="<?= $track_data['id'] ?>" class="current-track-main cursor-grab" data-track_id="<?= $track_data['id'] ?>">
-                                <div class="track-number play_now"><?= $track_data['id'] ?></div>
+
+                            <div id="<?= $arItem['id'] ?>" class="current-track-main cursor-grab" data-track_id="<?= $arItem['id'] ?>">
+                                <div class="track-number play_now"><?=$arItem['EXIST_ID'] ?></div>
                                 <div class="track-main">
                                     <div class="main-cover">
                                         <img class="track-cover"  style="width: 45px; height: 45px" src="<?= $trackCover ?>" alt="cover">
                                     </div>
                                     <div class="current-track-cover">
-                                        <div class="track-name-main play_now"><?= $track_data['track_name'] ?></div>
-                                        <div class="artist-main"><?= $track_data['artist'] ?></div>
+                                        <div class="track-name-main play_now"><?= $arItem['track_name'] ?></div>
+                                        <div class="artist-main"><?= $arItem['artist'] ?></div>
                                     </div>
                                 </div>
-                                <div class="duration-main play_now"><?= $track_data['duration'] ?></div>
-                                <div class="listening-main play_now"><?= $track_data['listening'] ?></div>
+                                <div class="duration-main play_now"><?= $arItem['duration'] ?></div>
+                                <div class="listening-main play_now"><?= $arItem['listening'] ?></div>
                                 <div class="is_play">
                                     <img loading="lazy" class="play_now_list" src="icons/play_list.svg" alt="">
                                 </div>
                                 <div class="track-detail">
                                     <img src="icons/track_info.svg" alt="">
                                 </div>
-                                <input class="track-link" type="text" value="<?= $track_data['link'] ?>" hidden>
+                                <input class="track-link" type="text" value="<?= $arItem['link'] ?>" hidden>
                             </div>
-						<?php endwhile ?>
+						<?php endforeach ?>
                 </div>
             </main>
         </div>
@@ -238,7 +231,6 @@ document.addEventListener('DOMContentLoaded',()=>{
 
 <audio style="display: block" class="audioTag" id="" src="tracks/Deafheaven_-_The_Gnashing.mp3" controls></audio>
 <script type="module" src="duration.js"></script>
-<script type="module" src="filter.js"></script>
 <script type="module" src="choose_tracks.js"></script>
 <script src="dragula.js"></script>
 <script src="mobile_script.js"></script>

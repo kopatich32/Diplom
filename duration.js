@@ -185,13 +185,13 @@ class TrackControl {
 
 	endTrack() {
 		track.addEventListener('ended', (e) => {
-			// console.log(trackList)
-			// for (let i = 0; i < trackList.length; i++) {
-			// 	trackList[i].classList.remove('playing_now');
-			// 	trackList[i].classList.remove('paused_now');
-			// 	trackList[i].classList.remove('PastPaused');
-			// }
 
+			document.querySelectorAll('.play_now').forEach(paint => {
+				paint.style.color = '';
+			})
+			document.querySelectorAll('.artist-main').forEach(artisColor => {
+				artisColor.style.color = '';
+			})
 
 
 			track.currentTime = 0;
@@ -207,8 +207,7 @@ class TrackControl {
 				playingTrack = +idEndedTrack  + 1;
 			}
 			let nextTrackAfterEnd = document.getElementById(playingTrack);
-
-			console.log(nextTrackAfterEnd)
+			saveToStorage(nextTrackAfterEnd)
 
 			trackList.forEach(clearIcon => {
 				clearIcon.querySelector('.play_now_list').setAttribute('src', 'icons/play_list.svg')
@@ -331,12 +330,7 @@ class TrackControl {
 						trackData(clickTrack);
 					}
 					playingTrack = clickTrack.dataset.track_id;
-					localStorage.setItem('lastArtist', clickTrack.querySelector('.artist-main').innerText);
-					localStorage.setItem('lastTrack', clickTrack.querySelector('.track-name-main').innerText);
-					localStorage.setItem('lastCover', clickTrack.querySelector('.track-cover').src);
-					localStorage.setItem('lastFullTime', clickTrack.querySelector('.duration-main').innerText);
-					localStorage.setItem('lastLink', track.src);
-					localStorage.setItem('lastIDtrack', clickTrack.dataset.track_id);
+					saveToStorage(clickTrack)
 				}
 				this.listeningCounter = track.currentTime;
 			})
@@ -448,6 +442,16 @@ function first() {
 	})
 }
 
+function saveToStorage (lastTrack) {
+	localStorage.setItem('lastArtist', lastTrack.querySelector('.artist-main').innerText);
+	localStorage.setItem('lastTrack', lastTrack.querySelector('.track-name-main').innerText);
+	localStorage.setItem('lastCover', lastTrack.querySelector('.track-cover').src);
+	localStorage.setItem('lastFullTime', lastTrack.querySelector('.duration-main').innerText);
+	// localStorage.setItem('lastLink', track.src);
+	localStorage.setItem('lastLink', lastTrack.querySelector('.track-link').value);
+	localStorage.setItem('lastIDtrack', lastTrack.dataset.track_id);
+}
+
 document.addEventListener('DOMContentLoaded', first);
 
 // SWITCH TRACK NEXT/PREVIOUS
@@ -455,9 +459,15 @@ let switchButtons = document.querySelectorAll('.switch-track');
 let curId = localStorage.getItem('lastIDtrack');
 switchButtons.forEach(btn => {
 	btn.addEventListener('click', (e) => {
+		// For save to localStorage on next/prev btn
+		let nextStorage = +track.id + 1;
+		let prevStorage = +track.id -1;
+		let nextElem = document.getElementById(nextStorage)
+		let prevElem = document.getElementById(prevStorage)
 
-		curId = track.id;
+		// curId = track.id;
 		if (btn.className.includes('next-track')) {
+			saveToStorage(nextElem)
 			curId = track.id;
 			++curId;
 			if(curId === trackList.length+1){
@@ -465,6 +475,7 @@ switchButtons.forEach(btn => {
 			}
 		}
 		if (btn.className.includes('previous-track')) {
+			saveToStorage(prevElem)
 			--curId;
 			if (curId === 0) {
 				curId = trackList.length;
