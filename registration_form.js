@@ -5,7 +5,7 @@ let formReg = document.forms.registration;
 let formAuth = document.forms.auth;
 let regWrapper = $('.registration_wrapper');
 let authWrapper = $('.auth_wrapper');
-let accBtn = $('.profile');
+let accBtn = $('.profile-offline');
 let regButton = $('button[name="sign_in"]');
 // let loginBtn = $('button[name="login"]');
 let registration = $('button[name="reg"]');

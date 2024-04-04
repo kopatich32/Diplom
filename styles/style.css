@@ -161,14 +161,14 @@ aside {
       align-items: center;
       background: #1A1A1A;
       border-radius: 15px; }
-    .cnt header .profile {
+    .cnt header .profile-offline, .cnt header .profile-online {
       width: 50px;
       height: 50px;
       border-radius: 15px;
       background: #1A1A1A;
       overflow: hidden;
       cursor: pointer; }
-      .cnt header .profile img {
+      .cnt header .profile-offline img, .cnt header .profile-online img {
         object-fit: cover;
         width: 100%;
         height: 100%; }
@@ -657,5 +657,21 @@ footer {
       width: 100%;
       height: 100%;
       object-fit: cover; }
+
+.profile-menu {
+  height: 100vh;
+  width: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 9999;
+  transition: .5s;
+  background: #1A1A1A; }
+
+.profile-online:hover .profile-menu {
+  left: 0;
+  width: 100vw;
+  z-index: 99999999999;
+  transition: .5s; }
 
 /*# sourceMappingURL=style.css.map */

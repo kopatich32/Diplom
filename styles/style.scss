@@ -189,7 +189,7 @@ aside {
       border-radius: 15px;
     }
 
-    .profile {
+    .profile-offline, .profile-online {
       @include size(50px, 50px);
       border-radius: 15px;
       background: $front-background;
@@ -789,4 +789,23 @@ position: relative;
       object-fit: cover;
     }
   }
+}
+
+//Profile
+.profile-menu {
+  height: 100vh;
+  width: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 9999;
+  transition: .5s;
+  background: #1A1A1A;
+
+}
+.profile-online:hover .profile-menu{
+  left: 0;
+  width: 100vw;
+  z-index: 99999999999;
+  transition: .5s;
 }

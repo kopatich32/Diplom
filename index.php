@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                     <input type="text" placeholder="i want to listen...">
                 </label>
                 <div class="notification"><img src="icons/bell.svg" alt="notification"></div>
-                <div class="profile"><img src="icons/vse-ochen-ploho.jpg" alt="user-photo "></div>
+                <div class="profile-<?=$_SESSION ? 'online' : 'offline'?>"><img src="icons/vse-ochen-ploho.jpg" alt="user-photo "></div>
             </header>
             <main>
                 <div class="podcast-img"><img src="icons/podcast.png" alt="podcast-picture"></div>
@@ -228,8 +228,10 @@ document.addEventListener('DOMContentLoaded',()=>{
         </div>
     </footer>
 </div>
+<!--Profile meni-->
+<div class="profile-menu"></div>
 
-<audio style="display: block" class="audioTag" id="" src="tracks/Deafheaven_-_The_Gnashing.mp3" controls></audio>
+<audio style="display: none" class="audioTag" id="" src="tracks/Deafheaven_-_The_Gnashing.mp3" controls></audio>
 <script type="module" src="duration.js"></script>
 <script type="module" src="choose_tracks.js"></script>
 <script src="dragula.js"></script>

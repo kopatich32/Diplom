@@ -66,23 +66,27 @@ if(@$_GET['message'] == 'success'){?>
 // Auth
 $auth_errors = [];
 if(isset($_POST['login'])){
-    $auth_email = $_POST['auth_email'];
+	
+	$auth_email = $_POST['auth_email'];
     $auth_password = $_POST['auth_password'];
     $auth_rows = $connect->query("SELECT * FROM `authorization` WHERE `email` = '$auth_email'");
     if($auth_rows->num_rows>0){
         $data = $auth_rows->fetch_assoc();
-		echo '<pre>' . print_r($data, true) . '</pre>';
 //        if(password_verify($auth_password, $data['password'])){
         if($auth_password ==  $data['password']){
 
-	        $GLOBALS['success_login'] = 'Вы успешно вошли в профиль';
+//	        $GLOBALS['success_login'] = 'Вы успешно вошли в профиль';
             $_SESSION['online'] = true;
             $_SESSION['name'] = $data['name'];
+			$_SESSION['password'] = $data['password'];
             $_SESSION['lastname'] = $data['surname'];
             $_SESSION['user'] = $data['email'];
             $_SESSION['avatar'] = $data['avatar'];
             $_SESSION['role'] = $data['role'];
-            header('Location:'.$_SERVER['PHP_SELF']);
+	        
+	        header('Location:'.$_SERVER['PHP_SELF'] . '?message=success_auth');
+	     
+	        
         }else{
             $auth_errors['invalid_pass'] = 'Не верно введен пароль';
         }
@@ -91,3 +95,14 @@ if(isset($_POST['login'])){
     }
 
 }
+	if(@$_GET['message'] == 'success_auth'){?>
+		<div class="success" onclick="clearURL()">
+			<div class="success-position">
+				<div class="success-message">успешная авторизация</div>
+				<div class="success-close-btn" onclick="clearURL()">
+					<img src="icons/close_form.svg" alt="">
+				</div>
+			</div>
+		</div>
+	<?php }
+//	echo '<pre>' . print_r($_SESSION,true) . '</pre>';
