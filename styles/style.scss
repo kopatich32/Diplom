@@ -195,6 +195,8 @@ aside {
       background: $front-background;
       overflow: hidden;
       cursor: pointer;
+      position: relative;
+      z-index: 11;
 
       img {
         object-fit: cover;
@@ -202,7 +204,6 @@ aside {
         height: 100%;
       }
     }
-
     div {
       margin-right: 10px;
     }
@@ -794,18 +795,57 @@ position: relative;
 //Profile
 .profile-menu {
   height: 100vh;
-  width: 0;
+  width: 50vw;
   position: absolute;
   top: 0;
   right: 0;
-  z-index: 9999;
+  z-index: 10;
   transition: .5s;
   background: #1A1A1A;
+  padding: 0 0 0 20px;
+  box-shadow: 2px 2px 13px 2px #ffffff;
+}
+.profile-data {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  margin: 100px 0 0 50px;
+  @include size(500px, auto);
+  h1 {
+    grid-column: span 2;
+    justify-self: center;
+  }
+  div{
+    font-size: 22px;
+  }
+  .track-amount{
+    grid-row: 3/4;
+    grid-column: 1/2;
+  }
 
 }
-.profile-online:hover .profile-menu{
-  left: 0;
-  width: 100vw;
-  z-index: 99999999999;
-  transition: .5s;
+.edit-profile {
+  grid-column: span 2;
+  padding:  20px 0;
+  border-radius: 14px;
+  font-size: 20px;
+  cursor: pointer;
+}
+.profile-data--add-track-wrapper {
+  position: relative;
+  justify-self: center;
+  grid-row: 3/4;
+  grid-column: 2/3;
+  input {
+    @include size(50px, 50px);
+    position: absolute;
+    cursor: pointer;
+    opacity: 0;
+    top: 0;
+    left: 0;
+  }
+  @include size(50px, 50px);
+  img {
+    @include size(100%, 100%);
+  }
 }

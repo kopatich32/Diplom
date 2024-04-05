@@ -229,7 +229,48 @@ document.addEventListener('DOMContentLoaded',()=>{
     </footer>
 </div>
 <!--Profile meni-->
-<div class="profile-menu"></div>
+<form id="new-track" method="POST" enctype="multipart/form-data">
+    <div class="profile-menu">
+        <div class="profile-data">
+            <h1><?= $_SESSION['name'] ?></h1>
+            <div class="playlist-amount">Количество плейлистов: 0</div>
+            <div class="track-amount">Всего треков: <?= count($arResult) ?></div>
+
+            <span class="profile-data--add-track-wrapper" title="Добавить новый трек">
+                <img src="icons/addTrack.svg" alt="">
+                <input class="new-profile-track" type="file" name="NEW_PROFILE_TRACK">
+            </span>
+            <button class="edit-profile" type="submit" name="EDIT_PROFILE">изменить профиль</button>
+        </div>
+    </div>
+</form>
+<script>
+    document.querySelector('.new-profile-track').addEventListener('change', function(event) {
+        event.preventDefault();
+        let formData = document.querySelector('.new-profile-track').value;
+        console.log(formData)
+        fetch('upload_track.php', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+            });
+    });
+
+</script>
+
+
+
+<?
+if($_FILES){
+echo '<pre>' . print_r($_FILES, true) . '</pre>';
+}
+?>
 
 <audio style="display: none" class="audioTag" id="" src="tracks/Deafheaven_-_The_Gnashing.mp3" controls></audio>
 <script type="module" src="duration.js"></script>
@@ -237,6 +278,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 <script src="dragula.js"></script>
 <script src="mobile_script.js"></script>
 <script src="registration_form.js"></script>
+<script src="profile.js"></script>
 
 <?php /*https://proweb63.ru/help/js/html5-audio-js
 https://stackoverflow.com/questions/4126708/is-it-possible-to-style-html5-audio-tag/4126871#4126871
