@@ -7,7 +7,7 @@
     include 'registrationForm.php';
 	//require ('change_track.php');
 ?>
-<?
+<?php
 	$width = "<script>
 document.addEventListener('DOMContentLoaded',()=>{
 	return document.write(window.innerWidth)
@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded',()=>{
     <link rel="stylesheet" href="dragula-master/dist/dragula.css">
     <script src="dragula-master/dist/dragula.js"></script>
     <script src="jsmediatags.min.js"></script>
-    <script src="howler.min.js"></script>
     <title>Мой плейлист</title>
 </head>
 <body>
@@ -230,7 +229,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         </div>
     </footer>
 </div>
-<!--Profile meni-->
+<!--Profile menu-->
 <form id="new-track" method="POST" enctype="multipart/form-data">
     <div class="profile-menu">
         <div class="profile-data">
@@ -251,8 +250,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 
     document.querySelector('.new-profile-track').addEventListener("change", function(e){
         let file = e.target.files[0];
-        let isEmptyArtis = file.name;
-        let audio = new Audio();
+        let audio = new Audio()
         audio.src = URL.createObjectURL(file);
         audio.onloadedmetadata = function() {
             let duration = (audio.duration / 60).toFixed(2).split('.');
@@ -271,25 +269,38 @@ document.addEventListener('DOMContentLoaded',()=>{
                     let trackCover = tag.tags.picture;
                     let URLimg;
                     let mainTrackData = {
-                        'cover': URLimg,
-                        'artist': tag.tags.artist ?? 'Неизвестный исполнитель',
-                        'trackName': tag.tags.title ?? 'Неизвестный трек',
-                        'duration': {'min': duration[0], 'seconds': leftSec},
-                        'ig_empty_artist_or_track_name': isEmptyArtis,
+                        'COVER': URLimg,
+                        'ARTIST': tag.tags.artist,
+                        'TRACK_NAME': tag.tags.title,
+                        'DURATION': {'MIN': duration[0], 'SECONDS': leftSec},
+                        'IS_EMPTY_ARTIST_OR_TRACK_NAME': file.name,
                     }
                     if(trackCover){
                         let blob = new Blob([new Uint8Array(trackCover.data.flat())],{type: trackCover.format});
-                        let URLimg = URL.createObjectURL(blob);
-                        mainTrackData.cover = URLimg;
+                        mainTrackData.COVER = URL.createObjectURL(blob);
                     }else{
-                        mainTrackData.cover = null;
+                        mainTrackData.COVER = null;
                     }
-                    document.querySelector('.test-img').src = mainTrackData.cover;
-                    console.log(mainTrackData)
+                    if(!mainTrackData.ARTIST){
+                        mainTrackData.ARTIST = null
+                    }
+                    if(!mainTrackData.TRACK_NAME){
+                        mainTrackData.TRACK_NAME = null
+                    }
+                    // console.log(mainTrackData)
+                    // document.querySelector('.test-img').src = mainTrackData.COVER;
+                    fetch('upload_track.php', {
+                        method: 'POST',
+                        body: JSON.stringify(mainTrackData),
+                    })
+                        .then(resp => resp.text())
+                        .then(data => console.log(data))
+
                 },
                 onError: function (error) {
                     console.log(error)
                 }
+
             })
         }
     })

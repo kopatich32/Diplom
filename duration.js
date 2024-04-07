@@ -248,14 +248,12 @@ class TrackControl {
 	chooseTrack() {
 		trackList.forEach(audio => {
 			audio.addEventListener('click', (e) => {
-				// if (window.innerWidth <= 500) {
-				// 	track.volume = 1;
-				// }
-				// if(!localStorage.getItem('lastVolumeLevel')){
-				// 	track.volume = 0.5;
-				// }
-
-
+				if(!localStorage.getItem('lastVolumeLevel')){
+					track.volume = 0.5;
+				}
+				if (window.innerWidth <= 500 ) {
+					track.volume = 1;
+				}
 				trackList.forEach(clearIcon => {
 					clearIcon.querySelector('.play_now_list').setAttribute('src', 'icons/play_list.svg')
 				})
