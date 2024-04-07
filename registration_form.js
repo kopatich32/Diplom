@@ -5,11 +5,10 @@ let formReg = document.forms.registration;
 let formAuth = document.forms.auth;
 let regWrapper = $('.registration_wrapper');
 let authWrapper = $('.auth_wrapper');
-let accBtn = $('.profile-offline');
 let regButton = $('button[name="sign_in"]');
 // let loginBtn = $('button[name="login"]');
 let registration = $('button[name="reg"]');
-let auth = $('.auth');
+// let auth = $('.auth');
 let fileInput = $('.file-input').parentElement;
 
 
@@ -18,19 +17,17 @@ let scrollwidth = window.innerWidth - document.documentElement.clientWidth;
 
 
 document.addEventListener('click', (e) => {
-    if (accBtn.contains(e.target)) {
+    if ($('.profile-offline').contains(e.target)) {
         e.preventDefault();
         authWrapper.style.display = 'block';
         document.body.style.cssText +=
             `overflow: hidden;
-            padding-right: ${scrollwidth}px;
+             padding-right: ${scrollwidth}px;
             `
     } else if (!formAuth.contains(e.target)) {
         authWrapper.style.display = 'none';
         document.body.style.overflow = null;
         document.body.style.paddingRight = null;
-
-
     }
 
     if (regButton.contains(e.target)) { //sign_in
@@ -41,7 +38,7 @@ document.addEventListener('click', (e) => {
     }else if(!formReg.contains(e.target)){
         regWrapper.style.display = 'none';
     }
-    if(auth.contains(e.target)){
+    if($('.auth').contains(e.target)){
         e.preventDefault();
         regWrapper.style.display = 'none';
         authWrapper.style.display = 'block';

@@ -1,12 +1,18 @@
 <?php
-	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-		$targetDirectory = "tracks/"; // Папка для сохранения загруженных файлов
-		$targetFile = $targetDirectory . basename($_FILES["NEW_PROFILE_TRACK"]["name"]);
+//$uploadFile = json_decode(file_get_contents('php://input'),true);
+//$res = '';
+//if($uploadFile){
+//		$res =  json_encode($uploadFile);
+//		$artisDB = explode(' ', $res);
+//		$uploadLink = 'tracks/'.$artisDB[0];
+//		print_r($res);
+//	$db = new mysqli('localhost', 'root', '', 'player');
+//	$row = $db->query("INSERT INTO `tracks` (`track_name`, `artist`, `duration`, `link`) VALUES ('$artisDB[0]','$artisDB[0]','99','$uploadLink')");
 
-		if (move_uploaded_file($_FILES["NEW_PROFILE_TRACK"]["tmp_name"], $targetFile)) {
-			echo "Файл успешно загружен и сохранен."; // Возвращает сообщение об успешной загрузке
-		} else {
-			echo "Произошла ошибка при загрузке файла."; // Возвращает сообщение об ошибке
-		}
-	}
-?>
+	//}
+//	require( 'vendor/wapmorgan/mp3info/src/Mp3Info.php' );
+//	use wapmorgan\Mp3Info\Mp3Info;
+//	$audio = new Mp3Info($res);
+//	$getDuration = $audio->duration / 60;
+//	$resDuration = round($getDuration, 2) ;
+//	echo '<pre>' . print_r($audio, true) . '</pre>';

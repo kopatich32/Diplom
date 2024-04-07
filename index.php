@@ -26,6 +26,8 @@ document.addEventListener('DOMContentLoaded',()=>{
     <link rel="icon" href="icons/play.svg" type="image/svg+xml">
     <link rel="stylesheet" href="dragula-master/dist/dragula.css">
     <script src="dragula-master/dist/dragula.js"></script>
+    <script src="jsmediatags.min.js"></script>
+    <script src="howler.min.js"></script>
     <title>Мой плейлист</title>
 </head>
 <body>
@@ -244,33 +246,63 @@ document.addEventListener('DOMContentLoaded',()=>{
         </div>
     </div>
 </form>
+<img style="width: 100px; height: 100px" class="test-img" src="" alt="">
 <script>
-    document.querySelector('.new-profile-track').addEventListener('change', function(event) {
-        event.preventDefault();
-        let formData = document.querySelector('.new-profile-track').value;
-        console.log(formData)
-        fetch('upload_track.php', {
-            method: 'POST',
-            body: formData
-        })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
+
+    document.querySelector('.new-profile-track').addEventListener("change", function(e){
+        let file = e.target.files[0];
+        let isEmptyArtis = file.name;
+        let audio = new Audio();
+        audio.src = URL.createObjectURL(file);
+        audio.onloadedmetadata = function() {
+            let duration = (audio.duration / 60).toFixed(2).split('.');
+            let leftSec = Math.floor(audio.duration - duration[0] * 60);
+            if(duration[1] === '00'){
+                leftSec = '00';
+            }
+            else if(Math.floor(leftSec) < 10){
+                leftSec = '0' + (Math.ceil(leftSec));
+            }
+            else {
+                leftSec = (Math.ceil(leftSec)).toString();
+            }
+            jsmediatags.read(file, {
+                onSuccess: function (tag) {
+                    let trackCover = tag.tags.picture;
+                    let URLimg;
+                    let mainTrackData = {
+                        'cover': URLimg,
+                        'artist': tag.tags.artist ?? 'Неизвестный исполнитель',
+                        'trackName': tag.tags.title ?? 'Неизвестный трек',
+                        'duration': {'min': duration[0], 'seconds': leftSec},
+                        'ig_empty_artist_or_track_name': isEmptyArtis,
+                    }
+                    if(trackCover){
+                        let blob = new Blob([new Uint8Array(trackCover.data.flat())],{type: trackCover.format});
+                        let URLimg = URL.createObjectURL(blob);
+                        mainTrackData.cover = URLimg;
+                    }else{
+                        mainTrackData.cover = null;
+                    }
+                    document.querySelector('.test-img').src = mainTrackData.cover;
+                    console.log(mainTrackData)
+                },
+                onError: function (error) {
+                    console.log(error)
+                }
             })
-            .catch(error => {
-                console.error('Ошибка:', error);
-            });
-    });
+        }
+    })
 
 </script>
 
 
 
-<?
-if($_FILES){
-echo '<pre>' . print_r($_FILES, true) . '</pre>';
-}
-?>
+<?php //
+//if($_FILES){
+//echo '<pre>' . print_r($_FILES['NEW_PROFILE_TRACK'], true) . '</pre>';
+//}
+//?>
 
 <audio style="display: none" class="audioTag" id="" src="tracks/Deafheaven_-_The_Gnashing.mp3" controls></audio>
 <script type="module" src="duration.js"></script>
@@ -287,7 +319,7 @@ https://packagist.org/packages/wapmorgan/mp3info
 
 
 <!--<h1>https://yandex.ru/dev/audio/jsapi/doc/dg/concepts/load.html</h1>-->
-<?/*
+<?php /*
 beget
 Логин: r93987lp
 Пароль: dKojXS3cuA9P
