@@ -849,3 +849,44 @@ position: relative;
     @include size(100%, 100%);
   }
 }
+
+// ToolTip
+.confirm_wrapper{
+  display: none;
+  position: relative;
+}
+.confirm_delete_message{
+  position: absolute;
+  @include flex(column, center,center);
+  border: 1px solid black;
+  width: 140px;
+  padding: 10px 0;
+  background: white;
+  &::after{
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    border-top: 15px solid black;
+    border-right: 15px solid transparent;
+    border-left: 15px solid transparent;
+  }
+  &::before{
+    content: '';
+    position: absolute;
+    bottom: -14px;
+    border-top: 14px solid white;
+    border-right: 14px solid transparent;
+    border-left: 14px solid transparent;
+    z-index: 100;
+  }
+
+  .choose{
+    .yes, .no{
+      padding: 0 10px 0 10px;
+      margin-top: 6px;
+    }
+    .yes{
+      margin-right: 10px;
+    }
+  }
+}

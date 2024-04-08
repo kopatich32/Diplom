@@ -104,6 +104,18 @@ document.addEventListener('DOMContentLoaded',()=>{
                     <div class="listening"><img src="icons/listening.svg" alt="listening"></div>
                     <div></div>
                 </div>
+<!--	            Tooltip-->
+	            <div class="confirm_wrapper">
+		            <div class="confirm_delete_message">
+			            <p>Удалить?</p>
+			            <div class="choose">
+				            <button class="yes">Да</button>
+				            <button class="no">Нет</button>
+			            </div>
+		            </div>
+	            </div>
+	            
+	            
                 <div class="track-area">
 					<?php
 						foreach ($arResult as $arItem):
@@ -245,7 +257,8 @@ document.addEventListener('DOMContentLoaded',()=>{
         </div>
     </div>
 </form>
-<img style="width: 100px; height: 100px" class="test-img" src="" alt="">
+<!--test cover container-->
+<!--<img style="width: 100px; height: 100px" class="test-img" src="" alt=""> -->
 <script>
 
     document.querySelector('.new-profile-track').addEventListener("change", function(e){
@@ -258,7 +271,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             if(duration[1] === '00'){
                 leftSec = '00';
             }
-            else if(Math.floor(leftSec) < 10){
+            else if(Math.ceil(leftSec) < 10){
                 leftSec = '0' + (Math.ceil(leftSec));
             }
             else {
@@ -289,12 +302,17 @@ document.addEventListener('DOMContentLoaded',()=>{
                     }
                     // console.log(mainTrackData)
                     // document.querySelector('.test-img').src = mainTrackData.COVER;
+	                let formData = new FormData();
+	                formData.append('file', file);
+	                // formData.append('cover',  new Blob([new Uint8Array(trackCover.data.flat())],{type: trackCover.format}), file);
+					formData.append('obj', JSON.stringify(mainTrackData));
                     fetch('upload_track.php', {
                         method: 'POST',
-                        body: JSON.stringify(mainTrackData),
+                        // body: JSON.stringify(mainTrackData),
+                        body: formData,
                     })
-                        .then(resp => resp.text())
-                        .then(data => console.log(data))
+                        .then(resp => resp.json())
+                        .then(data =>console.log(data))
 
                 },
                 onError: function (error) {
@@ -305,7 +323,10 @@ document.addEventListener('DOMContentLoaded',()=>{
         }
     })
 
+
+
 </script>
+
 
 
 
@@ -314,7 +335,6 @@ document.addEventListener('DOMContentLoaded',()=>{
 //echo '<pre>' . print_r($_FILES['NEW_PROFILE_TRACK'], true) . '</pre>';
 //}
 //?>
-
 <audio style="display: none" class="audioTag" id="" src="tracks/Deafheaven_-_The_Gnashing.mp3" controls></audio>
 <script type="module" src="duration.js"></script>
 <script type="module" src="choose_tracks.js"></script>
