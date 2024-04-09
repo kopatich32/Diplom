@@ -318,7 +318,7 @@ footer {
     justify-content: center;
     align-items: normal;
     margin-left: 20px;
-    width: 110px;
+    width: 200px;
     height: 100%; }
     footer .current-track p:first-child {
       margin: 0;
@@ -662,7 +662,7 @@ footer {
 
 .profile-menu {
   height: 100vh;
-  width: 50vw;
+  width: 0vw;
   position: absolute;
   top: 0;
   right: 0;
@@ -715,7 +715,7 @@ footer {
     height: 100%; }
 
 .confirm_wrapper {
-  display: none;
+  display: block;
   position: relative; }
 
 .confirm_delete_message {
@@ -727,7 +727,13 @@ footer {
   border: 1px solid black;
   width: 140px;
   padding: 10px 0;
-  background: white; }
+  background: #1A1A1A;
+  font-size: 18px;
+  box-shadow: 2px 2px 13px 2px #ffffff; }
+  .confirm_delete_message p, .confirm_delete_message a {
+    text-decoration: none;
+    cursor: pointer;
+    color: white; }
   .confirm_delete_message::after {
     content: '';
     position: absolute;
@@ -739,14 +745,9 @@ footer {
     content: '';
     position: absolute;
     bottom: -14px;
-    border-top: 14px solid white;
+    border-top: 14px solid #1A1A1A;
     border-right: 14px solid transparent;
     border-left: 14px solid transparent;
     z-index: 100; }
-  .confirm_delete_message .choose .yes, .confirm_delete_message .choose .no {
-    padding: 0 10px 0 10px;
-    margin-top: 6px; }
-  .confirm_delete_message .choose .yes {
-    margin-right: 10px; }
 
 /*# sourceMappingURL=style.css.map */

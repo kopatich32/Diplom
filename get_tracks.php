@@ -1,7 +1,21 @@
 <?php
-$connect = @new mysqli('localhost','root','','player');
-//$connect = @new mysqli('localhost','r93987lp_player','89398786029Aa.','r93987lp_player'); hosting;
-$query = $connect->query("SELECT * FROM `tracks`");
+	//$connect = @new mysqli('localhost','r93987lp_player','89398786029Aa.','r93987lp_player'); hosting;
+
+	function getConnection() {
+		static $connection = null;
+
+		if ($connection === null) {
+			$connection = new mysqli('localhost','root','','player');
+			if ($connection->connect_error) {
+				die("Connection failed: " . $connection->connect_error);
+			}
+		}
+		return $connection;
+
+	}
+	getConnection();
+
+$query = getConnection()->query("SELECT * FROM `tracks`");
 	$counter = 1;
 	$arResult = [];
 	while ($track_data = $query->fetch_assoc()) {
@@ -9,3 +23,5 @@ $query = $connect->query("SELECT * FROM `tracks`");
 		$arResult[] = $track_data;
 		$counter++;
 	}
+
+

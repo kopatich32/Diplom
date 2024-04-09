@@ -389,8 +389,7 @@ footer {
   .current-track {
     @include flex(column, center, normal);
     margin-left: 20px;
-
-    @include size(110px, 100%);
+    @include size(200px, 100%);
 
     p:first-child {
       margin: 0;
@@ -795,7 +794,7 @@ position: relative;
 //Profile
 .profile-menu {
   height: 100vh;
-  width: 50vw;
+  width: 0vw;
   position: absolute;
   top: 0;
   right: 0;
@@ -852,7 +851,7 @@ position: relative;
 
 // ToolTip
 .confirm_wrapper{
-  display: none;
+  display: block;
   position: relative;
 }
 .confirm_delete_message{
@@ -861,7 +860,15 @@ position: relative;
   border: 1px solid black;
   width: 140px;
   padding: 10px 0;
-  background: white;
+  background: #1A1A1A;
+  font-size: 18px;
+  box-shadow: 2px 2px 13px 2px #ffffff;
+p, a{
+  text-decoration: none;
+  cursor: pointer;
+  color: white;
+}
+
   &::after{
     content: '';
     position: absolute;
@@ -874,19 +881,9 @@ position: relative;
     content: '';
     position: absolute;
     bottom: -14px;
-    border-top: 14px solid white;
+    border-top: 14px solid #1A1A1A;
     border-right: 14px solid transparent;
     border-left: 14px solid transparent;
     z-index: 100;
-  }
-
-  .choose{
-    .yes, .no{
-      padding: 0 10px 0 10px;
-      margin-top: 6px;
-    }
-    .yes{
-      margin-right: 10px;
-    }
   }
 }

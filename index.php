@@ -37,6 +37,8 @@ document.addEventListener('DOMContentLoaded',()=>{
             <nav class="links">
                 <ul>
                     <li><span><img src="icons/house-chimney.svg" alt="main-page"></span>Home</li>
+                    <!--test cover container-->
+                    <img style="width: 100px; height: 100px" class="test-img" src="" alt="">
                     <li><span><img src="icons/flame.svg" alt="tranding"></span>Trending</li>
                     <li><span><img src="icons/following.svg" alt="following"></span>Following</li>
                 </ul>
@@ -107,11 +109,8 @@ document.addEventListener('DOMContentLoaded',()=>{
 <!--	            Tooltip-->
 	            <div class="confirm_wrapper">
 		            <div class="confirm_delete_message">
-			            <p>Удалить?</p>
-			            <div class="choose">
-				            <button class="yes">Да</button>
-				            <button class="no">Нет</button>
-			            </div>
+			            <p class="delete-track">удалить</p>
+			            <a href="" download>скачать</a>
 		            </div>
 	            </div>
 	            
@@ -119,7 +118,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                 <div class="track-area">
 					<?php
 						foreach ($arResult as $arItem):
-							$trackCover = $arItem['cover'] != "" ? $arItem['cover'] : '/icons/no_cover.svg';
+							$trackCover = $arItem['cover'] ? 'covers/' . $arItem['cover'] :  '/icons/no_cover.svg';
 							?>
 
                             <div id="<?= $arItem['id'] ?>" class="current-track-main cursor-grab" data-track_id="<?= $arItem['id'] ?>">
@@ -141,7 +140,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                                 <div class="track-detail">
                                     <img src="icons/track_info.svg" alt="">
                                 </div>
-                                <input class="track-link" type="text" value="<?= $arItem['link'] ?>" hidden>
+                                <input class="track-link" type="text" value="tracks/<?= $arItem['link'] ?>" hidden>
                             </div>
 						<?php endforeach ?>
                 </div>
@@ -257,15 +256,16 @@ document.addEventListener('DOMContentLoaded',()=>{
         </div>
     </div>
 </form>
-<!--test cover container-->
-<!--<img style="width: 100px; height: 100px" class="test-img" src="" alt=""> -->
+
 <script>
 
     document.querySelector('.new-profile-track').addEventListener("change", function(e){
         let file = e.target.files[0];
+        console.log(file)
         let audio = new Audio()
         audio.src = URL.createObjectURL(file);
         audio.onloadedmetadata = function() {
+
             let duration = (audio.duration / 60).toFixed(2).split('.');
             let leftSec = Math.floor(audio.duration - duration[0] * 60);
             if(duration[1] === '00'){
@@ -279,36 +279,30 @@ document.addEventListener('DOMContentLoaded',()=>{
             }
             jsmediatags.read(file, {
                 onSuccess: function (tag) {
-                    let trackCover = tag.tags.picture;
-                    let URLimg;
+                    let trackCover = tag.tags.picture ?? null;
                     let mainTrackData = {
-                        'COVER': URLimg,
                         'ARTIST': tag.tags.artist,
                         'TRACK_NAME': tag.tags.title,
                         'DURATION': {'MIN': duration[0], 'SECONDS': leftSec},
                         'IS_EMPTY_ARTIST_OR_TRACK_NAME': file.name,
                     }
-                    if(trackCover){
-                        let blob = new Blob([new Uint8Array(trackCover.data.flat())],{type: trackCover.format});
-                        mainTrackData.COVER = URL.createObjectURL(blob);
-                    }else{
-                        mainTrackData.COVER = null;
-                    }
+
                     if(!mainTrackData.ARTIST){
                         mainTrackData.ARTIST = null
                     }
                     if(!mainTrackData.TRACK_NAME){
                         mainTrackData.TRACK_NAME = null
                     }
-                    // console.log(mainTrackData)
-                    // document.querySelector('.test-img').src = mainTrackData.COVER;
-	                let formData = new FormData();
-	                formData.append('file', file);
-	                // formData.append('cover',  new Blob([new Uint8Array(trackCover.data.flat())],{type: trackCover.format}), file);
-					formData.append('obj', JSON.stringify(mainTrackData));
+
+                    let formData = new FormData();
+                    formData.append('file', file);
+                    if(trackCover){
+
+                        formData.append('cover',  new Blob([new Uint8Array(trackCover.data.flat())],{type: trackCover.format}), file);
+                    }
+                    formData.append('obj', JSON.stringify(mainTrackData));
                     fetch('upload_track.php', {
                         method: 'POST',
-                        // body: JSON.stringify(mainTrackData),
                         body: formData,
                     })
                         .then(resp => resp.json())
@@ -317,16 +311,38 @@ document.addEventListener('DOMContentLoaded',()=>{
                 },
                 onError: function (error) {
                     console.log(error)
+                    let formData = new FormData();
+
+                    let mainTrackData = {
+                        'IS_EMPTY_ARTIST_OR_TRACK_NAME': file.name,
+                        'DURATION': {'MIN': duration[0], 'SECONDS': leftSec},
+
+                    }
+                    formData.append('obj', JSON.stringify(mainTrackData));
+                    formData.append('file', file);
+
+                    fetch('upload_track.php', {
+                        method: 'POST',
+                        body: formData,
+                    })
+                        .then(resp => resp.json())
+                        .then(data =>console.log(data))
                 }
 
             })
+
+
+
         }
+            let urlWithoutParams = window.location.protocol + '//' + window.location.host + window.location.pathname;
+            window.history.pushState({}, document.title, urlWithoutParams);
+
+
     })
 
 
 
 </script>
-
 
 
 
@@ -342,6 +358,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 <script src="mobile_script.js"></script>
 <script src="registration_form.js"></script>
 <script src="profile.js"></script>
+<script src="moveToolTip.js"></script>
 
 <?php /*https://proweb63.ru/help/js/html5-audio-js
 https://stackoverflow.com/questions/4126708/is-it-possible-to-style-html5-audio-tag/4126871#4126871
