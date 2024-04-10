@@ -89,12 +89,13 @@ aside {
   color: white;
 
   .head-list {
-    @include flex(row, normal, baseline);
+    @include flex(row, space-between, baseline);
     padding: 10px 20px 0 20px;
-
+div+span{
+  margin-right: 70px;
+}
     .left-navigation {
       @include flex(row, space-between, normal);
-      margin-left: auto;
     }
   }
 .wrapper-aside{
@@ -794,10 +795,11 @@ position: relative;
 //Profile
 .profile-menu {
   height: 100vh;
-  width: 30vw;
+  //width: 30vw;
+  width: 0;
   position: absolute;
   top: 0;
-  right: 0;
+  right: -20px;
   z-index: 10;
   transition: .5s;
   background: #1A1A1A;
@@ -808,7 +810,7 @@ position: relative;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(4, 1fr);
-  margin: 100px 0 0 50px;
+  margin: 120px auto;
   @include size(500px, auto);
   h1 {
     grid-column: span 2;
@@ -823,12 +825,25 @@ position: relative;
   }
 
 }
-.edit-profile {
+.playlist-amount {
+  white-space: nowrap;
+}
+.edit-profile, .save-profile {
+  @include flex(row, center, center);
+  background: white;
+  color: black;
   grid-column: span 2;
-  padding:  20px 0;
+  padding:  20px;
   border-radius: 14px;
   font-size: 20px;
   cursor: pointer;
+  justify-self: center;
+  height: 80px;
+
+
+}
+.save-profile{
+  display: none;
 }
 .profile-data--add-track-wrapper {
   position: relative;
@@ -848,7 +863,15 @@ position: relative;
     @include size(100%, 100%);
   }
 }
-
+.exit-session{
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  background: #a4a0a0;
+  padding: 10px;
+  color: black;
+  width: 100px;
+}
 // ToolTip
 .confirm_wrapper{
   display: none;

@@ -5,7 +5,6 @@ global $rows;
 global $errors;
 ?>
 <div class="registration_wrapper">
-
     <form class="regForm" action="<?= htmlspecialchars($_SERVER['PHP_SELF'])?>"  name="registration" method="POST" enctype="multipart/form-data">
         <p>Зарегистрироваться</p>
         <?= @$GLOBALS['exist_email'] ?>

@@ -22,7 +22,12 @@ if (isset($_POST['reg'])) {
 //    $password = password_hash($_POST['reg_password'], PASSWORD_DEFAULT);
     $password = $_POST['reg_password'];
     $profile_avatar = $_FILES['avatar'];
-    $role = 'user';
+	if($profile_avatar) {
+		$uploadedIMG = preg_replace('/\s+/', '_', basename($profile_avatar['name']));
+		move_uploaded_file($profile_avatar['tmp_name'], 'profile_img/' . $uploadedIMG);
+	}
+
+	$role = 'user';
     if ($name == '') {
         $errors[] = 'Введите имя';
     }
@@ -35,12 +40,13 @@ if (isset($_POST['reg'])) {
     if ($password == '') {
         $errors[] = 'Введите пароль';
     }
+    print_r($profile_avatar);
     $get_rows = $connect->query("SELECT * FROM `authorization` WHERE `email` = '$email'");
     if (empty($errors)) {
         if ($get_rows->num_rows > 0) {
             $exist_email = '<div class="exist" style="border: 3px solid #af1212">Такой email уже зарегистрирован</div>';
         }else{
-            @$connect->query("INSERT INTO `authorization`(`name`, `surname`, `email`, `password`, `avatar`, `role`) VALUES ('$name','$lastname','$email','$password','$profile_avatar','$role')");
+            @$connect->query("INSERT INTO `authorization`(`name`, `surname`, `email`, `password`, `avatar`, `role`) VALUES ('$name','$lastname','$email','$password','$uploadedIMG','$role')");
             header('Location:'.$_SERVER['PHP_SELF'] . '?message=success');
 
 
@@ -70,13 +76,14 @@ if(isset($_POST['login'])){
 	$auth_email = $_POST['auth_email'];
     $auth_password = $_POST['auth_password'];
     $auth_rows = $connect->query("SELECT * FROM `authorization` WHERE `email` = '$auth_email'");
-    if($auth_rows->num_rows>0){
+    if($auth_rows->num_rows > 0){
         $data = $auth_rows->fetch_assoc();
 //        if(password_verify($auth_password, $data['password'])){
         if($auth_password ==  $data['password']){
 
 //	        $GLOBALS['success_login'] = 'Вы успешно вошли в профиль';
             $_SESSION['online'] = true;
+            $_SESSION['USER_ID'] = $data['id'];
             $_SESSION['name'] = $data['name'];
 			$_SESSION['password'] = $data['password'];
             $_SESSION['lastname'] = $data['surname'];

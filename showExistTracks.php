@@ -1,6 +1,6 @@
 <?php
+	session_start();
 	include "get_tracks.php";
-
 	$existTrack = json_decode(file_get_contents('php://input'),true);
 $arr[]= '';
 	if($existTrack) {

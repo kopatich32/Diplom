@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	include 'get_tracks.php';
 	$uploadFile = json_decode($_POST['obj'], true);
 	$file = $_FILES['file'];

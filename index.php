@@ -42,10 +42,11 @@ document.addEventListener('DOMContentLoaded',()=>{
             </nav>
             <div class="wrapper-aside">
                 <div class="head-list">
-                    <div><img src="icons/list-music.svg" alt="list-music"></div>
-                    <span>Your playlist (<span>4</span>)</span>
+                    <div>
+                        <img src="icons/list-music.svg" alt="list-music">
+                    </div>
+                    <span>Плейлисты (<span>4</span>)</span>
                     <div class="left-navigation">
-                        <div><img src="icons/search.svg" alt="search"></div>
                         <div><img src="icons/plus.svg" alt="add-playlist"></div>
                     </div>
                 </div>
@@ -59,15 +60,15 @@ document.addEventListener('DOMContentLoaded',()=>{
                         </div>
                         <div><img loading="lazy" src="icons/pause.svg" alt="pause"></div>
                     </li>
-                    <li>
-                        <div class="wrapper"><img src="icons/Rectangle1.png" alt="test"></div>
-                        <div>
-                            <p>Late Night Horror</p>
-                            <p>1 track</p>
-                        </div>
-                    </li>
+<!--                    <li>-->
+<!--                        <div class="wrapper"><img src="icons/Rectangle1.png" alt="test"></div>-->
+<!--                        <div>-->
+<!--                            <p>Late Night Horror</p>-->
+<!--                            <p>1 track</p>-->
+<!--                        </div>-->
+<!--                    </li>-->
 	                <?php
-	                for($i =3; $i <= 16; $i++):?>
+	                for($i =2; $i <= 16; $i++):?>
 		                <li><?=$i?></li>
 	                <?php endfor;?>
                 </ul>
@@ -80,7 +81,13 @@ document.addEventListener('DOMContentLoaded',()=>{
                     <input type="text" placeholder="i want to listen...">
                 </label>
                 <div class="notification"><img src="icons/bell.svg" alt="notification"></div>
-                <div class="profile-<?=$_SESSION ? 'online' : 'offline'?>"><img src="icons/vse-ochen-ploho.jpg" alt="user-photo "></div>
+                <div class="profile-<?=$_SESSION ? 'online' : 'offline'?>">
+                    <?php if(@$_SESSION['online']):?>
+                    <img src="profile_img/<?=$_SESSION['avatar']?>" alt="user-photo ">
+                    <?php else:?>
+                        <img src="icons/offline_profile.svg" alt="user-photo ">
+                    <?php endif?>
+                </div>
             </header>
             <main>
                 <div class="podcast-img"><img src="icons/podcast.png" alt="podcast-picture"></div>
@@ -237,7 +244,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 <form id="new-track" method="POST" enctype="multipart/form-data">
     <div class="profile-menu">
         <div class="profile-data">
-            <h1><?= $_SESSION['name'] ?></h1>
+            <h1 contenteditable="false"><?= $_SESSION['name'] ?></h1>
             <div class="playlist-amount">Количество плейлистов: 0</div>
             <div class="track-amount">Всего треков: <?= count($arResult) ?></div>
 
@@ -245,8 +252,13 @@ document.addEventListener('DOMContentLoaded',()=>{
                 <img src="icons/addTrack.svg" alt="">
                 <input class="new-profile-track" type="file" name="NEW_PROFILE_TRACK">
             </span>
-            <button class="edit-profile" type="submit" name="EDIT_PROFILE">изменить профиль</button>
+            <div class="edit-profile">изменить профиль</div>
+            <div class="save-profile">сохранить</div>
         </div>
+        <?php
+        if($_SESSION['online']):?>
+            <a href="end_session.php" class="exit-session">Выйти</a>
+        <?php endif; ?>
     </div>
 </form>
 
@@ -321,15 +333,8 @@ document.addEventListener('DOMContentLoaded',()=>{
             })
 
         }
-// clearURL()
+clearURL()
     })
-
-
-
-
-
-
-
 </script>
 
 
@@ -346,6 +351,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 <script src="registration_form.js"></script>
 <script src="profile.js"></script>
 <script src="moveToolTip.js"></script>
+<script src="editProfile.js"></script>
 
 <?php /*https://proweb63.ru/help/js/html5-audio-js
 https://stackoverflow.com/questions/4126708/is-it-possible-to-style-html5-audio-tag/4126871#4126871
