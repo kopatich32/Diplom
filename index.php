@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 							?>
 
                             <div id="<?= $arItem['id'] ?>" class="current-track-main cursor-grab" data-track_id="<?= $arItem['id'] ?>">
-                                <input class="show-current-count" type="text" hidden value="<?=$arItem['EXIST_ID'] ?>">
+                                <input class="show-current-count"  data-show_current_count="<?=$arItem['EXIST_ID'] ?>" value="<?=$arItem['EXIST_ID'] ?>" type="text" hidden>
                                 <div class="track-number play_now"><?=$arItem['EXIST_ID'] ?></div>
                                 <div class="track-main">
                                     <div class="main-cover">
@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 			    </div>
 		    </div>
         <div class="duration">
-            <p class="gone-time"><span class="minutes">00</span>:<span class="seconds">00</span></p>
+            <p class="gone-time"><span class="minutes">00</span> : <span class="seconds">00</span></p>
             <div class="duration-track">
                 <div class="gone-track"></div>
                 <div class="left-track"></div>
@@ -348,7 +348,7 @@ clearURL()
 <?php /*<script src="js/dragula.js"></script>*/?>
 <script src="/js/mobile_script.js"></script>
 
-<!--<script src="/js/registration_form.js"></script>-->
+<script src="/js/registration_form.js"></script>
 
 <script src="/js/profile.js"></script>
 <?php //if(@$_SESSION['online']):?>

@@ -59,33 +59,12 @@ let trackList = document.querySelectorAll('.current-track-main');
 let arrSrc = [];
 // for next track on ended event
 trackList.forEach(link => {
-	let srcTrack =link.querySelector('.track-link').value;
+	let srcTrack = link.querySelector('.track-link').value;
 	arrSrc.push(srcTrack)
 })
-
 let isPlaying = false;
 let playingTrack;
 let counterToBase = 0;
-// Play/pause on keyboard buttons
-document.addEventListener('keydown', (event) => {
-	if ((event.code === 'Space' || event.key === 'MediaPlayPause') && !isPlaying) {
-		track.play()
-		isPlaying = true;
-		if (window.innerWidth < 500) {
-			srcSvg.setAttribute('src', 'icons/pause.svg');
-		} else {
-			srcSvg.setAttribute('src', 'icons/main-pause.svg');
-		}
-	} else {
-		track.pause()
-		isPlaying = false
-		if (window.innerWidth < 500) {
-			srcSvg.setAttribute('src', 'icons/pause_list.svg');
-		} else {
-			srcSvg.setAttribute('src', 'icons/play.svg');
-		}
-	}
-})
 //rewind
 document.addEventListener('keydown', (event) => {
 	if (event.code === 'ArrowRight') {
@@ -332,6 +311,10 @@ class TrackControl {
 					let trackLink = clickTrack.querySelector('.track-link').value;
 					let idCurrentTrack = clickTrack.dataset.track_id;
 					clickTrack.classList.add('playing_now');
+
+					let showID = clickTrack.querySelector('.show-current-count').dataset.show_current_count;
+					localStorage.setItem('curIDatLIst', showID);
+
 					track.id = clickTrack.dataset.track_id;
 					track.dataset.current_amount = clickTrack.querySelector('.show-current-count').value;
 					// Show current track in tracklist
@@ -461,6 +444,7 @@ classOfTrack.restartTrack(track);
 classOfTrack.playMainButton();
 
 function first() {
+	isPlaying = false;
 	if (window.innerWidth <= 500) {
 		srcSvg.src = 'icons/pause_list.svg';
 		track.volume = 1;
@@ -478,6 +462,7 @@ function first() {
 	$('.audioTag').volume = localStorage.getItem('lastVolumeLevel');
 	$('.audioTag').currentTime = localStorage.getItem('lastPositionOfTrack');
 	track.id = localStorage.getItem('lastIDtrack');
+	track.dataset.current_amount = localStorage.getItem('curIDatLIst');
 	document.querySelector('.tracks-amount').innerText = trackList.length;
 	trackList.forEach(song => {
 
@@ -506,36 +491,47 @@ document.addEventListener('DOMContentLoaded', first);
 
 // SWITCH TRACK NEXT/PREVIOUS
 let switchButtons = document.querySelectorAll('.switch-track');
-let curId = localStorage.getItem('lastIDtrack');
+let curId;
 switchButtons.forEach(btn => {
 	btn.addEventListener('click', (e) => {
-		let atListID = track.dataset.current_amount;
+		isPlaying = true;
+		let atListID = Number(track.dataset.current_amount);
+		curId = Number(localStorage.getItem('curIDatLIst') ??  atListID);
 		// For save to localStorage on next/prev btn
+
 		let nextStorage = +track.id + 1;
 		let prevStorage = +track.id -1;
-		let nextElem = document.getElementById(nextStorage)
-		let prevElem = document.getElementById(prevStorage)
-
+		// console.log(nextStorage)
+		// console.log(prevStorage)
+		// let nextElem = document.getElementById(nextStorage)
+		// let prevElem = document.getElementById(prevStorage)
+		// console.log(nextElem)
+		// console.log(prevElem)
 		// curId = track.id;
 		if (btn.className.includes('next-track')) {
 			// saveToStorage(nextElem)
-			curId = track.id;
-			console.log(curId)
+			++track.dataset.current_amount
+			curId = atListID;
 			++curId;
-			if(curId === trackList.length+1){
+			if(curId === trackList.length + 1){
 				curId = 1;
-			}
-		}
-		if (btn.className.includes('previous-track')) {
-			// saveToStorage(prevElem)
-			--curId;
-			if (curId === 0) {
-				curId = trackList.length;
+				track.dataset.current_amount = 1;
 			}
 		}
 
-		let elemFromList = document.getElementById(curId)
-		track.id = curId;
+		if (btn.className.includes('previous-track')) {
+			// saveToStorage(prevElem)
+			--curId;
+			--track.dataset.current_amount;
+			curId = track.dataset.current_amount;
+
+			if (curId == 0) {
+				curId = trackList.length;
+				track.dataset.current_amount = curId;
+			}
+		}
+		let elemFromList = document.querySelector(`input[value="${curId}"]`).closest('.current-track-main');
+		track.id = elemFromList.id;
 		track.src = elemFromList.querySelector('.track-link').value;
 		trackList.forEach(clearIcon => {
 			clearIcon.classList.remove('PastPaused');
@@ -559,8 +555,8 @@ switchButtons.forEach(btn => {
 				elemFromList.classList.add('playing_now');
 			})
 		}
-		playingTrack = elemFromList.id;
-		isPlaying = true;
+		// playingTrack = elemFromList.querySelector('.show-current-count').value;
+		// isPlaying = true;
 		if (window.innerWidth < 500) {
 			srcSvg.setAttribute('src', 'icons/pause.svg');
 		}
