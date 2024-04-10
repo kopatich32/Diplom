@@ -3,7 +3,7 @@
 	global $arResult;
 	global $curID;
 	include 'get_tracks.php';
-    include 'registrationForm.php';
+	include 'registrationForm.php';
 	//require ('change_track.php');
 ?>
 <?php
@@ -23,9 +23,10 @@ document.addEventListener('DOMContentLoaded',()=>{
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="styles/style.css">
     <link rel="icon" href="icons/play.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="dragula-master/dist/dragula.css">
-    <script src="dragula-master/dist/dragula.js"></script>
-    <script src="jsmediatags.min.js"></script>
+   <?php /* <link rel="stylesheet" href="dragula-master/dist/dragula.css">
+    <script src="dragula-master/dist/dragula.js"></script>*/?>
+    <script src="js/jsmediatags.min.js"></script>
+    <script src="js/custom.js"></script>
     <title>Мой плейлист</title>
 </head>
 <body>
@@ -36,8 +37,8 @@ document.addEventListener('DOMContentLoaded',()=>{
             <nav class="links">
                 <ul>
                     <li><span><img src="icons/house-chimney.svg" alt="main-page"></span>Home</li>
-                    <li><span><img src="icons/flame.svg" alt="tranding"></span>Trending</li>
-                    <li><span><img src="icons/following.svg" alt="following"></span>Following</li>
+                    <?php /*<li><span><img src="icons/flame.svg" alt="tranding"></span>Trending</li>
+                    <li><span><img src="icons/following.svg" alt="following"></span>Following</li>*/?>
                 </ul>
             </nav>
             <div class="wrapper-aside">
@@ -60,13 +61,13 @@ document.addEventListener('DOMContentLoaded',()=>{
                         </div>
                         <div><img loading="lazy" src="icons/pause.svg" alt="pause"></div>
                     </li>
-<!--                    <li>-->
-<!--                        <div class="wrapper"><img src="icons/Rectangle1.png" alt="test"></div>-->
-<!--                        <div>-->
-<!--                            <p>Late Night Horror</p>-->
-<!--                            <p>1 track</p>-->
-<!--                        </div>-->
-<!--                    </li>-->
+                    <?php /*<li>
+                        <div class="wrapper"><img src="icons/Rectangle1.png" alt="test"></div>
+                        <div>
+                            <p>Late Night Horror</p>
+                            <p>1 track</p>
+                        </div>
+                    </li>*/?>
 	                <?php
 	                for($i =2; $i <= 16; $i++):?>
 		                <li><?=$i?></li>
@@ -111,13 +112,14 @@ document.addEventListener('DOMContentLoaded',()=>{
                     <div></div>
                 </div>
 <!--	            Tooltip-->
+                <?php if(@$_SESSION['online']):?>
 	            <div class="confirm_wrapper">
 		            <div class="confirm_delete_message">
 			            <p class="delete-track">удалить</p>
 			            <a class="download-link" href="" download>скачать</a>
 		            </div>
 	            </div>
-	            
+	            <?php endif ?>
 	            
                 <div class="track-area">
 					<?php
@@ -141,9 +143,11 @@ document.addEventListener('DOMContentLoaded',()=>{
                                 <div class="is_play">
                                     <img loading="lazy" class="play_now_list" src="icons/play_list.svg" alt="">
                                 </div>
+	                            <?php if(@$_SESSION['online']):?>
                                 <div class="track-detail">
                                     <img src="icons/track_info.svg" alt="">
                                 </div>
+                                <?php endif?>
                                 <input class="track-link" type="text" value="tracks/<?= $arItem['link'] ?>" hidden>
                             </div>
 						<?php endforeach ?>
@@ -241,7 +245,9 @@ document.addEventListener('DOMContentLoaded',()=>{
     </footer>
 </div>
 <!--Profile menu-->
-<form id="new-track" method="POST" enctype="multipart/form-data">
+<?php
+	if(@$_SESSION['online']):?>
+        <form id="new-track" action="" method="POST" enctype="multipart/form-data">
     <div class="profile-menu">
         <div class="profile-data">
             <h1 contenteditable="false"><?= $_SESSION['name'] ?></h1>
@@ -250,21 +256,19 @@ document.addEventListener('DOMContentLoaded',()=>{
 
             <span class="profile-data--add-track-wrapper" title="Добавить новый трек">
                 <img src="icons/addTrack.svg" alt="">
-                <input class="new-profile-track" type="file" name="NEW_PROFILE_TRACK">
+                <input class="new-profile-track" type="file" accept=".mp3" name="NEW_PROFILE_TRACK">
             </span>
             <div class="edit-profile">изменить профиль</div>
             <div class="save-profile">сохранить</div>
         </div>
-        <?php
-        if($_SESSION['online']):?>
-            <a href="end_session.php" class="exit-session">Выйти</a>
-        <?php endif; ?>
-    </div>
-</form>
+            <a href="disconnect.php" class="exit-session">Выйти</a>
+    </div></form>
+<?php endif; ?>
 
 <script>
-
-    document.querySelector('.new-profile-track').addEventListener("change", function(e){
+let addTrackBtn =  document.querySelector('.new-profile-track');
+if(addTrackBtn){
+    addTrackBtn.addEventListener("change", function(e){
         let file = e.target.files[0];
         let audio = new Audio()
         audio.src = URL.createObjectURL(file);
@@ -276,6 +280,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                 leftSec = '00';
             }
             else if(Math.floor(leftSec) < 10){
+                leftSec = '0' + (Math.floor(leftSec));
                 leftSec = '0' + (Math.floor(leftSec));
             }
             else {
@@ -305,7 +310,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                         formData.append('cover',  new Blob([new Uint8Array(trackCover.data.flat())],{type: trackCover.format}), file);
                     }
                     formData.append('obj', JSON.stringify(mainTrackData));
-                    fetch('upload_track.php', {
+                    fetch("upload_track.php", {
                         method: 'POST',
                         body: formData,
                     })
@@ -323,7 +328,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                     formData.append('obj', JSON.stringify(mainTrackData));
                     formData.append('file', file);
 
-                    fetch('upload_track.php', {
+                    fetch("upload_track.php", {
                         method: 'POST',
                         body: formData,
                     })
@@ -331,27 +336,25 @@ document.addEventListener('DOMContentLoaded',()=>{
                         .then(data =>console.log(data))
                 }
             })
-
         }
 clearURL()
     })
+
+}
 </script>
 
-
-
-<?php //
-//if($_FILES){
-//echo '<pre>' . print_r($_FILES['NEW_PROFILE_TRACK'], true) . '</pre>';
-//}
-//?>
 <audio style="display: none" class="audioTag" id="" src="tracks/Deafheaven_-_The_Gnashing.mp3" controls></audio>
-<script type="module" src="duration.js"></script>
-<script src="dragula.js"></script>
-<script src="mobile_script.js"></script>
-<script src="registration_form.js"></script>
-<script src="profile.js"></script>
-<script src="moveToolTip.js"></script>
-<script src="editProfile.js"></script>
+<script type="module" src="/js/duration.js"></script>
+<?php /*<script src="js/dragula.js"></script>*/?>
+<script src="/js/mobile_script.js"></script>
+
+<script src="/js/registration_form.js"></script>
+
+<script src="/js/profile.js"></script>
+<?php //if(@$_SESSION['online']):?>
+<script src="/js/moveToolTip.js"></script>
+<script src="/js/editProfile.js"></script>
+<?php //endif?>
 
 <?php /*https://proweb63.ru/help/js/html5-audio-js
 https://stackoverflow.com/questions/4126708/is-it-possible-to-style-html5-audio-tag/4126871#4126871

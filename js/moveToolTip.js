@@ -16,8 +16,8 @@ trackDetail.forEach(detail => {
             let thisCoords = detail.getBoundingClientRect();
             confirmWindow.style.position = 'absolute';
             confirmWindow.style.display = 'block';
-            confirmWindow.style.top = thisCoords.top - innerWrapper.offsetHeight + window.pageYOffset  - 20 + 'px';
-            confirmWindow.style.left = thisCoords.left - detail.offsetWidth  + window.pageXOffset + window.scrollX - 20 + 'px';
+            confirmWindow.style.top = thisCoords.top - innerWrapper.offsetHeight + window.pageYOffset - 20 + 'px';
+            confirmWindow.style.left = thisCoords.left - detail.offsetWidth + window.pageXOffset + window.scrollX - 20 + 'px';
             event.stopPropagation()
             console.log(currentTrackID)
         }
@@ -34,8 +34,10 @@ trackDetail.forEach(detail => {
 })
 
 //Close tooltip
-document.onclick = e => {
-    if( deleteTrack.contains(e.target) || downloadLink.contains(e.target) || !confirmWindow.contains(e.target)){
-        confirmWindow.style.display = 'none';
+if (deleteTrack || downloadLink || confirmWindow) {
+    document.onclick = e => {
+        if (deleteTrack.contains(e.target) || downloadLink.contains(e.target) || !confirmWindow.contains(e.target)) {
+            confirmWindow.style.display = 'none';
+        }
     }
 }

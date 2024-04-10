@@ -1,4 +1,5 @@
 <?php
+	session_start();
 //$json2 = json_decode(file_get_contents("php://input"), true);
 //if ($json2['edited']) {
 //    $mess_text = $json2['edited']['message'];

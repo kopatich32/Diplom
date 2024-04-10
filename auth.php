@@ -103,13 +103,13 @@ if(isset($_POST['login'])){
 
 }
 	if(@$_GET['message'] == 'success_auth'){?>
-		<div class="success" onclick="clearURL()">
+		<div class="success"">
 			<div class="success-position">
 				<div class="success-message">успешная авторизация</div>
-				<div class="success-close-btn" onclick="clearURL()">
+				<div class="success-close-btn">
 					<img src="icons/close_form.svg" alt="">
 				</div>
 			</div>
 		</div>
-	<?php }
-//	echo '<pre>' . print_r($_SESSION,true) . '</pre>';
+	<?php } ?>
+

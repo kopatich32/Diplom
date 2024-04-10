@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	include "get_tracks.php";
 
 	$del_json = json_decode(file_get_contents('php://input'),true);

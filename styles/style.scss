@@ -66,7 +66,6 @@ aside {
 
   .links {
     background: $front-background;
-    height: 170px;
     padding: 10px;
     border-radius: 15px;
     margin-bottom: 20px;
@@ -106,7 +105,7 @@ div+span{
     overflow-y: scroll;
     -ms-overflow-style: none; /* IE и Edge */
     scrollbar-width: none; /* Firefox */
-    height: calc(100vh - 110px - 170px - 100px);
+    height: calc(100vh - 110px - 102px - 100px);
     background-color: $front-background;
     list-style: none;
     border-radius: 15px;
@@ -160,6 +159,7 @@ div+span{
     margin-bottom: 20px;
 
     label {
+      visibility: hidden;
       background-color: $front-background;
       @include flex(row, normal, normal);
       height: 50px;
@@ -184,6 +184,7 @@ div+span{
     }
 
     .notification {
+      visibility: hidden;
       @include size(50px, 50px);
       @include flex(row, center, center);
       background: $front-background;
@@ -228,6 +229,7 @@ main {
   }
 
   .control-row {
+    visibility: hidden;
     @include flex(row, normal, normal);
     @include  size(100%,80px);
 
