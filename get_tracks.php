@@ -1,6 +1,5 @@
 <?php
 	//$connect = @new mysqli('localhost','r93987lp_player','89398786029Aa.','r93987lp_player'); hosting;
-
 	function getConnection() {
 		static $connection = null;
 
@@ -13,7 +12,6 @@
 		return $connection;
 
 	}
-	getConnection();
 
 $query = getConnection()->query("SELECT * FROM `tracks`");
 	$counter = 1;

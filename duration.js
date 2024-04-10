@@ -1,3 +1,51 @@
+// class GetTrack{
+// 	fetchTrack() {
+// 		fetch('showExistTracks.php', {
+// 			method: 'POST',
+// 			body: JSON.stringify({text: 'empty body'}),
+// 		})
+// 			.then(resp => resp.json())
+// 			.then(data =>
+// 				existTracks(data)
+// 			)
+//
+// 		function existTracks(trackData) {
+// 			for (let i = 1; i < trackData.length; i++) {
+// 				let trackCover = trackData[i]['cover'] ? 'covers/' + trackData[i]['cover'] : '/icons/no_cover.svg';
+// 				let existTrack = `
+//     <div id="${trackData[i]['id']}" class="current-track-main cursor-grab" data-track_id="${trackData[i]['id']}">
+//                                 <div class="track-number play_now">counter</div>
+//                                 <div class="track-main">
+//                                     <div class="main-cover">
+//                                         <img class="track-cover"  style="width: 45px; height: 45px" src="${trackCover}" alt="cover">
+//                                     </div>
+//                                     <div class="current-track-cover">
+//                                         <div class="track-name-main play_now">${trackData[i]['track_name']}</div>
+//                                         <div class="artist-main">${trackData[i]['artist']}</div>
+//                                     </div>
+//                                 </div>
+//                                 <div class="duration-main play_now">${trackData[i]['duration']}</div>
+//                                 <div class="listening-main play_now">${trackData[i]['listening'] ?? ''}</div>
+//                                 <div class="is_play">
+//                                     <img loading="lazy" class="play_now_list" src="icons/play_list.svg" alt="">
+//                                 </div>
+//                                 <div class="track-detail">
+//                                     <img src="icons/track_info.svg" alt="">
+//                                 </div>
+//                                 <input class="track-link" type="text" value="tracks/${trackData[i]['link']}" hidden>
+//                             </div>
+//     `
+// 				let trackListArea = document.querySelector('.track-area');
+// 				trackListArea.insertAdjacentHTML("beforeend", existTrack);
+//
+// 			}
+// 		}
+// 	}
+// }
+// let clasTrack = new GetTrack();
+// clasTrack.fetchTrack()
+
+
 let $ = document.querySelector.bind(document);
 let playBtn = document.querySelector('.main-pause');
 let track = document.querySelector('audio');
@@ -5,6 +53,9 @@ let mute = document.querySelector('.mute');
 let volumeTrack = document.querySelector('.volume-track');
 let srcSvg = playBtn.querySelector('img');
 let trackList = document.querySelectorAll('.current-track-main');
+
+
+
 let arrSrc = [];
 // for next track on ended event
 trackList.forEach(link => {
@@ -392,11 +443,11 @@ if(duration[1] === '00'){
 		leftTime.innerHTML = duration[0] + ':' + duration[1];
 	}
 	else if(Math.floor(leftMin) < 10){
-		leftTime.innerHTML = duration[0] + ':0' + (Math.ceil(leftMin));
+		leftTime.innerHTML = duration[0] + ':0' + (Math.floor(leftMin));
 	}
 
 	else{
-		leftTime.innerHTML = duration[0] + ':' + (Math.ceil(leftMin));
+		leftTime.innerHTML = duration[0] + ':' + (Math.floor(leftMin));
 	}
 }
 
@@ -513,3 +564,4 @@ switchButtons.forEach(btn => {
 		track.play()
 	})
 })
+

@@ -2,7 +2,6 @@
 	session_start();
 	global $arResult;
 	global $curID;
-	//require_once ('tracks_data.php')
 	include 'get_tracks.php';
     include 'registrationForm.php';
 	//require ('change_track.php');
@@ -37,8 +36,6 @@ document.addEventListener('DOMContentLoaded',()=>{
             <nav class="links">
                 <ul>
                     <li><span><img src="icons/house-chimney.svg" alt="main-page"></span>Home</li>
-                    <!--test cover container-->
-                    <img style="width: 100px; height: 100px" class="test-img" src="" alt="">
                     <li><span><img src="icons/flame.svg" alt="tranding"></span>Trending</li>
                     <li><span><img src="icons/following.svg" alt="following"></span>Following</li>
                 </ul>
@@ -110,7 +107,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 	            <div class="confirm_wrapper">
 		            <div class="confirm_delete_message">
 			            <p class="delete-track">удалить</p>
-			            <a href="" download>скачать</a>
+			            <a class="download-link" href="" download>скачать</a>
 		            </div>
 	            </div>
 	            
@@ -153,12 +150,8 @@ document.addEventListener('DOMContentLoaded',()=>{
                 <img class="player-cover" src="covers/Infinite_Granite_2021.png" alt="Deafheaven">
             </div>
             <div class="current-track">
-                <p class="track-player">
-<!--                    --><?php //= $ley['track-name'] ?>
-                </p>
-                <p class="artist-player">
-<!--                    --><?php //= $ley['artist'] ?>
-                </p>
+                <p class="track-player"></p>
+                <p class="artist-player"></p>
             </div>
         </div>
         <div class="track-control">
@@ -261,7 +254,6 @@ document.addEventListener('DOMContentLoaded',()=>{
 
     document.querySelector('.new-profile-track').addEventListener("change", function(e){
         let file = e.target.files[0];
-        console.log(file)
         let audio = new Audio()
         audio.src = URL.createObjectURL(file);
         audio.onloadedmetadata = function() {
@@ -271,11 +263,11 @@ document.addEventListener('DOMContentLoaded',()=>{
             if(duration[1] === '00'){
                 leftSec = '00';
             }
-            else if(Math.ceil(leftSec) < 10){
-                leftSec = '0' + (Math.ceil(leftSec));
+            else if(Math.floor(leftSec) < 10){
+                leftSec = '0' + (Math.floor(leftSec));
             }
             else {
-                leftSec = (Math.ceil(leftSec)).toString();
+                leftSec = (Math.floor(leftSec)).toString();
             }
             jsmediatags.read(file, {
                 onSuccess: function (tag) {
@@ -307,7 +299,6 @@ document.addEventListener('DOMContentLoaded',()=>{
                     })
                         .then(resp => resp.json())
                         .then(data =>console.log(data))
-
                 },
                 onError: function (error) {
                     console.log(error)
@@ -316,7 +307,6 @@ document.addEventListener('DOMContentLoaded',()=>{
                     let mainTrackData = {
                         'IS_EMPTY_ARTIST_OR_TRACK_NAME': file.name,
                         'DURATION': {'MIN': duration[0], 'SECONDS': leftSec},
-
                     }
                     formData.append('obj', JSON.stringify(mainTrackData));
                     formData.append('file', file);
@@ -328,17 +318,15 @@ document.addEventListener('DOMContentLoaded',()=>{
                         .then(resp => resp.json())
                         .then(data =>console.log(data))
                 }
-
             })
 
-
-
         }
-            let urlWithoutParams = window.location.protocol + '//' + window.location.host + window.location.pathname;
-            window.history.pushState({}, document.title, urlWithoutParams);
-
-
+// clearURL()
     })
+
+
+
+
 
 
 
@@ -353,7 +341,6 @@ document.addEventListener('DOMContentLoaded',()=>{
 //?>
 <audio style="display: none" class="audioTag" id="" src="tracks/Deafheaven_-_The_Gnashing.mp3" controls></audio>
 <script type="module" src="duration.js"></script>
-<script type="module" src="choose_tracks.js"></script>
 <script src="dragula.js"></script>
 <script src="mobile_script.js"></script>
 <script src="registration_form.js"></script>

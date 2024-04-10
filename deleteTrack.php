@@ -3,9 +3,7 @@
 
 	$del_json = json_decode(file_get_contents('php://input'),true);
 	if($del_json){
-
-		echo($del_json);
-//		echo json_encode(["id"=> $del_comment]);
-//		$row = getConnection()->query("DELETE FROM `message` WHERE `id` = '$del_comment'");
+		$delTrack = $del_json["ID"];
+		$row = getConnection()->query("DELETE FROM `tracks` WHERE `id` = '$delTrack'");
 
 	}

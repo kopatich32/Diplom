@@ -71,7 +71,7 @@ if($('input[name="reg_email"]').value != ''){
 let modalSuccessWrapper = document.querySelector('.success');
 let successModal = document.querySelector('.success-position');
 let closeModalBtn  = document.querySelector('.success-close-btn');
-document.onclick = e => {
+modalSuccessWrapper.onclick = e => {
     if(!successModal.contains(e.target) || closeModalBtn.contains(e.target)){
         modalSuccessWrapper.style.display = 'none';
     }
