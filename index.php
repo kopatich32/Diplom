@@ -128,6 +128,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 							?>
 
                             <div id="<?= $arItem['id'] ?>" class="current-track-main cursor-grab" data-track_id="<?= $arItem['id'] ?>">
+                                <input class="show-current-count" type="text" hidden value="<?=$arItem['EXIST_ID'] ?>">
                                 <div class="track-number play_now"><?=$arItem['EXIST_ID'] ?></div>
                                 <div class="track-main">
                                     <div class="main-cover">
@@ -247,7 +248,6 @@ document.addEventListener('DOMContentLoaded',()=>{
 <!--Profile menu-->
 <?php
 	if(@$_SESSION['online']):?>
-        <form id="new-track" action="" method="POST" enctype="multipart/form-data">
     <div class="profile-menu">
         <div class="profile-data">
             <h1 contenteditable="false"><?= $_SESSION['name'] ?></h1>
@@ -262,7 +262,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             <div class="save-profile">сохранить</div>
         </div>
             <a href="disconnect.php" class="exit-session">Выйти</a>
-    </div></form>
+    </div>
 <?php endif; ?>
 
 <script>
@@ -343,12 +343,12 @@ clearURL()
 }
 </script>
 
-<audio style="display: none" class="audioTag" id="" src="tracks/Deafheaven_-_The_Gnashing.mp3" controls></audio>
+<audio style="display: none" class="audioTag" id="" src="tracks/Deafheaven_-_The_Gnashing.mp3" controls data-current_amount=""></audio>
 <script type="module" src="/js/duration.js"></script>
 <?php /*<script src="js/dragula.js"></script>*/?>
 <script src="/js/mobile_script.js"></script>
 
-<script src="/js/registration_form.js"></script>
+<!--<script src="/js/registration_form.js"></script>-->
 
 <script src="/js/profile.js"></script>
 <?php //if(@$_SESSION['online']):?>

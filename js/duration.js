@@ -333,6 +333,7 @@ class TrackControl {
 					let idCurrentTrack = clickTrack.dataset.track_id;
 					clickTrack.classList.add('playing_now');
 					track.id = clickTrack.dataset.track_id;
+					track.dataset.current_amount = clickTrack.querySelector('.show-current-count').value;
 					// Show current track in tracklist
 					document.querySelectorAll('.play_now').forEach(paint => {
 						paint.style.color = '';
@@ -508,6 +509,7 @@ let switchButtons = document.querySelectorAll('.switch-track');
 let curId = localStorage.getItem('lastIDtrack');
 switchButtons.forEach(btn => {
 	btn.addEventListener('click', (e) => {
+		let atListID = track.dataset.current_amount;
 		// For save to localStorage on next/prev btn
 		let nextStorage = +track.id + 1;
 		let prevStorage = +track.id -1;
@@ -516,15 +518,16 @@ switchButtons.forEach(btn => {
 
 		// curId = track.id;
 		if (btn.className.includes('next-track')) {
-			saveToStorage(nextElem)
+			// saveToStorage(nextElem)
 			curId = track.id;
+			console.log(curId)
 			++curId;
 			if(curId === trackList.length+1){
 				curId = 1;
 			}
 		}
 		if (btn.className.includes('previous-track')) {
-			saveToStorage(prevElem)
+			// saveToStorage(prevElem)
 			--curId;
 			if (curId === 0) {
 				curId = trackList.length;
