@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Апр 04 2024 г., 23:30
--- Версия сервера: 10.4.26-MariaDB
+-- Время создания: Апр 11 2024 г., 16:40
+-- Версия сервера: 8.0.30
 -- Версия PHP: 8.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- База данных: `Fin`
+-- База данных: `player`
 --
 
 -- --------------------------------------------------------
@@ -28,26 +28,22 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `authorization` (
-  `id` int(11) NOT NULL,
-  `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `surname` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `role` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `id` int NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `surname` varchar(100) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `avatar` varchar(255) DEFAULT NULL,
+  `role` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Дамп данных таблицы `authorization`
 --
 
 INSERT INTO `authorization` (`id`, `name`, `surname`, `email`, `password`, `avatar`, `role`) VALUES
-(6, 'Alesha', 'Balalaikin', 'kopatich1994@yandex.ru', '123', NULL, ''),
-(8, 'a', 'a', 'a@mail.ru', '202cb962ac59075b964b07152d234b70', NULL, ''),
-(10, '', '', '', 'd41d8cd98f00b204e9800998ecf8427e', NULL, ''),
-(13, '1', '1', 'asa@asas.ru', 'c20ad4d76fe97759aa27a0c99bff6710', NULL, ''),
-(14, '1212', '121', 'test@mail.ru', '$2y$10$J9idjxDoOzzcCi4GfyXb6u.r9ijJ7Y61Jq/PQP71diDE.iZ.71TUK', 'Array', 'user'),
-(15, 'gggg', 'ggggg', 'test@myail.ru', '$2y$10$KAVMRJrs4Qg7xK8vJxOcgekTIb9DsXLFp2IKrsJYOgi7rxnH8HzOK', 'Array', 'user');
+(172, 'kopatich', 'test', 'kopatich1994@yandex.ru', '123456', 'vse-ochen-ploho.jpg', 'admin'),
+(176, '1', '2', 'test@mail.ru', '123456', 'IMG_20231026_001815.jpg', 'user');
 
 --
 -- Индексы сохранённых таблиц
@@ -58,7 +54,8 @@ INSERT INTO `authorization` (`id`, `name`, `surname`, `email`, `password`, `avat
 --
 ALTER TABLE `authorization`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `email_2` (`email`);
 
 --
 -- AUTO_INCREMENT для сохранённых таблиц
@@ -68,7 +65,7 @@ ALTER TABLE `authorization`
 -- AUTO_INCREMENT для таблицы `authorization`
 --
 ALTER TABLE `authorization`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=178;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
