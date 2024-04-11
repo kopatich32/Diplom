@@ -45,7 +45,6 @@
 // let clasTrack = new GetTrack();
 // clasTrack.fetchTrack()
 
-
 let $ = document.querySelector.bind(document);
 let playBtn = document.querySelector('.main-pause');
 let track = document.querySelector('audio');
@@ -59,8 +58,8 @@ let trackList = document.querySelectorAll('.current-track-main');
 let arrSrc = [];
 // for next track on ended event
 trackList.forEach(link => {
-	let srcTrack = link.querySelector('.track-link').value;
-	arrSrc.push(srcTrack)
+	// let srcTrack = link.querySelector('.track-link').value;
+	arrSrc.push(link)
 })
 let isPlaying = false;
 let playingTrack;
@@ -111,11 +110,9 @@ class TrackControl {
 		this.lastTimePosition = 0;
 		this.idFromMainButton = 0;
 		this.idCurrentTrack = 0;
-
 	}
 
 	playMainButton() {
-
 		playBtn.addEventListener('click', () => {
 			let load = document.querySelector('.PastPaused');
 			let playing = document.querySelector('.playing_now');
@@ -144,7 +141,7 @@ class TrackControl {
 					srcSvg.setAttribute('src', 'icons/pause.svg');
 
 				}
-				playingTrack = track.id
+				playingTrack = track.dataset.current_amount
 				track.play();
 			} else {
 				track.pause();
@@ -223,55 +220,55 @@ class TrackControl {
 				artisColor.style.color = '';
 			})
 
-
 			track.currentTime = 0;
-			let endedTrack = document.getElementById(e.target.id);
-			endedTrack.querySelector('.play_now_list').setAttribute('src', 'icons/pause_list.svg');
-			endedTrack.classList.remove('playing_now');
-			endedTrack.classList.add('paused_now');
-
-			let idEndedTrack = e.srcElement.id;
-			if(idEndedTrack  == arrSrc.length){
-				playingTrack = 1;
-			}else{
-				playingTrack = +idEndedTrack  + 1;
-			}
-			let nextTrackAfterEnd = document.getElementById(playingTrack);
-			saveToStorage(nextTrackAfterEnd)
+			let idEndedTrack = +e.target.dataset.current_amount;
+			let elemFromList = document.querySelector(`input[value="${idEndedTrack}"]`).closest('.current-track-main');
+			elemFromList.classList.remove('playing_now');
 
 			trackList.forEach(clearIcon => {
 				clearIcon.querySelector('.play_now_list').setAttribute('src', 'icons/play_list.svg')
 			})
 
+			// elemFromList.classList.add('paused_now');
 
-				nextTrackAfterEnd.querySelectorAll('.play_now').forEach(paint => {
-					paint.style.color = '#5C67DE';
+			if(idEndedTrack  == arrSrc.length){
+				playingTrack = 1;
+			}else{
+				playingTrack = +idEndedTrack  + 1;
+			}
+				let idNextTrack = +e.target.dataset.current_amount + 1;
+			if(+e.target.dataset.current_amount === arrSrc.length) {
+				idNextTrack = +e.target.dataset.current_amount;
+			}
+			let nextTrackAfterEnd = document.querySelector(`input[value="${idNextTrack}"]`).closest('.current-track-main');
+			nextTrackAfterEnd.classList.add('playing_now');
+
+			nextTrackAfterEnd.querySelectorAll('.play_now').forEach(paint => {
+					paint.style.color = 'white';
 				})
 			nextTrackAfterEnd.querySelector('.artist-main').style.color = 'white';
 
+			if(idEndedTrack === arrSrc.length){
+				document.querySelectorAll('.artist-main').forEach(artisColor => {
+					artisColor.style.color = '';
+				})
 
-			if(idEndedTrack == arrSrc.length){
-				track.id = 1;
-				track.src = arrSrc[0];
+				track.dataset.current_amount = 1;
+				track.id = arrSrc[0].id;
+				track.src = arrSrc[0].querySelector('.track-link').value;
+				trackData(arrSrc[0]);
+
 				track.play();
 				isPlaying = true;
 			}else{
-				track.id = ++idEndedTrack;
-				track.src = arrSrc[idEndedTrack  - 1];
+				track.dataset.current_amount = ++idEndedTrack;
+				track.src = arrSrc[idEndedTrack  - 1].querySelector('.track-link').value;
 				track.currentTime  = 0;
 				track.play();
 				isPlaying = true;
+				trackData(nextTrackAfterEnd);
+				saveToStorage(nextTrackAfterEnd);
 			}
-			trackData(nextTrackAfterEnd);
-
-
-
-			if (isPlaying && window.innerWidth > 500) {
-				srcSvg.setAttribute('src', 'icons/main-pause.svg');
-			} else {
-				srcSvg.setAttribute('src', 'icons/pause.svg');
-			}
-
 		})
 	}
 
@@ -285,13 +282,14 @@ class TrackControl {
 					track.volume = 1;
 				}
 				trackList.forEach(clearIcon => {
-					clearIcon.querySelector('.play_now_list').setAttribute('src', 'icons/play_list.svg')
+						clearIcon.querySelector('.play_now_list').setAttribute('src', 'icons/play_list.svg')
 				})
 				if (audio.className.includes('PastPaused')) {
+					isPlaying = true;
+					audio.querySelector('.play_now_list').setAttribute('src', 'icons/pause.svg')
 					track.currentTime = localStorage.getItem('lastPositionOfTrack');
 					audio.classList.remove('PastPaused');
 					audio.classList.add('playing_now');
-					isPlaying = true;
 					playingTrack = audio.dataset.track_id;
 					if (window.innerWidth > 500) {
 						srcSvg.setAttribute('src', 'icons/main-pause.svg');
@@ -309,8 +307,8 @@ class TrackControl {
 
 					let clickTrack = e.target.closest('.current-track-main');
 					let trackLink = clickTrack.querySelector('.track-link').value;
-					let idCurrentTrack = clickTrack.dataset.track_id;
-					clickTrack.classList.add('playing_now');
+					let idCurrentTrack = clickTrack.querySelector('.show-current-count').value;
+					// clickTrack.classList.add('playing_now');
 
 					let showID = clickTrack.querySelector('.show-current-count').dataset.show_current_count;
 					localStorage.setItem('curIDatLIst', showID);
@@ -324,7 +322,7 @@ class TrackControl {
 					document.querySelectorAll('.artist-main').forEach(artisColor => {
 						artisColor.style.color = '';
 					})
-					if (idCurrentTrack === track.id) {
+					if (idCurrentTrack === track.dataset.current_amount) {
 						clickTrack.querySelectorAll('.play_now').forEach(paint => {
 							paint.style.color = '#5C67DE';
 						})
@@ -332,6 +330,7 @@ class TrackControl {
 					}
 
 					if (isPlaying) {
+						isPlaying = true;
 						if (playingTrack !== idCurrentTrack) {
 							isPlaying = true;
 							track.src = trackLink;
@@ -344,6 +343,8 @@ class TrackControl {
 							}
 						} else {
 							isPlaying = false;
+							console.log('tut')
+
 							track.pause();
 							if (window.innerWidth > 500) {
 								srcSvg.setAttribute('src', 'icons/play.svg');
@@ -354,6 +355,7 @@ class TrackControl {
 							clickTrack.classList.remove('playing_now');
 							clickTrack.classList.add('paused_now');
 						}
+						console.log(isPlaying)
 					} else {
 						isPlaying = true;
 						if (playingTrack !== idCurrentTrack) {
@@ -362,7 +364,7 @@ class TrackControl {
 						track.play();
 						trackData(clickTrack);
 					}
-					playingTrack = clickTrack.dataset.track_id;
+					playingTrack = clickTrack.querySelector('.show-current-count').value;
 					saveToStorage(clickTrack)
 				}
 				this.listeningCounter = track.currentTime;
@@ -417,12 +419,17 @@ function trackData(elem) {
 	$('.artist-player').innerText = elem.querySelector('.artist-main').innerText;
 	$('.player-cover').src = elem.querySelector('.track-cover').src;
 	elem.querySelector('.play_now_list').setAttribute('src', 'icons/pause.svg');
+	elem.querySelectorAll('.play_now').forEach(paint => {
+		paint.style.color = '#5C67DE';
+	})
+	elem.querySelector('.artist-main').style.color = 'white';
 
 }
 
 function fullDurationTrack(elem) {
 	let duration = (elem.duration / 60).toFixed(2).split('.');
 	let leftMin = elem.duration - duration[0] * 60;
+	if(duration[1]){
 if(duration[1] === '00'){
 		leftTime.innerHTML = duration[0] + ':' + duration[1];
 	}
@@ -433,7 +440,7 @@ if(duration[1] === '00'){
 	else{
 		leftTime.innerHTML = duration[0] + ':' + (Math.floor(leftMin));
 	}
-}
+}}
 
 let classOfTrack = new TrackControl();
 classOfTrack.updateTrack(track);
@@ -459,11 +466,20 @@ function first() {
 	if (!localStorage.getItem('lastVolumeLevel')) {
 		track.volume = 0.5;
 	}
-	$('.audioTag').volume = localStorage.getItem('lastVolumeLevel');
+	if( localStorage.getItem('lastVolumeLevel')){
+		$('.audioTag').volume = localStorage.getItem('lastVolumeLevel');
+	}else{
+		$('.audioTag').volume = .5;
+	}
 	$('.audioTag').currentTime = localStorage.getItem('lastPositionOfTrack');
 	track.id = localStorage.getItem('lastIDtrack');
-	track.dataset.current_amount = localStorage.getItem('curIDatLIst');
-	document.querySelector('.tracks-amount').innerText = trackList.length;
+	if(localStorage.getItem('curIDatLIst')){
+
+		track.dataset.current_amount = localStorage.getItem('curIDatLIst');
+	}else{
+		track.dataset.current_amount = 1;
+	}
+	// document.querySelector('.tracks-amount').innerText = trackList.length;
 	trackList.forEach(song => {
 
 		if (song.dataset.track_id == track.id) {
@@ -494,7 +510,7 @@ let switchButtons = document.querySelectorAll('.switch-track');
 let curId;
 switchButtons.forEach(btn => {
 	btn.addEventListener('click', (e) => {
-		isPlaying = true;
+
 		let atListID = Number(track.dataset.current_amount);
 		curId = Number(localStorage.getItem('curIDatLIst') ??  atListID);
 		// For save to localStorage on next/prev btn
@@ -517,6 +533,7 @@ switchButtons.forEach(btn => {
 				curId = 1;
 				track.dataset.current_amount = 1;
 			}
+			isPlaying  = true;
 		}
 
 		if (btn.className.includes('previous-track')) {
@@ -529,6 +546,7 @@ switchButtons.forEach(btn => {
 				curId = trackList.length;
 				track.dataset.current_amount = curId;
 			}
+			isPlaying = true;
 		}
 		let elemFromList = document.querySelector(`input[value="${curId}"]`).closest('.current-track-main');
 		track.id = elemFromList.id;
@@ -555,12 +573,11 @@ switchButtons.forEach(btn => {
 				elemFromList.classList.add('playing_now');
 			})
 		}
-		// playingTrack = elemFromList.querySelector('.show-current-count').value;
 		// isPlaying = true;
 		if (window.innerWidth < 500) {
 			srcSvg.setAttribute('src', 'icons/pause.svg');
 		}
+		playingTrack = elemFromList.querySelector('.show-current-count').value;
 		track.play()
 	})
 })
-

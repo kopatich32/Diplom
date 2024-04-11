@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         <aside class="aside-left">
             <nav class="links">
                 <ul>
-                    <li><span><img src="icons/house-chimney.svg" alt="main-page"></span>Home</li>
+                    <li style="visibility: hidden"><span><img src="icons/house-chimney.svg" alt="main-page"></span>Home</li>
                     <?php /*<li><span><img src="icons/flame.svg" alt="tranding"></span>Trending</li>
                     <li><span><img src="icons/following.svg" alt="following"></span>Following</li>*/?>
                 </ul>
@@ -46,18 +46,27 @@ document.addEventListener('DOMContentLoaded',()=>{
                     <div>
                         <img src="icons/list-music.svg" alt="list-music">
                     </div>
-                    <span>Плейлисты (<span>4</span>)</span>
-                    <div class="left-navigation">
+                    <span>Плейлисты
+                        <?/*(<span>4</span>)*/?>
+                    </span>
+                    <?/*<div class="left-navigation">
                         <div><img src="icons/plus.svg" alt="add-playlist"></div>
-                    </div>
+                    </div>*/?>
                 </div>
                 <ul class="playlists">
+<?php
+	function number($amount, $word) {
+		$case = [2, 0, 1, 1, 1, 2];
+		return   $word[($amount % 100 > 4 && $amount % 100 < 20) ? 2 : $case[min($amount % 10, 5)]];
+	}
+	$resultAmount = count($arResult) . number((count($arResult)), [' трек', 'трека', ' треков']);
 
+?>
                     <li class="playing">
                         <div class="wrapper"><img src="icons/Rectangle2.png" alt="test"></div>
                         <div>
-                            <p>How to Start Podcast</p>
-                            <p><span class="tracks-amount">31</span> tracks</p>
+                            <p>Всего песен</p>
+                            <p><span class="tracks-amount"></span><?=$resultAmount?></p>
                         </div>
                         <div><img loading="lazy" src="icons/pause.svg" alt="pause"></div>
                     </li>
@@ -168,7 +177,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         </div>
         <div class="track-control">
 	       
-            <div><img src="icons/shuffle.svg" alt="" title="перемешать"></div>
+           <?php /* <div><img src="icons/shuffle.svg" alt="" title="перемешать"></div> */?>
             <?php if($str > 500): ?>
 	        <div class="previous-track switch-track">
                 <img src="icons/step-forward2.svg" alt="" title="предыдущий трек">
@@ -256,7 +265,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 
             <span class="profile-data--add-track-wrapper" title="Добавить новый трек">
                 <img src="icons/addTrack.svg" alt="">
-                <input class="new-profile-track" type="file" accept=".mp3" name="NEW_PROFILE_TRACK">
+                <input class="new-profile-track" type="file" accept=".mp3,.flac" name="NEW_PROFILE_TRACK">
             </span>
             <div class="edit-profile">изменить профиль</div>
             <div class="save-profile">сохранить</div>
@@ -351,10 +360,8 @@ clearURL()
 <script src="/js/registration_form.js"></script>
 
 <script src="/js/profile.js"></script>
-<?php //if(@$_SESSION['online']):?>
 <script src="/js/moveToolTip.js"></script>
 <script src="/js/editProfile.js"></script>
-<?php //endif?>
 
 <?php /*https://proweb63.ru/help/js/html5-audio-js
 https://stackoverflow.com/questions/4126708/is-it-possible-to-style-html5-audio-tag/4126871#4126871

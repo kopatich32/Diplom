@@ -21,6 +21,10 @@ trackDetail.forEach(detail => {
             confirmWindow.style.display = 'block';
             confirmWindow.style.top = thisCoords.top - innerWrapper.offsetHeight + window.pageYOffset - 20 + 'px';
             confirmWindow.style.left = thisCoords.left - detail.offsetWidth + window.pageXOffset + window.scrollX - 20 + 'px';
+            if (window.innerWidth <= 500) {
+                innerWrapper.style.width = 'auto';
+                confirmWindow.style.left = thisCoords.left - detail.offsetWidth + window.pageXOffset + window.scrollX + 10 + 'px';
+            }
             event.stopPropagation()
         }
     })
