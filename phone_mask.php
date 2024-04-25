@@ -12,16 +12,16 @@
 <script>
 	let input = document.querySelector('input');
 	input.addEventListener('input', function (e) {
-		if (e.inputType === 'deleteContentForward' || e.inputType === 'deleteContentBackward') return false
-		this.value = this.value.replace(/\D/g, '')
+		if (e.inputType === 'deleteContentForward' || e.inputType === 'deleteContentBackward') return false;
+		this.value = this.value.replace(/\D/g, '');
 		if (/^[0-9]/.test(this.value)) {
-			this.value = this.value.replace(/^[0-9]/, '+7')
+			this.value = this.value.replace(/^[0-9]/, '+7');
 		} else {
-			this.value = '+' + this.value
+			this.value = '+' + this.value;
 		}
 		//+7(939)878-60-29
 		let start = 2;
-		let max = 14
+		let max = 14;
 		let obj = {
 			0: '(',
 			4: ')',
@@ -34,7 +34,7 @@
 			}
 		}
 		if (this.value[max + start]) {
-			this.value = this.value.substring(0, start + max)
+			this.value = this.value.substring(0, start + max);
 		}
 	})
 </script>
