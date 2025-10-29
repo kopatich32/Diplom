@@ -1,19 +1,22 @@
-<?php
+<?
 	session_start();
-	global $arResult;
+	function loadClasses($className): void
+	{
+		$className = str_replace('\\', '/', $className);
+		include $_SERVER['DOCUMENT_ROOT'] . '/classes/' . $className .'.php';
+	}
+	spl_autoload_register('loadClasses');
 	global $curID;
-	include 'get_tracks.php';
 	include 'registrationForm.php';
 	//require ('change_track.php');
 ?>
-<?php
+<?
 	$width = "<script>
 document.addEventListener('DOMContentLoaded',()=>{
 	return document.write(window.innerWidth)
 })
 </script>";
-	$str = (int)$width;
-?>
+	$str = (int)$width; ?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -23,7 +26,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="styles/style.css">
     <link rel="icon" href="icons/play.svg" type="image/svg+xml">
-   <?php /* <link rel="stylesheet" href="dragula-master/dist/dragula.css">
+   <? /* <link rel="stylesheet" href="dragula-master/dist/dragula.css">
     <script src="dragula-master/dist/dragula.js"></script>*/?>
     <script src="js/jsmediatags.min.js"></script>
     <script src="js/custom.js"></script>
@@ -37,7 +40,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             <nav class="links">
                 <ul>
                     <li style="visibility: hidden"><span><img src="icons/house-chimney.svg" alt="main-page"></span>Home</li>
-                    <?php /*<li><span><img src="icons/flame.svg" alt="tranding"></span>Trending</li>
+                    <? /*<li><span><img src="icons/flame.svg" alt="tranding"></span>Trending</li>
                     <li><span><img src="icons/following.svg" alt="following"></span>Following</li>*/?>
                 </ul>
             </nav>
@@ -54,11 +57,12 @@ document.addEventListener('DOMContentLoaded',()=>{
                     </div>*/?>
                 </div>
                 <ul class="playlists">
-<?php
+<?
 	function number($amount, $word) {
 		$case = [2, 0, 1, 1, 1, 2];
 		return   $word[($amount % 100 > 4 && $amount % 100 < 20) ? 2 : $case[min($amount % 10, 5)]];
 	}
+	$arResult = Main\Player::getTracks();
 	$resultAmount = count($arResult) . number((count($arResult)), [' трек', 'трека', ' треков']);
 
 ?>
@@ -70,17 +74,17 @@ document.addEventListener('DOMContentLoaded',()=>{
                         </div>
                         <div><img loading="lazy" src="icons/pause.svg" alt="pause"></div>
                     </li>
-                    <?php /*<li>
+                    <? /*<li>
                         <div class="wrapper"><img src="icons/Rectangle1.png" alt="test"></div>
                         <div>
                             <p>Late Night Horror</p>
                             <p>1 track</p>
                         </div>
                     </li>*/?>
-	                <?php
-	                for($i =2; $i <= 16; $i++):?>
+	                <?
+	                for($i =2; $i <= 16; $i++){?>
 		                <li><?=$i?></li>
-	                <?php endfor;?>
+	                <? } ?>
                 </ul>
             </div>
         </aside>
@@ -92,11 +96,11 @@ document.addEventListener('DOMContentLoaded',()=>{
                 </label>
                 <div class="notification"><img src="icons/bell.svg" alt="notification"></div>
                 <div class="profile-<?=$_SESSION ? 'online' : 'offline'?>">
-                    <?php if(@$_SESSION['online']):?>
+                    <? if(@$_SESSION['online']){?>
                     <img src="profile_img/<?=$_SESSION['avatar']?>" alt="user-photo ">
-                    <?php else:?>
+                    <? }else{?>
                         <img src="icons/offline_profile.svg" alt="user-photo ">
-                    <?php endif?>
+                    <? } ?>
                 </div>
             </header>
             <main>
@@ -121,21 +125,20 @@ document.addEventListener('DOMContentLoaded',()=>{
                     <div></div>
                 </div>
 <!--	            Tooltip-->
-                <?php if(@$_SESSION['online']):?>
+                <? if(@$_SESSION['online']){?>
 	            <div class="confirm_wrapper">
 		            <div class="confirm_delete_message">
 			            <p class="delete-track">удалить</p>
 			            <a class="download-link" href="" download>скачать</a>
 		            </div>
 	            </div>
-	            <?php endif ?>
-	            
+	            <? } ?>
+
                 <div class="track-area">
-					<?php
-						foreach ($arResult as $arItem):
+					<?
+						foreach ($arResult as $arItem){
 							$trackCover = $arItem['cover'] ? 'covers/' . $arItem['cover'] :  '/icons/no_cover.svg';
 							?>
-
                             <div id="<?= $arItem['id'] ?>" class="current-track-main cursor-grab" data-track_id="<?= $arItem['id'] ?>">
                                 <input class="show-current-count"  data-show_current_count="<?=$arItem['EXIST_ID'] ?>" value="<?=$arItem['EXIST_ID'] ?>" type="text" hidden>
                                 <div class="track-number play_now"><?=$arItem['EXIST_ID'] ?></div>
@@ -153,14 +156,14 @@ document.addEventListener('DOMContentLoaded',()=>{
                                 <div class="is_play">
                                     <img loading="lazy" class="play_now_list" src="icons/play_list.svg" alt="">
                                 </div>
-	                            <?php if(@$_SESSION['online']):?>
+	                            <? if(@$_SESSION['online']){?>
                                 <div class="track-detail">
                                     <img src="icons/track_info.svg" alt="">
                                 </div>
-                                <?php endif?>
+                                <? } ?>
                                 <input class="track-link" type="text" value="tracks/<?= $arItem['link'] ?>" hidden>
                             </div>
-						<?php endforeach ?>
+						<? } ?>
                 </div>
             </main>
         </div>
@@ -176,40 +179,40 @@ document.addEventListener('DOMContentLoaded',()=>{
             </div>
         </div>
         <div class="track-control">
-	       
-           <?php /* <div><img src="icons/shuffle.svg" alt="" title="перемешать"></div> */?>
-            <?php if($str > 500): ?>
+
+           <? /* <div><img src="icons/shuffle.svg" alt="" title="перемешать"></div> */?>
+            <? if($str > 500): ?>
 	        <div class="previous-track switch-track">
                 <img src="icons/step-forward2.svg" alt="" title="предыдущий трек">
             </div>
-	        <?php else: ?>
+	        <? else: ?>
 	            <div class="previous-track switch-track" style="width: 30px; height: 30px">
 		            <img src="icons/step-forward2.svg" style="width: 100%; height:100%" alt="" title="предыдущий трек">
 	            </div>
-	        <?php endif;?>
-	        <?php if ($str > 500): ?>
+	        <? endif;?>
+	        <? if ($str > 500): ?>
             <div class="main-pause">
 	            <img src="icons/play.svg" alt="" title="воспроизведение/пауза">
             </div>
-	        <?php else:?>
+	        <? else:?>
 	        <div class="main-pause" style="width: 70px; height: 70px">
 		        <img src="icons/play.svg" style="width: 100%; height:100%" alt="" title="воспроизведение/пауза">
 	        </div>
-	        <?php endif; ?>
-	        <?php if($str > 500): ?>
+	        <? endif; ?>
+	        <? if($str > 500): ?>
             <div class="next-track switch-track">
                 <img src="icons/step-forward1.svg" alt="" title="следующий трек">
             </div>
-	        <?php else: ?>
+	        <? else: ?>
 		        <div class="next-track switch-track" style="width: 30px; height: 30px">
 			        <img src="icons/step-forward1.svg" style="width: 100%; height:100%" alt="" title="следующий трек">
 		        </div>
-	        <?php endif;?>
-            <?php if($width > 500): ?>
+	        <? endif;?>
+            <? if($width > 500): ?>
 	        <div class="restart"><img src="icons/repeat.svg" alt="" title="начать с начала"></div>
-	        <?php endif;?>
+	        <? endif;?>
         </div>
-	    
+
 		    <div class="back-to-wrapper" style="display: none" title="к списку треков">
 			    <div class="back-to-list">
 				    <img src="icons/back_to_list.svg" alt="">
@@ -223,7 +226,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             </div>
             <p class="left-time"></p>
         </div>
-	    
+
         <div class="volume">
             <div class="mute">
                 <svg class="play" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -255,8 +258,8 @@ document.addEventListener('DOMContentLoaded',()=>{
     </footer>
 </div>
 <!--Profile menu-->
-<?php
-	if(@$_SESSION['online']):?>
+<?
+	if(@$_SESSION['online']){?>
     <div class="profile-menu">
         <div class="profile-data">
             <h1 contenteditable="false"><?= $_SESSION['name'] ?></h1>
@@ -272,7 +275,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         </div>
             <a href="disconnect.php" class="exit-session">Выйти</a>
     </div>
-<?php endif; ?>
+<? } ?>
 
 <script>
 let addTrackBtn =  document.querySelector('.new-profile-track');
@@ -354,7 +357,7 @@ clearURL()
 
 <audio style="display: none" class="audioTag" id="" src="tracks/Deafheaven_-_The_Gnashing.mp3" controls data-current_amount=""></audio>
 <script type="module" src="/js/duration.js"></script>
-<?php /*<script src="js/dragula.js"></script>*/?>
+<? /*<script src="js/dragula.js"></script>*/?>
 <script src="/js/mobile_script.js"></script>
 
 <script src="/js/registration_form.js"></script>
@@ -363,14 +366,14 @@ clearURL()
 <script src="/js/moveToolTip.js"></script>
 <script src="/js/editProfile.js"></script>
 
-<?php /*https://proweb63.ru/help/js/html5-audio-js
+<? /*https://proweb63.ru/help/js/html5-audio-js
 https://stackoverflow.com/questions/4126708/is-it-possible-to-style-html5-audio-tag/4126871#4126871
 https://packagist.org/packages/wapmorgan/mp3info
  */ ?>
 
 
 <!--<h1>https://yandex.ru/dev/audio/jsapi/doc/dg/concepts/load.html</h1>-->
-<?php /*
+<? /*
 beget
 Логин: r93987lp
 Пароль: dKojXS3cuA9P

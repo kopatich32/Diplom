@@ -1,6 +1,7 @@
 <?php
 	session_start();
 	include 'get_tracks.php';
+	global $connect;
 	$uploadFile = json_decode($_POST['obj'], true);
 	$file = $_FILES['file'];
 	$fileCover = $_FILES['cover'];
@@ -22,6 +23,6 @@
 		$artist = 'неизвестный исполнитель';
 		$trackName = $uploadFile['IS_EMPTY_ARTIST_OR_TRACK_NAME'];
 		}
-	$row = getConnection()->query("INSERT INTO `tracks` (`cover`,`track_name`, `artist`, `duration`, `link`) VALUES ('$uploadedCover','$trackName','$artist', '$fullTime','$uploadLink')");
+	$row = $connect->getInstance()->getConnection()->query("INSERT INTO `tracks` (`cover`,`track_name`, `artist`, `duration`, `link`) VALUES ('$uploadedCover','$trackName','$artist', '$fullTime','$uploadLink')");
 
 

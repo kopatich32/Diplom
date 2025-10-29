@@ -295,6 +295,11 @@ main {
       main .current-track-main .track-main .current-track-cover {
         width: 100%; }
 
+
+.current-track-main .is_play {
+  margin: auto;
+}
+
 footer {
   display: flex;
   flex-direction: row;

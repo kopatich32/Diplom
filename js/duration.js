@@ -160,6 +160,7 @@ class TrackControl {
 
 	updateTrack(elem) {
 		elem.addEventListener('timeupdate', (event) => {
+			console.log(event)
 			let currTime = Math.floor(event.target.currentTime);
 			let currFullSec = event.target.currentTime;
 			this.lastTimePosition = currTime;
@@ -191,25 +192,23 @@ class TrackControl {
 			fullDurationTrack(elem);
 			counterToBase = this.lastTimePosition;
 			this.idCurrentTrack = event.target.id;
-			// if (currTime - this.listeningCounter == 2) {
-			//     let tracks = document.querySelectorAll('.current-track-main');
-			//     tracks.forEach(count => {
-			//
-			//         if (event.target.id == count.dataset.track_id) {
-			//             count.querySelector('.listening-main').innerHTML += (count.querySelector('.listening-main').innerHTML)++ ;
-			//         }
-			//     })
-
-			// fetch('listened.php', {
-			//     method: 'POST',
-			//     body: listened,
-			// })
-			//     .then(resp => resp.json())
-			//     .then(data => console.log(data))
-			//}
 		})
 	}
+listenCount() {
+		/*let a = confirm('Yes?');
+		if(a) {
 
+
+	fetch('fetch/listen-count.php', {
+			method: 'POST',
+			body: JSON.stringify({text: "lala"})
+		})
+			.then(resp => resp.json())
+			.then(data =>
+				console.log(data)
+			)
+		}*/
+}
 	endTrack() {
 		track.addEventListener('ended', (e) => {
 
@@ -343,7 +342,6 @@ class TrackControl {
 							}
 						} else {
 							isPlaying = false;
-							console.log('tut')
 
 							track.pause();
 							if (window.innerWidth > 500) {
@@ -355,7 +353,6 @@ class TrackControl {
 							clickTrack.classList.remove('playing_now');
 							clickTrack.classList.add('paused_now');
 						}
-						console.log(isPlaying)
 					} else {
 						isPlaying = true;
 						if (playingTrack !== idCurrentTrack) {
@@ -449,6 +446,7 @@ classOfTrack.timeCurTrack(track);
 classOfTrack.chooseTrack();
 classOfTrack.restartTrack(track);
 classOfTrack.playMainButton();
+classOfTrack.listenCount();
 
 function first() {
 	isPlaying = false;
@@ -517,13 +515,7 @@ switchButtons.forEach(btn => {
 
 		let nextStorage = +track.id + 1;
 		let prevStorage = +track.id -1;
-		// console.log(nextStorage)
-		// console.log(prevStorage)
-		// let nextElem = document.getElementById(nextStorage)
-		// let prevElem = document.getElementById(prevStorage)
-		// console.log(nextElem)
-		// console.log(prevElem)
-		// curId = track.id;
+
 		if (btn.className.includes('next-track')) {
 			// saveToStorage(nextElem)
 			++track.dataset.current_amount
